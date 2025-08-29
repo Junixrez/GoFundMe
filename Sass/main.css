@@ -10,24 +10,23 @@ header {
   background-color: #f8f9fa;
   padding: 1em;
   display: grid;
-  grid-template-areas: "logo search nav button";
+  grid-template-areas: "logo search navbar button";
   grid-template-columns: 2fr 3fr auto auto;
   align-items: center;
-  gap: 0.5em;
   width: 100%;
-  box-sizing: border-box;
 }
 header .logo {
   grid-area: logo;
   font-size: 1.5rem;
   color: #0d7377;
-  font-weight: bold;
+  font-weight: bolder;
   padding: 0.5em;
 }
 header input {
   grid-area: search;
   padding: 0.5em;
   border-radius: 5px;
+  box-shadow: 0px 0px 7px 1px rgba(20, 160, 133, 0.1);
   border: none;
   font-size: 1rem;
   color: #2c3e50;
@@ -40,13 +39,10 @@ header input:focus {
   box-shadow: 0 0 5px rgba(13, 115, 119, 0.3);
 }
 header ul {
-  grid-area: nav;
-  list-style: none;
   display: flex;
-  gap: 0.5em;
   align-items: center;
-  margin: 0;
-  padding: 0;
+  grid-area: navbar;
+  list-style: none;
 }
 header ul li a {
   padding: 0.5em;
@@ -61,7 +57,7 @@ header ul li a:hover {
 }
 header button {
   grid-area: button;
-  padding: 0.75em;
+  padding: 0.5em;
   border: none;
   border-radius: 11px;
   background-color: #0d7377;
@@ -101,27 +97,27 @@ header button:hover {
 }
 @media screen and (max-width: 480px) {
   header {
-    padding: 0.5em;
+    padding: 1em;
   }
   header .logo {
-    font-size: 1.2rem;
-    padding: 0.25em;
+    font-size: 1rem;
+    padding: 0.5em;
   }
   header input {
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   header ul {
     flex-direction: column;
-    gap: 0.25em;
+    gap: 0.5em;
   }
   header ul li a {
-    font-size: 0.9rem;
-    padding: 0.25em;
+    font-size: 1rem;
+    padding: 0.5em;
   }
   header button {
-    font-size: 0.9rem;
-    padding: 0.25em;
+    font-size: 1rem;
+    padding: 0.5em;
   }
 }
 
