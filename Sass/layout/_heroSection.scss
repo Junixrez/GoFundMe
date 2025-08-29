@@ -1,0 +1,85 @@
+.hero {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  background: linear-gradient(
+    135deg,
+    $primary-color 0%,
+    darken($primary-color, 20%) 100%
+  );
+  color: $white;
+  padding: $all-space * 2 $all-space;
+  text-align: center;
+  font-family: $main-font;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: $all-space;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto $all-space * 1.5 auto;
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: $header-space $header-space * 2;
+    background-color: $white;
+    color: $primary-color;
+    font-size: $font-size;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family: $main-font;
+
+    &:hover {
+      background-color: darken($white, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba($text-dark, 0.2);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    min-height: 50vh;
+    padding: $all-space * 1.5 $all-space;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      max-width: 80%;
+    }
+
+    .btn-primary {
+      padding: $header-space / 1.5 $header-space * 1.5;
+      font-size: $font-size * 0.9;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    min-height: 40vh;
+    padding: $all-space $all-space / 2;
+
+    h1 {
+      font-size: $font-size;
+    }
+
+    p {
+      font-size: 0.9rem;
+      max-width: 90%;
+    }
+
+    .btn-primary {
+      padding: $header-space / 2 $header-space;
+      font-size: $font-size * 0.8;
+    }
+  }
+}

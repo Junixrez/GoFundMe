@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+header {
+  font-family: "Vend Sans", sans-serif;
+  background-color: #f8f9fa;
+  padding: 1em;
+  display: grid;
+  grid-template-areas: "logo search nav button";
+  grid-template-columns: 2fr 3fr auto auto;
+  align-items: center;
+  gap: 0.5em;
+  width: 100%;
+  box-sizing: border-box;
+}
+header .logo {
+  grid-area: logo;
+  font-size: 1.5rem;
+  color: #0d7377;
+  font-weight: bold;
+  padding: 0.5em;
+}
+header input {
+  grid-area: search;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  color: #2c3e50;
+  width: 300px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+header input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(13, 115, 119, 0.3);
+}
+header ul {
+  grid-area: nav;
+  list-style: none;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+header ul li a {
+  padding: 0.5em;
+  text-decoration: none;
+  color: #0d7377;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+header ul li a:hover {
+  text-decoration: underline;
+  color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+}
+header button {
+  grid-area: button;
+  padding: 0.75em;
+  border: none;
+  border-radius: 11px;
+  background-color: #0d7377;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+header button:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+}
+@media screen and (max-width: 768px) {
+  header {
+    grid-template-areas: "logo" "search" "nav" "button";
+    grid-template-columns: 1fr;
+    gap: 1em;
+    justify-items: center;
+  }
+  header .logo {
+    margin-bottom: 0.5em;
+  }
+  header input {
+    width: 80%;
+    max-width: 400px;
+  }
+  header ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+  }
+  header ul li a {
+    padding: 0.25em;
+  }
+  header button {
+    padding: 0.25em;
+  }
+}
+@media screen and (max-width: 480px) {
+  header {
+    padding: 0.5em;
+  }
+  header .logo {
+    font-size: 1.2rem;
+    padding: 0.25em;
+  }
+  header input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  header ul {
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  header ul li a {
+    font-size: 0.9rem;
+    padding: 0.25em;
+  }
+  header button {
+    font-size: 0.9rem;
+    padding: 0.25em;
+  }
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  background: linear-gradient(135deg, #0d7377 0%, rgb(2.9545454545, 26.1363636364, 27.0454545455) 100%);
+  color: #ffffff;
+  padding: 2em 1em;
+  text-align: center;
+  font-family: "Vend Sans", sans-serif;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1em;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 1.5em auto;
+  line-height: 1.5;
+}
+.hero .btn-primary {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #ffffff;
+  color: #0d7377;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+.hero .btn-primary:hover {
+  background-color: rgb(229.5, 229.5, 229.5);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
+}
+@media screen and (max-width: 768px) {
+  .hero {
+    min-height: 50vh;
+    padding: 1.5em 1em;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    max-width: 80%;
+  }
+  .hero .btn-primary {
+    padding: 0.3333333333em 0.75em;
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .hero {
+    min-height: 40vh;
+    padding: 1em 0.5em;
+  }
+  .hero h1 {
+    font-size: 1rem;
+  }
+  .hero p {
+    font-size: 0.9rem;
+    max-width: 90%;
+  }
+  .hero .btn-primary {
+    padding: 0.25em 0.5em;
+    font-size: 0.8rem;
+  }
+}
+
+.about-us {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
+  padding: 2em 1em;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-family: "Vend Sans", sans-serif;
+}
+.about-us .content {
+  grid-column: 2/3;
+  text-align: center;
+}
+.about-us .content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d7377;
+  margin-bottom: 1.5em;
+}
+.about-us .content .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+.about-us .content .cards .card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.1);
+  transition: transform 0.3s ease;
+}
+.about-us .content .cards .card:hover {
+  transform: translateY(-5px);
+}
+.about-us .content .cards .card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #35a29f;
+  margin-bottom: 0.5em;
+}
+.about-us .content .cards .card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.5em;
+}
+.about-us .content .cards .card .btn-primary {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #0d7377;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+.about-us .content .cards .card .btn-primary:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
+}
+@media screen and (max-width: 768px) {
+  .about-us {
+    grid-template-columns: 1fr minmax(250px, 600px) 1fr;
+    padding: 1.5em 1em;
+  }
+  .about-us .content h2 {
+    font-size: 1.8rem;
+  }
+  .about-us .content .cards {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  .about-us .content .cards .card {
+    padding: 0.6666666667em;
+  }
+  .about-us .content .cards .card h3 {
+    font-size: 1.3rem;
+  }
+  .about-us .content .cards .card p {
+    font-size: 0.95rem;
+  }
+  .about-us .content .cards .card .btn-primary {
+    padding: 0.3333333333em 0.75em;
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .about-us {
+    grid-template-columns: 1fr;
+    padding: 1em 0.5em;
+  }
+  .about-us .content h2 {
+    font-size: 1.5rem;
+  }
+  .about-us .content .cards {
+    gap: 0.6666666667em;
+  }
+  .about-us .content .cards .card {
+    padding: 0.5em;
+  }
+  .about-us .content .cards .card h3 {
+    font-size: 1.2rem;
+  }
+  .about-us .content .cards .card p {
+    font-size: 0.9rem;
+  }
+  .about-us .content .cards .card .btn-primary {
+    padding: 0.25em 0.5em;
+    font-size: 0.8rem;
+  }
+}
+
+.campaigns {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
+  padding: 2em 1em;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  font-family: "Vend Sans", sans-serif;
+}
+.campaigns .content {
+  grid-column: 2/3;
+  text-align: center;
+}
+.campaigns .content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d7377;
+  margin-bottom: 1.5em;
+}
+.campaigns .content .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+.campaigns .content .cards .card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.1);
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+.campaigns .content .cards .card:hover {
+  transform: translateY(-5px);
+}
+.campaigns .content .cards .card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0.5em;
+}
+.campaigns .content .cards .card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0d7377;
+  margin-bottom: 0.5em;
+}
+.campaigns .content .cards .card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.5em;
+}
+.campaigns .content .cards .card .progress {
+  background-color: rgb(98.1363636364, 232.5909090909, 237.8636363636);
+  border-radius: 5px;
+  height: 10px;
+  margin-bottom: 0.5em;
+}
+.campaigns .content .cards .card .progress .bar {
+  background-color: #0d7377;
+  height: 100%;
+  border-radius: 5px;
+}
+.campaigns .content .cards .card .stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+.campaigns .content .cards .card .btn-primary {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #0d7377;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+.campaigns .content .cards .card .btn-primary:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
+}
+@media screen and (max-width: 768px) {
+  .campaigns {
+    grid-template-columns: 1fr minmax(250px, 600px) 1fr;
+    padding: 1.5em 1em;
+  }
+  .campaigns .content h2 {
+    font-size: 1.8rem;
+  }
+  .campaigns .content .cards {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  .campaigns .content .cards .card {
+    padding: 0.6666666667em;
+  }
+  .campaigns .content .cards .card h3 {
+    font-size: 1.3rem;
+  }
+  .campaigns .content .cards .card p {
+    font-size: 0.95rem;
+  }
+  .campaigns .content .cards .card .btn-primary {
+    padding: 0.3333333333em 0.75em;
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .campaigns {
+    grid-template-columns: 1fr;
+    padding: 1em 0.5em;
+  }
+  .campaigns .content h2 {
+    font-size: 1.5rem;
+  }
+  .campaigns .content .cards {
+    gap: 0.6666666667em;
+  }
+  .campaigns .content .cards .card {
+    padding: 0.5em;
+  }
+  .campaigns .content .cards .card h3 {
+    font-size: 1.2rem;
+  }
+  .campaigns .content .cards .card p {
+    font-size: 0.9rem;
+  }
+  .campaigns .content .cards .card .btn-primary {
+    padding: 0.25em 0.5em;
+    font-size: 0.8rem;
+  }
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FundMeShokran</title>
+    <link rel="stylesheet" href="../Sass/main.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">FundMeShokran</div>
+
+      <div class="nav">
+        <ul>
+          <li>
+            <div class="search">
+              <input type="search" placeholder="Search Campagins" />
+            </div>
+          </li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Campaigns</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Start a Campagin</a></li>
+          <li><button>Login</button></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- hero section -->
+    <section class="hero">
+      <h1>Bring Your Ideas to Life</h1>
+      <p>
+        Join thousands of creators who have successfully funded their projects
+        through our platform
+      </p>
+      <a href="#" class="btn btn-primary" onclick="showCampaigns()"
+        >Explore Campaigns</a
+      >
+    </section>
+
+    <!-- about us -->
+    <section class="about-us">
+      <div class="content">
+        <h2>About Us</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Our Mission</h3>
+            <p>
+              We empower creators to bring their ideas to life without
+              traditional funding barriers, fostering a vibrant ecosystem for
+              art, music, film, and more.
+            </p>
+            <a href="#" class="btn-primary">Learn More</a>
+          </div>
+          <div class="card">
+            <h3>Our Community</h3>
+            <p>
+              Millions of backers and creators worldwide join us to support and
+              launch projects, building a global network of creativity and
+              collaboration.
+            </p>
+            <a href="#" class="btn-primary">Join Us</a>
+          </div>
+          <div class="card">
+            <h3>Our Impact</h3>
+            <p>
+              As a Public Benefit Corporation, we prioritize cultural
+              innovation, helping thousands of projects shape the future of
+              creative expression.
+            </p>
+            <a href="#" class="btn-primary">See Impact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campagins Section -->
+    <section class="campaigns">
+      <div class="content">
+        <h2>Featured Campaigns</h2>
+        <div class="cards" id="campaign-cards">
+          <!--                         -->
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

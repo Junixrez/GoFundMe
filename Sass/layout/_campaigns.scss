@@ -1,0 +1,163 @@
+.campaigns {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
+  padding: $all-space * 2 $all-space;
+  background-color: $bg-light;
+  color: $text-dark;
+  font-family: $main-font;
+
+  .content {
+    grid-column: 2 / 3;
+    text-align: center;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $all-space * 1.5;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $all-space;
+      margin-bottom: $all-space * 1.5;
+
+      .card {
+        background-color: $white;
+        border-radius: 8px;
+        padding: $all-space;
+        box-shadow: 0 4px 10px rgba($text-dark, 0.1);
+        transition: transform 0.3s ease;
+        text-align: left;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 8px 8px 0 0;
+          margin-bottom: $header-space;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: $primary-color;
+          margin-bottom: $header-space;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: $header-space;
+        }
+
+        .progress {
+          background-color: lighten($primary-color, 40%);
+          border-radius: 5px;
+          height: 10px;
+          margin-bottom: $header-space;
+
+          .bar {
+            background-color: $primary-color;
+            height: 100%;
+            border-radius: 5px;
+          }
+        }
+
+        .stats {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.9rem;
+          color: $text-dark;
+        }
+
+        .btn-primary {
+          display: inline-block;
+          padding: $header-space $header-space * 2;
+          background-color: $primary-color;
+          color: $white;
+          font-size: $font-size;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+          font-family: $main-font;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+            box-shadow: 0 2px 5px rgba($text-dark, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr minmax(250px, 600px) 1fr;
+    padding: $all-space * 1.5 $all-space;
+
+    .content {
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+        gap: $all-space;
+
+        .card {
+          padding: $all-space / 1.5;
+
+          h3 {
+            font-size: 1.3rem;
+          }
+
+          p {
+            font-size: 0.95rem;
+          }
+
+          .btn-primary {
+            padding: $header-space / 1.5 $header-space * 1.5;
+            font-size: $font-size * 0.9;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: $all-space $all-space / 2;
+
+    .content {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .cards {
+        gap: $all-space / 1.5;
+
+        .card {
+          padding: $all-space / 2;
+
+          h3 {
+            font-size: 1.2rem;
+          }
+
+          p {
+            font-size: 0.9rem;
+          }
+
+          .btn-primary {
+            padding: $header-space / 2 $header-space;
+            font-size: $font-size * 0.8;
+          }
+        }
+      }
+    }
+  }
+}

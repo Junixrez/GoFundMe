@@ -1,0 +1,145 @@
+header {
+  font-family: $main-font;
+  background-color: $bg-light;
+  padding: $all-space;
+  display: grid;
+  grid-template-areas: "logo search nav button";
+  grid-template-columns: 2fr 3fr auto auto;
+  align-items: center;
+  gap: $header-space;
+  width: 100%;
+  box-sizing: border-box;
+
+  .logo {
+    grid-area: logo;
+    font-size: 1.5rem;
+    color: $primary-color;
+    font-weight: bold;
+    padding: $header-space;
+  }
+
+  input {
+    grid-area: search;
+    padding: $header-space;
+    border-radius: 5px;
+    border: none;
+    font-size: $font-size;
+    color: $text-dark;
+    width: 300px;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba($primary-color, 0.3);
+    }
+  }
+
+  ul {
+    grid-area: nav;
+    list-style: none;
+    display: flex;
+    gap: $header-space;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        padding: $header-space;
+        text-decoration: none;
+        color: $primary-color;
+        font-size: $font-size;
+        transition: color 0.3s ease;
+
+        &:hover {
+          text-decoration: underline;
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  button {
+    grid-area: button;
+    padding: $header-space * 1.5;
+    border: none;
+    border-radius: 11px;
+    background-color: $primary-color;
+    color: $white;
+    font-size: $font-size;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-areas:
+      "logo"
+      "search"
+      "nav"
+      "button";
+    grid-template-columns: 1fr;
+    gap: $all-space;
+    justify-items: center;
+
+    .logo {
+      margin-bottom: $header-space;
+    }
+
+    input {
+      width: 80%;
+      max-width: 400px;
+    }
+
+    ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: $header-space;
+
+      li {
+        a {
+          padding: $header-space / 2;
+        }
+      }
+    }
+
+    button {
+      padding: $header-space / 2;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: $all-space / 2;
+
+    .logo {
+      font-size: 1.2rem;
+      padding: $header-space / 2;
+    }
+
+    input {
+      width: 100%;
+      font-size: $font-size * 0.9;
+    }
+
+    ul {
+      flex-direction: column;
+      gap: $header-space / 2;
+
+      li {
+        a {
+          font-size: $font-size * 0.9;
+          padding: $header-space / 2;
+        }
+      }
+    }
+
+    button {
+      font-size: $font-size * 0.9;
+      padding: $header-space / 2;
+    }
+  }
+}
