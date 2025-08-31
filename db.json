@@ -1,0 +1,53 @@
+{
+  "users": [],
+  "campaigns": [
+    {
+      "id": 1,
+      "title": "Eco-Friendly Bamboo Furniture Line",
+      "description": "Sustainable furniture crafted from renewable bamboo to enhance eco-conscious living spaces.",
+      "imageUrl": "https://example.com/images/bamboo-furniture.jpg",
+      "goal": 15000,
+      "raised": 12000
+    },
+    {
+      "id": 2,
+      "title": "Indie Sci-Fi Short Film",
+      "description": "A thrilling sci-fi film exploring human-AI relationships in a futuristic world.",
+      "imageUrl": "https://example.com/images/sci-fi-film.jpg",
+      "goal": 50000,
+      "raised": 32000
+    },
+    {
+      "id": 3,
+      "title": "Handmade Ceramic Art Collection",
+      "description": "Unique ceramic sculptures inspired by nature, crafted by local artisans.",
+      "imageUrl": "https://example.com/images/ceramic-art.jpg",
+      "goal": 8000,
+      "raised": 4500
+    },
+    {
+      "id": 4,
+      "title": "Solar-Powered Phone Charger",
+      "description": "Compact, eco-friendly charger harnessing solar energy for on-the-go power.",
+      "imageUrl": "https://example.com/images/solar-charger.jpg",
+      "goal": 20000,
+      "raised": 18000
+    },
+    {
+      "id": 5,
+      "title": "Community Mural Project",
+      "description": "A vibrant mural to beautify our neighborhood and celebrate local culture.",
+      "imageUrl": "https://example.com/images/community-mural.jpg",
+      "goal": 10000,
+      "raised": 6000
+    },
+    {
+      "id": 6,
+      "title": "Board Game: Galactic Quest",
+      "description": "An immersive strategy game set in a sprawling intergalactic universe.",
+      "imageUrl": "https://example.com/images/board-game.jpg",
+      "goal": 25000,
+      "raised": 20000
+    }
+  ]
+}
