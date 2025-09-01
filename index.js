@@ -22,3 +22,4 @@ async function getCampaingns() {
 }
 
 getCampaingns();
+// document.getElementById("loadMoreBtn").addEventListener("click", getCampaingns);
