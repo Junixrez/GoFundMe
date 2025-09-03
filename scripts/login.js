@@ -16,6 +16,6 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   if (!response.ok) {
     alert("wrong email or password");
   } else if (response.ok) {
-    // window.location.href = "../HTML/index.html";
+    window.location.href = "../HTML/index.html";
   }
 });

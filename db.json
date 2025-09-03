@@ -7,6 +7,22 @@
       "role": "user",
       "isActive": true,
       "id": 1
+    },
+    {
+      "email": "elsayed@mail.com",
+      "password": "$2a$10$r9edfCj4Q26PsTRxZh7vke4AhlQwEPZso2IS1SX9PLoM04/wR5Uw.",
+      "name": "elsayed ezzat",
+      "role": "user",
+      "isActive": true,
+      "id": 2
+    },
+    {
+      "email": "tester@mail.com",
+      "password": "$2a$10$MLvWFa3b7bra8NN7rBU5Mu34VhkKBqdOBn1GG5gqFYEpkmzc2K8f.",
+      "name": "tester",
+      "role": "user",
+      "isActive": true,
+      "id": 3
     }
   ],
   "campaigns": [

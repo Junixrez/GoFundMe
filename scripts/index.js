@@ -12,16 +12,17 @@ async function fetchCampaigns() {
     .then((data) => {
       data.forEach((campaign) => {
         if (campaign.id <= 6) {
-          document.getElementById("campaign-cards").innerHTML += `
-          <div class="card">
-            <img src="${campaign.image}" alt="${campaign.title}" />
-            <h3>${campaign.title}</h3>
-            <p>${campaign.description}</p>
-            <p>Goal: $${campaign.goal}</p>
-            <p>Raised: $${campaign.raised}</p>
-            <a href="campaign.html?id=${campaign.id}" class="btn-primary-dark">View Campaign</a>
-          </div>
+          const card = document.createElement("div");
+          card.classList = "card";
+          card.innerHTML = `
+          <img src="${campaign.image}" alt="Campaign Image" class="campaign-cards"/>
+          <h3 class="campaign-title">${campaign.title}</h3> 
+          <p class="campaign-description">${campaign.description}</p>
+          <p class="campaign-goal">Goal: $${campaign.goal}</p>
+          <p class="campaign-raised">Raised: $${campaign.raised}</p>
+          <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark">View Details</a>
         `;
+          document.getElementById("campaign-cards").appendChild(card);
         }
       });
     });
