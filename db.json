@@ -1,11 +1,20 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "test@mail.com",
+      "password": "$2a$10$82jCUoqIsjN6QkbWWwKkLOpQSao7UMyLZmLN1ayggx3dav8ZKZnIW",
+      "name": "elsayed",
+      "role": "user",
+      "isActive": true,
+      "id": 1
+    }
+  ],
   "campaigns": [
     {
       "id": 1,
       "title": "Eco-Friendly Bamboo Furniture Line",
       "description": "Sustainable furniture crafted from renewable bamboo to enhance eco-conscious living spaces.",
-      "imageUrl": "https://example.com/images/bamboo-furniture.jpg",
+      "imageUrl": "https://example.com/images/mental-wellness.jpg",
       "goal": 15000,
       "raised": 12000
     },
@@ -48,6 +57,118 @@
       "imageUrl": "https://example.com/images/board-game.jpg",
       "goal": 25000,
       "raised": 20000
+    },
+    {
+      "id": 7,
+      "title": "Organic Urban Farm Initiative",
+      "description": "Support our urban farm to provide fresh, organic produce to the community.",
+      "imageUrl": "https://example.com/images/urban-farm.jpg",
+      "goal": 30000,
+      "raised": 15000
+    },
+    {
+      "id": 8,
+      "title": "VR Art Gallery Experience",
+      "description": "A virtual reality platform showcasing emerging artists from around the globe.",
+      "imageUrl": "https://example.com/images/vr-gallery.jpg",
+      "goal": 40000,
+      "raised": 28000
+    },
+    {
+      "id": 9,
+      "title": "Handwoven Textile Collection",
+      "description": "Traditional textiles handwoven by artisans, preserving cultural heritage.",
+      "imageUrl": "https://example.com/images/textiles.jpg",
+      "goal": 12000,
+      "raised": 9000
+    },
+    {
+      "id": 10,
+      "title": "Indie Music Album Release",
+      "description": "Help fund our debut album blending folk and electronic music vibes.",
+      "imageUrl": "https://example.com/images/music-album.jpg",
+      "goal": 18000,
+      "raised": 11000
+    },
+    {
+      "id": 11,
+      "title": "Zero-Waste Packaging Startup",
+      "description": "Innovative biodegradable packaging solutions for a greener planet.",
+      "imageUrl": "https://example.com/images/zero-waste.jpg",
+      "goal": 35000,
+      "raised": 25000
+    },
+    {
+      "id": 12,
+      "title": "Interactive Children’s Book",
+      "description": "An engaging book with AR features to spark kids’ imagination and learning.",
+      "imageUrl": "https://example.com/images/childrens-book.jpg",
+      "goal": 10000,
+      "raised": 7000
+    },
+    {
+      "id": 13,
+      "title": "Smart Indoor Garden System",
+      "description": "Grow fresh herbs and veggies indoors with our automated garden tech.",
+      "imageUrl": "https://example.com/images/indoor-garden.jpg",
+      "goal": 22000,
+      "raised": 16000
+    },
+    {
+      "id": 14,
+      "title": "Documentary on Ocean Conservation",
+      "description": "A film highlighting efforts to protect our oceans and marine life.",
+      "imageUrl": "https://example.com/images/ocean-doc.jpg",
+      "goal": 60000,
+      "raised": 40000
+    },
+    {
+      "id": 15,
+      "title": "Retro-Style Arcade Machine",
+      "description": "A modern take on classic arcade gaming with customizable designs.",
+      "imageUrl": "https://example.com/images/arcade-machine.jpg",
+      "goal": 45000,
+      "raised": 30000
+    },
+    {
+      "id": 16,
+      "title": "Sustainable Fashion Line",
+      "description": "Eco-conscious clothing made from recycled materials and ethical practices.",
+      "imageUrl": "https://example.com/images/sustainable-fashion.jpg",
+      "goal": 25000,
+      "raised": 18000
+    },
+    {
+      "id": 17,
+      "title": "Mobile App for Mental Wellness",
+      "description": "An app offering guided meditation and mental health resources.",
+      "imageUrl": "https://example.com/images/mental-wellness.jpg",
+      "goal": 30000,
+      "raised": 20000
+    },
+    {
+      "id": 18,
+      "title": "Artisanal Coffee Roastery",
+      "description": "Small-batch coffee roasted with care, sourced from fair-trade farms.",
+      "imageUrl": "https://example.com/images/coffee-roastery.jpg",
+      "goal": 15000,
+      "raised": 10000
+    },
+    {
+      "id": 19,
+      "title": "Stop-Motion Animation Film",
+      "description": "A whimsical stop-motion story exploring themes of friendship and adventure.",
+      "imageUrl": "https://example.com/images/stop-motion.jpg",
+      "goal": 40000,
+      "raised": 25000
+    },
+    {
+      "id": 20,
+      "title": "Community Bike Workshop",
+      "description": "A workshop to teach bike repair and promote sustainable transportation.",
+      "imageUrl": "https://example.com/images/bike-workshop.jpg",
+      "goal": 20000,
+      "raised": 12000
     }
   ]
 }

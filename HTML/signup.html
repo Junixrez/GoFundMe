@@ -7,19 +7,45 @@
     <link rel="stylesheet" href="../Sass/main.css" />
   </head>
   <body>
-    <div class="wrapper">
-      <form>
-        <div><h2>Create account</h2></div>
-        <label for="name">Name</label>
-        <input type="text" id="name" required />
-        <label for="email">E-Mail</label>
-        <input type="email" id="email" required />
-        <label for="pass">Password</label>
-        <input type="password" id="pass" required />
-        <label for="phone">Phone</label>
-        <input type="tel" id="phone" required />
-        <button>Submit</button>
-      </form>
-    </div>
+    <section class="signup">
+      <div class="content">
+        <h2>Welcome To FundMeShokran</h2>
+        <h3>Join Us</h3>
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="fname">Full Name</label>
+            <input
+              type="text"
+              id="fname"
+              name="Full Name"
+              required
+              placeholder="Enter your full name"
+            />
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Enter your email"
+            />
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Enter your password"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+          <p class="login-link">
+            Have an existing account? <a href="./login.html">Login</a>
+          </p>
+        </form>
+      </div>
+    </section>
   </body>
 </html>

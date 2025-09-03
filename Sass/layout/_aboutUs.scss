@@ -46,24 +46,6 @@
           line-height: 1.6;
           margin-bottom: $header-space;
         }
-
-        .btn-primary {
-          display: inline-block;
-          padding: $header-space $header-space * 2;
-          background-color: $primary-color;
-          color: $white;
-          font-size: $font-size;
-          font-weight: 600;
-          text-decoration: none;
-          border-radius: 5px;
-          transition: all 0.3s ease;
-          font-family: $main-font;
-
-          &:hover {
-            background-color: darken($primary-color, 10%);
-            box-shadow: 0 2px 5px rgba($text-dark, 0.2);
-          }
-        }
       }
     }
   }
@@ -122,11 +104,6 @@
 
           p {
             font-size: 0.9rem;
-          }
-
-          .btn-primary {
-            padding: $header-space / 2 $header-space;
-            font-size: $font-size * 0.8;
           }
         }
       }

@@ -56,9 +56,10 @@ header {
     }
   }
 
-  button {
+  #loginBtn {
     grid-area: button;
     padding: $header-space;
+    text-decoration: none;
     border: none;
     border-radius: 11px;
     background-color: $primary-color;

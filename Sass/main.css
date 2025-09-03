@@ -55,9 +55,10 @@ header ul li a:hover {
   text-decoration: underline;
   color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
 }
-header button {
+header #loginBtn {
   grid-area: button;
   padding: 0.5em;
+  text-decoration: none;
   border: none;
   border-radius: 11px;
   background-color: #0d7377;
@@ -66,7 +67,7 @@ header button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-header button:hover {
+header #loginBtn:hover {
   background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
 }
 @media screen and (max-width: 768px) {
@@ -122,9 +123,12 @@ header button:hover {
 }
 
 .hero {
-  display: grid;
-  place-items: center;
-  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  height: 100vh;
   background: linear-gradient(135deg, #0d7377 0%, rgb(2.9545454545, 26.1363636364, 27.0454545455) 100%);
   color: #ffffff;
   padding: 2em 1em;
@@ -142,23 +146,6 @@ header button:hover {
   max-width: 600px;
   margin: 0 auto 1.5em auto;
   line-height: 1.5;
-}
-.hero .btn-primary {
-  display: inline-block;
-  padding: 0.5em 1em;
-  background-color: #ffffff;
-  color: #0d7377;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-family: "Vend Sans", sans-serif;
-}
-.hero .btn-primary:hover {
-  background-color: rgb(229.5, 229.5, 229.5);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
 }
 @media screen and (max-width: 768px) {
   .hero {
@@ -240,22 +227,6 @@ header button:hover {
   line-height: 1.6;
   margin-bottom: 0.5em;
 }
-.about-us .content .cards .card .btn-primary {
-  display: inline-block;
-  padding: 0.5em 1em;
-  background-color: #0d7377;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-family: "Vend Sans", sans-serif;
-}
-.about-us .content .cards .card .btn-primary:hover {
-  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
-  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
-}
 @media screen and (max-width: 768px) {
   .about-us {
     grid-template-columns: 1fr minmax(250px, 600px) 1fr;
@@ -301,10 +272,6 @@ header button:hover {
   }
   .about-us .content .cards .card p {
     font-size: 0.9rem;
-  }
-  .about-us .content .cards .card .btn-primary {
-    padding: 0.25em 0.5em;
-    font-size: 0.8rem;
   }
 }
 
@@ -326,13 +293,13 @@ header button:hover {
   color: #0d7377;
   margin-bottom: 1.5em;
 }
-.campaigns .content .cards {
+.campaigns .content #campaign-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
-  margin-bottom: 1.5em;
+  margin-bottom: 3em;
 }
-.campaigns .content .cards .card {
+.campaigns .content #campaign-cards .card {
   background-color: #ffffff;
   border-radius: 8px;
   padding: 1em;
@@ -340,58 +307,42 @@ header button:hover {
   transition: transform 0.3s ease;
   text-align: left;
 }
-.campaigns .content .cards .card:hover {
+.campaigns .content #campaign-cards .card:hover {
   transform: translateY(-5px);
 }
-.campaigns .content .cards .card img {
+.campaigns .content #campaign-cards .card img {
   width: 100%;
   height: auto;
   border-radius: 8px 8px 0 0;
   margin-bottom: 0.5em;
 }
-.campaigns .content .cards .card h3 {
+.campaigns .content #campaign-cards .card h3 {
   font-size: 1.5rem;
   font-weight: 600;
   color: #0d7377;
   margin-bottom: 0.5em;
 }
-.campaigns .content .cards .card p {
+.campaigns .content #campaign-cards .card p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 0.5em;
 }
-.campaigns .content .cards .card .progress {
+.campaigns .content #campaign-cards .card .progress {
   background-color: rgb(98.1363636364, 232.5909090909, 237.8636363636);
   border-radius: 5px;
   height: 10px;
   margin-bottom: 0.5em;
 }
-.campaigns .content .cards .card .progress .bar {
+.campaigns .content #campaign-cards .card .progress .bar {
   background-color: #0d7377;
   height: 100%;
   border-radius: 5px;
 }
-.campaigns .content .cards .card .stats {
+.campaigns .content #campaign-cards .card .stats {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
   color: #2c3e50;
-}
-.campaigns .content .cards .card .btn-primary {
-  display: inline-block;
-  padding: 0.5em 1em;
-  background-color: #0d7377;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-family: "Vend Sans", sans-serif;
-}
-.campaigns .content .cards .card .btn-primary:hover {
-  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
-  box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
 }
 @media screen and (max-width: 768px) {
   .campaigns {
@@ -414,10 +365,6 @@ header button:hover {
   .campaigns .content .cards .card p {
     font-size: 0.95rem;
   }
-  .campaigns .content .cards .card .btn-primary {
-    padding: 0.3333333333em 0.75em;
-    font-size: 0.9rem;
-  }
 }
 @media screen and (max-width: 480px) {
   .campaigns {
@@ -439,8 +386,177 @@ header button:hover {
   .campaigns .content .cards .card p {
     font-size: 0.9rem;
   }
-  .campaigns .content .cards .card .btn-primary {
-    padding: 0.25em 0.5em;
-    font-size: 0.8rem;
-  }
+}
+
+.login {
+  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(20, 160, 133) 35%, rgb(84, 255, 192) 100%);
+  font-family: "Vend Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.login .content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+.login .content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0d7377;
+}
+.login .content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #14a085;
+}
+.login .content .form-group {
+  margin-bottom: 15px;
+}
+.login .content .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+.login .content .form-group #password,
+.login .content .form-group #email {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.login .content .form-group #password:focus,
+.login .content .form-group #email:focus {
+  border-color: #14a085;
+  outline: none;
+  box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
+}
+.login .content .btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #14a085;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.login .content .btn:hover {
+  background-color: #0d7377;
+}
+
+.signup {
+  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(20, 160, 133) 35%, rgb(84, 255, 192) 100%);
+  font-family: "Vend Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.signup .content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+.signup .content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0d7377;
+}
+.signup .content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #14a085;
+}
+.signup .content .form-group {
+  margin-bottom: 20px;
+}
+.signup .content .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+.signup .content .form-group #password,
+.signup .content .form-group #email,
+.signup .content .form-group #fname {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: none;
+}
+.signup .content .form-group #password:focus,
+.signup .content .form-group #email:focus,
+.signup .content .form-group #fname:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.signup .content .btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #14a085;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.signup .content .btn:hover {
+  background-color: #0d7377;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #ffffff;
+  color: #0d7377;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary-dark {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #0d7377;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+.btn-primary-dark:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+}
+.btn-secondary:hover {
+  transform: scale(1.08);
+  transition: 0.3s ease-in-out;
 }/*# sourceMappingURL=main.css.map */
