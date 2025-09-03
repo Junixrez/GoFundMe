@@ -12,10 +12,10 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 
   let data = await response.json();
   console.log(data.user);
-  localStorage.setItem("user", JSON.stringify(data.user));
   if (!response.ok) {
     alert("wrong email or password");
   } else if (response.ok) {
+    localStorage.setItem("user", JSON.stringify(data.user));
     window.location.href = "../HTML/index.html";
   }
 });
