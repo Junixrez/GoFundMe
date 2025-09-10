@@ -15,6 +15,13 @@ header {
   align-items: center;
   width: 100%;
 }
+header .welcome-user {
+  color: #0d7377;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 0.5em;
+  font-weight: bolder;
+}
 header .logo {
   grid-area: logo;
   font-size: 1.5rem;
@@ -300,6 +307,7 @@ header #loginBtn:hover {
   margin-bottom: 3em;
 }
 .campaigns .content #campaign-cards .card {
+  overflow: hidden;
   background-color: #ffffff;
   border-radius: 8px;
   padding: 1em;
@@ -357,6 +365,7 @@ header #loginBtn:hover {
     gap: 1em;
   }
   .campaigns .content .cards .card {
+    overflow: hidden;
     padding: 0.6666666667em;
   }
   .campaigns .content .cards .card h3 {
@@ -378,6 +387,7 @@ header #loginBtn:hover {
     gap: 0.6666666667em;
   }
   .campaigns .content .cards .card {
+    overflow: hidden;
     padding: 0.5em;
   }
   .campaigns .content .cards .card h3 {
@@ -389,19 +399,19 @@ header #loginBtn:hover {
 }
 
 .login {
-  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(20, 160, 133) 35%, rgb(84, 255, 192) 100%);
+  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(31, 90, 78) 35%, rgb(38, 159, 115) 100%);
   font-family: "Vend Sans", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 91vh;
   width: 100%;
 }
 .login .content {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
   border-radius: 5px;
   background-color: #f8f9fa;
 }
@@ -413,7 +423,7 @@ header #loginBtn:hover {
 .login .content h3 {
   text-align: center;
   margin-bottom: 20px;
-  color: #14a085;
+  color: #2c3e50;
 }
 .login .content .form-group {
   margin-bottom: 15px;
@@ -437,35 +447,21 @@ header #loginBtn:hover {
   outline: none;
   box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
 }
-.login .content .btn {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
-  background-color: #14a085;
-  border: none;
-  border-radius: 3px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-.login .content .btn:hover {
-  background-color: #0d7377;
-}
 
 .signup {
-  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(20, 160, 133) 35%, rgb(84, 255, 192) 100%);
+  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(31, 90, 78) 35%, rgb(38, 159, 115) 100%);
   font-family: "Vend Sans", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 91vh;
   width: 100%;
 }
 .signup .content {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
   border-radius: 5px;
   background-color: #f8f9fa;
 }
@@ -477,7 +473,13 @@ header #loginBtn:hover {
 .signup .content h3 {
   text-align: center;
   margin-bottom: 20px;
-  color: #14a085;
+  color: #2c3e50;
+}
+.signup .content h3 .success {
+  color: #27ae60;
+}
+.signup .content h3 .error {
+  color: #e74c3c;
 }
 .signup .content .form-group {
   margin-bottom: 20px;
@@ -502,21 +504,331 @@ header #loginBtn:hover {
 .signup .content .form-group #fname:focus {
   border-color: #66afe9;
   outline: none;
-  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
 }
-.signup .content .btn {
+
+#campaign-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1em;
+  background-color: #f8f9fa;
+  box-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
+  border-radius: 8px;
+  font-family: "Vend Sans", sans-serif;
+}
+#campaign-form label {
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+#campaign-form input,
+#campaign-form textarea,
+#campaign-form select {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
-  background-color: #14a085;
-  border: none;
-  border-radius: 3px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
+  padding: 0.25em;
+  margin-bottom: 0.5em;
+  border: 1px solid #e1e8ed;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: "Vend Sans", sans-serif;
+  box-sizing: border-box;
 }
-.signup .content .btn:hover {
+#campaign-form input:focus,
+#campaign-form textarea:focus,
+#campaign-form select:focus {
+  outline: none;
+  box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
+  border-color: #0d7377;
+}
+#campaign-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.wrapper {
+  height: 91vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(31, 90, 78) 35%, rgb(38, 159, 115) 100%);
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1em;
+}
+
+body {
+  font-family: "Vend Sans", sans-serif;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+}
+
+header {
+  background-color: #ffffff;
+  padding: 1em 2em;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #0d7377;
+}
+header .nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+header .nav ul li a {
+  text-decoration: none;
+  color: #0d7377;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+header .nav ul li a:hover {
+  color: #35a29f;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+.sidebar {
+  background-color: #ffffff;
+  padding: 1em;
+  width: 240px;
+  box-shadow: 0px 13px 20px 5px rgba(0, 0, 0, 0.075);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sidebar .nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  color: #0d7377;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.sidebar .nav-menu ul li {
+  margin-bottom: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar .nav-menu ul li.active {
+  font-weight: 700;
+  color: #0d7377;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 1em 3em 3em 3em;
+  overflow-y: auto;
+}
+.main-content .overview-cards {
+  display: flex;
+  gap: 1.5em;
+  margin-bottom: 2em;
+}
+.main-content .overview-cards .card {
+  background-color: #ffffff;
+  border-radius: 11px;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  flex-grow: 1;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.main-content .overview-cards .card h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0d7377;
+}
+.main-content .overview-cards .card .amount {
+  font-size: 1.75em;
+  font-weight: 700;
+  margin: 0.2em 0 0.6em 0;
+  color: #0d7377;
+}
+.main-content .overview-cards .card .change {
+  font-weight: 600;
+}
+.main-content .overview-cards .card .change.positive {
+  color: #27ae60;
+}
+.main-content .overview-cards .card .change.negative {
+  color: #e74c3c;
+}
+.main-content .recent-campaigns {
+  background: #ffffff;
+  padding: 1em 1em 0.5em 1em;
+  border-radius: 11px;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.main-content .recent-campaigns h2 {
+  font-weight: 700;
+  font-size: 1.25em;
+  color: #0d7377;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+.main-content .recent-campaigns table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #2c3e50;
+}
+.main-content .recent-campaigns table thead tr {
+  border-bottom: 2px solid #e1e8ed;
+}
+.main-content .recent-campaigns table thead th {
+  text-align: left;
+  padding: 0.5em 1em;
+  font-weight: 600;
+}
+.main-content .recent-campaigns table tbody tr {
+  border-bottom: 1px solid #e1e8ed;
+}
+.main-content .recent-campaigns table tbody tr:hover {
+  background: #f8f9fa;
+}
+.main-content .recent-campaigns table tbody tr td {
+  padding: 0.5em 1em;
+  vertical-align: top;
+}
+.main-content .recent-campaigns .creator-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.main-content .recent-campaigns .creator-info .user-avatar {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.main-content .recent-campaigns .creator-info .campaign-title {
+  margin: 0;
+  font-weight: 600;
+  color: #0d7377;
+}
+.main-content .recent-campaigns .creator-info .campaign-creator {
+  margin: 0;
+  font-size: 0.5rem;
+  color: #7f8c8d;
+  font-style: italic;
+}
+.main-content .recent-campaigns .progress {
+  font-size: 0.5rem;
+}
+.main-content .recent-campaigns .progress .amount {
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: 600;
+}
+.main-content .recent-campaigns .progress .progress-bar {
+  background: #e1e8ed;
+  border-radius: 11px;
+  height: 10px;
+  overflow: hidden;
+}
+.main-content .recent-campaigns .progress .progress-bar div {
+  height: 100%;
   background-color: #0d7377;
+  border-radius: 11px 0 0 11px;
+}
+.main-content .recent-campaigns .progress .percent {
+  color: #7f8c8d;
+  margin-top: 0.25em;
+  display: block;
+}
+.main-content .recent-campaigns .status {
+  font-size: 0.5rem;
+  font-weight: 700;
+  padding: 0.3em 0.75em;
+  border-radius: 11px;
+  display: inline-block;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.main-content .recent-campaigns .status.active {
+  color: #27ae60;
+  background-color: rgb(158.1971830986, 233.3028169014, 189.9084507042);
+}
+.main-content .recent-campaigns .status.pending {
+  color: #f39c12;
+  background-color: rgb(252.8313253012, 237.1084337349, 212.1686746988);
+}
+.main-content .recent-campaigns .status.completed {
+  color: #0d7377;
+  background-color: rgb(107.3318181818, 233.9045454545, 238.8681818182);
+}
+
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  header .nav ul {
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+  .container {
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1em 1.5em 2em 1.5em;
+  }
+  .overview-cards {
+    flex-direction: column;
+    gap: 1em;
+  }
+  .sidebar {
+    width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .main-content {
+    padding: 1em;
+  }
+}
+button {
+  border: none;
+  display: block;
+  justify-self: center;
+  margin-bottom: 1em;
 }
 
 .btn-primary {
@@ -544,7 +856,7 @@ header #loginBtn:hover {
   font-weight: 600;
   text-decoration: none;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
   font-family: "Vend Sans", sans-serif;
 }
 .btn-primary-dark:hover {
@@ -557,6 +869,54 @@ header #loginBtn:hover {
   color: #ffffff;
 }
 .btn-secondary:hover {
+  transform: scale(1.08);
+  transition: 0.3s ease-in-out;
+}
+
+#logoutBtn {
+  grid-area: button;
+  text-decoration: none;
+  border: none;
+  border-radius: 11px;
+  background-color: #0d7377;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0.5em;
+}
+#logoutBtn:hover {
+  background-color: transparent;
+  color: #0d7377;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #0d7377;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+}
+
+.danger {
+  background-color: #e74c3c;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.btn-secondary-dark {
+  background-color: transparent;
+  color: #0d7377;
+  display: block;
+}
+.btn-secondary-dark:hover {
   transform: scale(1.08);
   transition: 0.3s ease-in-out;
 }/*# sourceMappingURL=main.css.map */

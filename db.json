@@ -1,6 +1,14 @@
 {
   "users": [
     {
+      "email": "admin@mail.com",
+      "password": "$2a$10$r9edfCj4Q26PsTRxZh7vke4AhlQwEPZso2IS1SX9PLoM04/wR5Uw.",
+      "name": "Junior",
+      "role": "admin",
+      "isActive": true,
+      "id": 666
+    },
+    {
       "email": "test@mail.com",
       "password": "$2a$10$82jCUoqIsjN6QkbWWwKkLOpQSao7UMyLZmLN1ayggx3dav8ZKZnIW",
       "name": "elsayed",
@@ -17,22 +25,47 @@
       "id": 2
     },
     {
-      "email": "tester@mail.com",
-      "password": "$2a$10$MLvWFa3b7bra8NN7rBU5Mu34VhkKBqdOBn1GG5gqFYEpkmzc2K8f.",
-      "name": "tester",
+      "email": "MoGhandour@mail.com",
+      "password": "$2a$10$sJ6FJWrvt9K5ZgVYOL/Flu33su.115Gihob0luEozpeQkIXpivfma",
+      "name": "Mohamed Elghanour",
       "role": "user",
       "isActive": true,
       "id": 3
+    },
+    {
+      "email": "elsayed22@mail.com",
+      "password": "$2a$10$cT1IfiFISWEOI7oNmzKZJO88MfP/YlTItQbMG4tfT4Dj3zCBaoxJm",
+      "name": "iuashd",
+      "role": "user",
+      "isActive": true,
+      "id": 4
+    },
+    {
+      "email": "abdo@gmail.com",
+      "password": "$2a$10$tH3T1yApiFy9aACnsFgPRuyHC7KNxtyzUw425FU7555yKUFt/cwze",
+      "name": "Abdo",
+      "role": "user",
+      "isActive": true,
+      "id": 5
+    },
+    {
+      "email": "jimmy@mail.com",
+      "password": "$2a$10$SNViU9A0lQrZw57UO.CpWudEdvo1dsd.fYULh75wqsGvm25T0iEr.",
+      "name": "Jimmy",
+      "role": "user",
+      "isActive": true,
+      "id": 667
     }
   ],
   "campaigns": [
     {
       "id": 1,
-      "title": "Eco-Friendly Bamboo Furniture Line",
-      "description": "Sustainable furniture crafted from renewable bamboo to enhance eco-conscious living spaces.",
-      "imageUrl": "https://example.com/images/mental-wellness.jpg",
+      "title": "Eco-Friendly Travel Backpack",
+      "description": "A durable, sustainable backpack designed for eco-conscious travelers.",
+      "imageUrl": "https://example.com/images/backpack.jpg",
       "goal": 15000,
-      "raised": 12000
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 2,
@@ -40,7 +73,8 @@
       "description": "A thrilling sci-fi film exploring human-AI relationships in a futuristic world.",
       "imageUrl": "https://example.com/images/sci-fi-film.jpg",
       "goal": 50000,
-      "raised": 32000
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 3,
@@ -48,7 +82,8 @@
       "description": "Unique ceramic sculptures inspired by nature, crafted by local artisans.",
       "imageUrl": "https://example.com/images/ceramic-art.jpg",
       "goal": 8000,
-      "raised": 4500
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 4,
@@ -56,7 +91,8 @@
       "description": "Compact, eco-friendly charger harnessing solar energy for on-the-go power.",
       "imageUrl": "https://example.com/images/solar-charger.jpg",
       "goal": 20000,
-      "raised": 18000
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 5,
@@ -64,7 +100,8 @@
       "description": "A vibrant mural to beautify our neighborhood and celebrate local culture.",
       "imageUrl": "https://example.com/images/community-mural.jpg",
       "goal": 10000,
-      "raised": 6000
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 6,
@@ -72,7 +109,8 @@
       "description": "An immersive strategy game set in a sprawling intergalactic universe.",
       "imageUrl": "https://example.com/images/board-game.jpg",
       "goal": 25000,
-      "raised": 20000
+      "deadline": "2000-09-01",
+      "isApproved": true
     },
     {
       "id": 7,
@@ -80,111 +118,52 @@
       "description": "Support our urban farm to provide fresh, organic produce to the community.",
       "imageUrl": "https://example.com/images/urban-farm.jpg",
       "goal": 30000,
-      "raised": 15000
+      "deadline": "2000-09-01"
     },
     {
-      "id": 8,
-      "title": "VR Art Gallery Experience",
-      "description": "A virtual reality platform showcasing emerging artists from around the globe.",
-      "imageUrl": "https://example.com/images/vr-gallery.jpg",
-      "goal": 40000,
-      "raised": 28000
+      "title": "qwqwqw",
+      "goal": "1212",
+      "deadline": "2000-09-01",
+      "description": "asjsbajajajajajajajaj",
+      "creatorId": 2,
+      "isApproved": false,
+      "id": 8
     },
     {
-      "id": 9,
-      "title": "Handwoven Textile Collection",
-      "description": "Traditional textiles handwoven by artisans, preserving cultural heritage.",
-      "imageUrl": "https://example.com/images/textiles.jpg",
-      "goal": 12000,
-      "raised": 9000
+      "title": "kasdnaksd",
+      "goal": "1212",
+      "deadline": "2222-02-12",
+      "description": "asjdnaskda;smdlsad",
+      "creatorId": 2,
+      "isApproved": false,
+      "id": 9
     },
     {
-      "id": 10,
-      "title": "Indie Music Album Release",
-      "description": "Help fund our debut album blending folk and electronic music vibes.",
-      "imageUrl": "https://example.com/images/music-album.jpg",
-      "goal": 18000,
-      "raised": 11000
+      "title": "IT Helper- ai agent",
+      "goal": "10000",
+      "deadline": "2026-01-01",
+      "description": "please fund me i'm poor ",
+      "creatorId": 2,
+      "isApproved": false,
+      "id": 10
     },
     {
-      "id": 11,
-      "title": "Zero-Waste Packaging Startup",
-      "description": "Innovative biodegradable packaging solutions for a greener planet.",
-      "imageUrl": "https://example.com/images/zero-waste.jpg",
-      "goal": 35000,
-      "raised": 25000
+      "title": "Video game hideo kojima",
+      "goal": "9000",
+      "deadline": "2043-02-03",
+      "description": "loresamdaksmdksamdsksnasjnjdansdnasndsadsadasdasdjsansdfbkjsdfbsakhdbkjsdvbkjsdbvkjnsdkjcnakjnckjsadnckjsdanlkjcnsadkjcnskjnckjwbdckjbwkjcbdkhcbkjsdbc hjbjdchbjb jbsdkhcsdchbc hsdc,nsdkjc sdckjb sdcj sdcjsdjcksdkcbkjsdbckjsdbckjbsdkjcbsdkjcsd",
+      "creatorId": 2,
+      "isApproved": true,
+      "id": 11
     },
     {
-      "id": 12,
-      "title": "Interactive Children’s Book",
-      "description": "An engaging book with AR features to spark kids’ imagination and learning.",
-      "imageUrl": "https://example.com/images/childrens-book.jpg",
-      "goal": 10000,
-      "raised": 7000
-    },
-    {
-      "id": 13,
-      "title": "Smart Indoor Garden System",
-      "description": "Grow fresh herbs and veggies indoors with our automated garden tech.",
-      "imageUrl": "https://example.com/images/indoor-garden.jpg",
-      "goal": 22000,
-      "raised": 16000
-    },
-    {
-      "id": 14,
-      "title": "Documentary on Ocean Conservation",
-      "description": "A film highlighting efforts to protect our oceans and marine life.",
-      "imageUrl": "https://example.com/images/ocean-doc.jpg",
-      "goal": 60000,
-      "raised": 40000
-    },
-    {
-      "id": 15,
-      "title": "Retro-Style Arcade Machine",
-      "description": "A modern take on classic arcade gaming with customizable designs.",
-      "imageUrl": "https://example.com/images/arcade-machine.jpg",
-      "goal": 45000,
-      "raised": 30000
-    },
-    {
-      "id": 16,
-      "title": "Sustainable Fashion Line",
-      "description": "Eco-conscious clothing made from recycled materials and ethical practices.",
-      "imageUrl": "https://example.com/images/sustainable-fashion.jpg",
-      "goal": 25000,
-      "raised": 18000
-    },
-    {
-      "id": 17,
-      "title": "Mobile App for Mental Wellness",
-      "description": "An app offering guided meditation and mental health resources.",
-      "imageUrl": "https://example.com/images/mental-wellness.jpg",
-      "goal": 30000,
-      "raised": 20000
-    },
-    {
-      "id": 18,
-      "title": "Artisanal Coffee Roastery",
-      "description": "Small-batch coffee roasted with care, sourced from fair-trade farms.",
-      "imageUrl": "https://example.com/images/coffee-roastery.jpg",
-      "goal": 15000,
-      "raised": 10000
-    },
-    {
-      "id": 19,
-      "title": "Stop-Motion Animation Film",
-      "description": "A whimsical stop-motion story exploring themes of friendship and adventure.",
-      "imageUrl": "https://example.com/images/stop-motion.jpg",
-      "goal": 40000,
-      "raised": 25000
-    },
-    {
-      "id": 20,
-      "title": "Community Bike Workshop",
-      "description": "A workshop to teach bike repair and promote sustainable transportation.",
-      "imageUrl": "https://example.com/images/bike-workshop.jpg",
-      "goal": 20000,
-      "raised": 12000
+      "title": "jimmy's campaign",
+      "goal": "99999999999999",
+      "deadline": "2029-01-01",
+      "description": "blablablablbalbalbala",
+      "creatorId": 667,
+      "isApproved": false,
+      "id": 18
     }
   ]
 }

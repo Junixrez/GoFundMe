@@ -1,3 +1,9 @@
+button {
+  border: none;
+  display: block;
+  justify-self: center;
+  margin-bottom: $all-space;
+}
 .btn-primary {
   display: inline-block;
   padding: $header-space $header-space * 2;
@@ -23,7 +29,7 @@
   font-weight: 600;
   text-decoration: none;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
   font-family: $main-font;
   &:hover {
     transform: translateY(-2px);
@@ -34,6 +40,57 @@
   background-color: transparent;
   border: none;
   color: $white;
+
+  &:hover {
+    transform: scale(1.08);
+    transition: 0.3s ease-in-out;
+  }
+}
+
+#logoutBtn {
+  grid-area: button;
+  text-decoration: none;
+  border: none;
+  border-radius: $btn-radius;
+  background-color: $primary-color;
+  color: $white;
+  font-size: $btn-font-size;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: $btn-padding;
+
+  &:hover {
+    background-color: transparent;
+    color: $primary-color;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 3px;
+  color: $white;
+  font-size: $btn-font-size;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.danger {
+  background-color: $danger;
+  color: $white;
+  text-decoration: none;
+}
+
+.btn-secondary-dark {
+  background-color: transparent;
+  color: $primary-color;
+  display: block;
 
   &:hover {
     transform: scale(1.08);

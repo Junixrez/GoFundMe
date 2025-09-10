@@ -21,8 +21,23 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
     body: JSON.stringify(newUser),
   });
   if (response) {
-    console.log("signup successful");
-    window.location.href = "../HTML/login.html";
+    document.getElementById("join-us").style.display = "none";
+
+    let sentence = "You are now one of US <3";
+    let letters = sentence.split("");
+    let successContainer = document.createElement("span");
+    successContainer.classList = "success";
+    document.querySelector("h3").appendChild(successContainer);
+    successContainer.innerHTML = "";
+
+    letters.forEach((letter, index) => {
+      setTimeout(() => {
+        successContainer.innerHTML += letter;
+      }, index * 100);
+    });
+    setTimeout(() => {
+      window.location.href = "../HTML/login.html";
+    }, 3000);
   } else {
     alert("signup failed");
   }

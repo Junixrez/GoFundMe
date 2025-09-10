@@ -1,0 +1,14 @@
+.wrapper {
+  height: 91vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient($linear-gradient);
+}
+h1 {
+  text-align: center;
+  color: $white;
+  margin-bottom: $all-space;
+}

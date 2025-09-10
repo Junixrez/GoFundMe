@@ -24,6 +24,7 @@
       margin-bottom: $all-space * 3;
 
       .card {
+        overflow: hidden;
         background-color: $white;
         border-radius: 8px;
         padding: $all-space;
@@ -92,6 +93,8 @@
         gap: $all-space;
 
         .card {
+          overflow: hidden;
+
           padding: $all-space / 1.5;
 
           h3 {
@@ -119,6 +122,8 @@
         gap: $all-space / 1.5;
 
         .card {
+          overflow: hidden;
+
           padding: $all-space / 2;
 
           h3 {

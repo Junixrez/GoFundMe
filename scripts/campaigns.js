@@ -1,18 +1,13 @@
-const campaignsEP = "campaigns";
-const usersEP = "users";
-const plegesEP = "pleges";
 let loggedUser = localStorage.getItem("user");
-const getRequest = (ep) => {
-  return fetch(`http://localhost:3000/${ep}`);
-};
+const url = `http://localhost:3000/campaigns`;
 
-// campaigns
 async function fetchCampaigns() {
-  await getRequest(campaignsEP)
+  await fetch(url)
     .then((res) => res.json())
     .then((data) => {
       data.forEach((campaign) => {
-        if (campaign.id <= 6) {
+        if (campaign.isApproved == true) {
+          // console.log(campaign);
           const card = document.createElement("div");
           card.classList = "card";
           card.innerHTML = `
@@ -28,13 +23,21 @@ async function fetchCampaigns() {
       });
     });
 }
+
 fetchCampaigns();
+
+//laod more
+// document.getElementById("load").addEventListener("click", () => {
+//   fetchCampaigns();
+// });
 
 // loggedin
 if (loggedUser) {
   console.log("User is logged in");
   document.getElementById("loginBtn").style.display = "none";
   document.getElementById("logoutBtn").style.display = "block";
+  document.getElementById("start-your-own").href =
+    "../HTML/start-campaign.html";
 
   let welcomeUser = document.createElement("span");
   welcomeUser.classList = "welcome-user";

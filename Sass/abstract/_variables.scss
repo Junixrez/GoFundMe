@@ -12,5 +12,13 @@ $bg-light: #f8f9fa;
 $white: #ffffff;
 $success: #27ae60;
 $warning: #f39c12;
-$error: #e74c3c;
+$danger: #e74c3c;
 $border: #e1e8ed;
+$linear-gradient: 90deg, rgba(5, 66, 51, 1) 0%, rgb(31, 90, 78) 35%,
+  rgb(38, 159, 115) 100%;
+$form-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
+$focus-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
+$btn-padding: 0.5em;
+$btn-radius: 11px;
+$btn-font-size: 1rem;
+$card-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);

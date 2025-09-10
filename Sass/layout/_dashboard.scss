@@ -1,0 +1,294 @@
+body {
+  font-family: $main-font;
+  background-color: $bg-light;
+  color: $text-dark;
+}
+
+header {
+  background-color: $white;
+  padding: $all-space $all-space * 2;
+  box-shadow: $card-shadow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: $primary-color;
+  }
+
+  .nav {
+    ul {
+      list-style: none;
+      display: flex;
+      gap: $all-space;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+
+      li {
+        a {
+          text-decoration: none;
+          color: $primary-color;
+          font-weight: 500;
+          transition: color 0.2s;
+
+          &:hover {
+            color: $accent-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+.sidebar {
+  background-color: $white;
+  padding: $all-space;
+  width: 240px;
+  box-shadow: 0px 13px 20px 5px rgba(0, 0, 0, 0.075);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .nav-menu {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-weight: 500;
+      color: $primary-color;
+      user-select: none;
+
+      li {
+        margin-bottom: 30px;
+        cursor: pointer;
+        font-size: $font-size;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &.active {
+          font-weight: 700;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: $all-space $all-space * 3 $all-space * 3 $all-space * 3;
+  overflow-y: auto;
+
+  .overview-cards {
+    display: flex;
+    gap: $all-space * 1.5;
+    margin-bottom: $all-space * 2;
+
+    .card {
+      background-color: $white;
+      border-radius: $btn-radius;
+      box-shadow: $card-shadow;
+      flex-grow: 1;
+      padding: $all-space;
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+        font-weight: 700;
+        font-size: $font-size;
+        color: $primary-color;
+      }
+      .amount {
+        font-size: 1.75em;
+        font-weight: 700;
+        margin: 0.2em 0 0.6em 0;
+        color: $primary-color;
+      }
+      .change {
+        font-weight: 600;
+        &.positive {
+          color: $success;
+        }
+        &.negative {
+          color: $danger;
+        }
+      }
+    }
+  }
+
+  .recent-campaigns {
+    background: $white;
+    padding: $all-space $all-space $all-space * 0.5 $all-space;
+    border-radius: $btn-radius;
+    box-shadow: $card-shadow;
+    user-select: none;
+
+    h2 {
+      font-weight: 700;
+      font-size: 1.25em;
+      color: $primary-color;
+      padding-left: $all-space;
+      margin-bottom: $all-space;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: $font-size * 0.9;
+      color: $text-dark;
+
+      thead {
+        tr {
+          border-bottom: 2px solid $border;
+        }
+        th {
+          text-align: left;
+          padding: $header-space $all-space;
+          font-weight: 600;
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid $border;
+          &:hover {
+            background: $bg-light;
+          }
+          td {
+            padding: $header-space $all-space;
+            vertical-align: top;
+          }
+        }
+      }
+    }
+
+    .creator-info {
+      display: flex;
+      align-items: center;
+      gap: $header-space;
+
+      .user-avatar {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .campaign-title {
+        margin: 0;
+        font-weight: 600;
+        color: $primary-color;
+      }
+      .campaign-creator {
+        margin: 0;
+        font-size: $p-font-size;
+        color: $text-light;
+        font-style: italic;
+      }
+    }
+
+    .progress {
+      font-size: $p-font-size;
+
+      .amount {
+        display: block;
+        margin-bottom: 0.25em;
+        font-weight: 600;
+      }
+      .progress-bar {
+        background: $border;
+        border-radius: $btn-radius;
+        height: 10px;
+        overflow: hidden;
+
+        div {
+          height: 100%;
+          background-color: $primary-color;
+          border-radius: $btn-radius 0 0 $btn-radius;
+        }
+      }
+      .percent {
+        color: $text-light;
+        margin-top: 0.25em;
+        display: block;
+      }
+    }
+
+    .status {
+      font-size: $p-font-size;
+      font-weight: 700;
+      padding: 0.3em 0.75em;
+      border-radius: $btn-radius;
+      display: inline-block;
+      user-select: none;
+
+      &.active {
+        color: $success;
+        background-color: lighten($success, 35%);
+      }
+      &.pending {
+        color: $warning;
+        background-color: lighten($warning, 40%);
+      }
+      &.completed {
+        color: $primary-color;
+        background-color: lighten($primary-color, 42%);
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    gap: $header-space;
+
+    .nav ul {
+      flex-wrap: wrap;
+      gap: $header-space;
+    }
+  }
+
+  .container {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1em 1.5em 2em 1.5em;
+  }
+
+  .overview-cards {
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 1em;
+  }
+}

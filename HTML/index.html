@@ -17,12 +17,17 @@
               <input type="search" placeholder="Search Campagins" />
             </div>
           </li>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Campaigns</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="../HTML/campaings.html">Campaigns</a></li>
           <li><a href="#">About Us</a></li>
           <li></li>
           <li>
-            <a href="./login.html" id="loginBtn" target="_blank">Login</a>
+            <a href="./login.html" id="loginBtn">Login</a>
+          </li>
+          <li>
+            <a href="./login.html" id="logoutBtn" style="display: none"
+              >Logout</a
+            >
           </li>
         </ul>
       </div>
@@ -35,9 +40,11 @@
         Join thousands of creators who have successfully funded their projects
         through our platform
       </p>
-      <a href="#" class="btn-primary">Start a Campagin</a>
+      <a href="../HTML/login.html" class="btn-primary" id="start-campaign"
+        >Start a Campagin</a
+      >
       <a href="#campaign-cards" class="btn-secondary" id="explore"
-        >Explore Campaigns</a
+        >Explore Featured Campaigns</a
       >
     </section>
 
@@ -81,7 +88,9 @@
         <div class="cards" id="campaign-cards">
           <!--                         -->
         </div>
-        <a href="#" class="btn-primary-dark">Explore Campaigns</a>
+        <a href="../HTML/campaigns.html" class="btn-primary-dark"
+          >Explore All Campaigns</a
+        >
       </div>
     </section>
     <script src="../scripts/index.js"></script>
