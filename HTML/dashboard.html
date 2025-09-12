@@ -7,185 +7,36 @@
     <link rel="stylesheet" href="../Sass/main.css" />
   </head>
   <body>
-    <header>
-      <div class="logo">FundMeShokran</div>
-
-      <div class="nav">
-        <ul>
-          <li>
-            <a href="./login.html" id="logoutBtn">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </header>
     <div class="container">
       <aside class="sidebar">
         <nav class="nav-menu">
+          <div
+            style="
+              font-weight: bolder;
+              margin-bottom: 30px;
+              color: #0f8488;
+              font-size: larger;
+            "
+          >
+            FundMeShokran
+          </div>
           <ul>
             <li class="active">Dashboard</li>
             <li>Campaigns</li>
             <li>Users</li>
           </ul>
         </nav>
+        <div>
+          <a
+            href="./login.html"
+            id="logoutBtn"
+            style="padding-inline: 4em; margin: 0px"
+            >Logout</a
+          >
+        </div>
       </aside>
       <main class="main-content">
-        <section class="overview-cards">
-          <div class="card">
-            <h2>Total Campagins</h2>
-            <p class="amount">21</p>
-            <p class="change positive">+20 from last month</p>
-          </div>
-          <div class="card">
-            <h2>Total Users</h2>
-            <p class="amount">44</p>
-            <p class="change positive">+13 from last month</p>
-          </div>
-          <div class="card">
-            <h2>Total Pledges</h2>
-            <p class="amount">$12,234</p>
-            <p class="change positive">+$2000 from last month</p>
-          </div>
-        </section>
-        <section class="recent-campaigns">
-          <h2>Recent Campaigns</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Campaign ID</th>
-                <th>Title & Creator</th>
-                <th>Progress</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#camp_001</td>
-                <td>
-                  <div class="creator-info">
-                    <span
-                      class="user-avatar"
-                      style="background-color: #f4a261"
-                    ></span>
-                    <div>
-                      <p class="campaign-title">Save the Ocean Cleanup</p>
-                      <p class="campaign-creator">Marine Foundation</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="progress">
-                    <span class="amount">$32,500 / $50,000</span>
-                    <div class="progress-bar">
-                      <div style="width: 65%"></div>
-                    </div>
-                    <span class="percent">65% funded</span>
-                  </div>
-                </td>
-                <td><span class="status active">Active</span></td>
-              </tr>
-              <tr>
-                <td>#camp_002</td>
-                <td>
-                  <div class="creator-info">
-                    <span
-                      class="user-avatar"
-                      style="background-color: #2a9d8f"
-                    ></span>
-                    <div>
-                      <p class="campaign-title">Community Garden Project</p>
-                      <p class="campaign-creator">Green Valley Initiative</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="progress">
-                    <span class="amount">$12,800 / $15,000</span>
-                    <div class="progress-bar">
-                      <div style="width: 85%"></div>
-                    </div>
-                    <span class="percent">85% funded</span>
-                  </div>
-                </td>
-                <td><span class="status active">Active</span></td>
-              </tr>
-              <tr>
-                <td>#camp_003</td>
-                <td>
-                  <div class="creator-info">
-                    <span
-                      class="user-avatar"
-                      style="background-color: #e76f51"
-                    ></span>
-                    <div>
-                      <p class="campaign-title">Local Library Renovation</p>
-                      <p class="campaign-creator">City Council</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="progress">
-                    <span class="amount">$25,000 / $25,000</span>
-                    <div class="progress-bar">
-                      <div style="width: 100%"></div>
-                    </div>
-                    <span class="percent">100% funded</span>
-                  </div>
-                </td>
-                <td><span class="status completed">Completed</span></td>
-              </tr>
-              <tr>
-                <td>#camp_004</td>
-                <td>
-                  <div class="creator-info">
-                    <span
-                      class="user-avatar"
-                      style="background-color: #00b4d8"
-                    ></span>
-                    <div>
-                      <p class="campaign-title">Tech Education for Kids</p>
-                      <p class="campaign-creator">Future Coders</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="progress">
-                    <span class="amount">$3,200 / $8,000</span>
-                    <div class="progress-bar">
-                      <div style="width: 40%"></div>
-                    </div>
-                    <span class="percent">40% funded</span>
-                  </div>
-                </td>
-                <td><span class="status pending">Pending</span></td>
-              </tr>
-              <tr>
-                <td>#camp_005</td>
-                <td>
-                  <div class="creator-info">
-                    <span
-                      class="user-avatar"
-                      style="background-color: #264653"
-                    ></span>
-                    <div>
-                      <p class="campaign-title">Animal Shelter Support</p>
-                      <p class="campaign-creator">Paws & Hearts</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="progress">
-                    <span class="amount">$18,900 / $20,000</span>
-                    <div class="progress-bar">
-                      <div style="width: 95%"></div>
-                    </div>
-                    <span class="percent">95% funded</span>
-                  </div>
-                </td>
-                <td><span class="status active">Active</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+        <!-- content -->
       </main>
     </div>
     <script src="../scripts/dashboard.js"></script>

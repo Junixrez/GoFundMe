@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>single campaign</title>
+    <link rel="stylesheet" href="../Sass/main.css" />
+  </head>
+  <body>
+    <section class="main-container">
+      <div class="camp"></div>
+      <div class="donate">
+        <form>
+          <h2>Payment</h2>
+          <input
+            value=""
+            id="amount"
+            type="text"
+            placeholder="Enter donation amount"
+            required
+          />
+          <input
+            value=""
+            id="cardNum"
+            type="number"
+            placeholder="Enter card number"
+            required
+          />
+          <input
+            value=""
+            id="cardHolder"
+            type="text"
+            placeholder="Enter card holder name"
+            required
+          />
+          <input
+            value=""
+            id="date"
+            type="text"
+            placeholder="Enter expiration date"
+            required
+          />
+          <input
+            id="cvv"
+            value=""
+            type="number"
+            placeholder="Enter CVV"
+            required
+          />
+          <button id="donateBtn" class="btn-primary-dark">Procceed</button>
+        </form>
+      </div>
+
+      <div class="thanks-message">
+        <div class="thanks-message">
+          <h2>Thank You for Your Donation!</h2>
+          <p>Your support helps us continue our mission.</p>
+          <button id="closeBtn" class="btn-primary-dark">Close</button>
+        </div>
+        <h2>Thank You for Your Donation!</h2>
+        <p>Your support helps us continue our mission.</p>
+        <button id="closeBtn" class="btn-primary-dark">Close</button>
+      </div>
+    </section>
+    <script src="../scripts/campPage.js"></script>
+  </body>
+</html>

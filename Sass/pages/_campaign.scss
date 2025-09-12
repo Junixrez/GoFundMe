@@ -1,0 +1,167 @@
+.main-container {
+  background-color: $bg-light;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  h1 {
+    color: $primary-color;
+    text-align: center;
+  }
+  .camp {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    animation: fade-in 1s ease-in-out forwards;
+    div {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      width: 500px;
+      height: auto;
+      min-height: 400px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: $card-shadow;
+      padding: $all-space;
+      overflow: auto;
+      .campaign-cards {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: $all-space;
+      }
+      .campaign-title {
+        font-size: 1.5rem;
+        margin-bottom: $all-space;
+        color: $text-dark;
+      }
+      .campaign-description {
+        font-size: 1rem;
+        margin-bottom: $all-space;
+        color: $text-light;
+      }
+      .campaign-goal,
+      .campaign-raised {
+        font-size: 0.9rem;
+        color: $text-dark;
+        padding-bottom: $all-space;
+      }
+    }
+    #openDonate {
+      cursor: pointer;
+    }
+  }
+  .donate {
+    z-index: 1;
+    animation: slide-in 1s ease-in-out forwards;
+    display: none;
+    width: 40%;
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: $all-space;
+      background-color: $white;
+      box-shadow: $card-shadow;
+      border-radius: 10px;
+      height: auto;
+      min-height: 500px;
+      width: 100%;
+      min-width: 400px;
+
+      h2 {
+        color: $primary-color;
+        margin: $all-space;
+      }
+
+      #amount,
+      #cardHolder,
+      #cardNum {
+        width: 80%;
+        padding: $all-space;
+        margin-bottom: $all-space * 1.5;
+        border: 1px solid $border;
+        border-radius: 5px;
+        font-size: $font-size;
+        font-family: $main-font;
+
+        &:focus {
+          outline: none;
+          box-shadow: $focus-shadow;
+          border-color: $primary-color;
+        }
+      }
+
+      button {
+        padding: $btn-padding $btn-padding * 2;
+        background-color: $primary-color;
+        color: $white;
+        border: none;
+        border-radius: $btn-radius;
+        font-size: $btn-font-size;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+      #date,
+      #cvv {
+        width: 25%;
+        padding: $all-space;
+        margin-bottom: $all-space * 1.5;
+        border: 1px solid $border;
+        border-radius: 5px;
+        font-size: $font-size;
+        font-family: $main-font;
+
+        &:focus {
+          outline: none;
+          box-shadow: $focus-shadow;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  .thanks-message {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: $white;
+    height: 30vh;
+    min-width: 600px;
+    text-align: center;
+    color: $success;
+    font-size: 1.2rem;
+    animation: slide-in 1s ease-in-out forwards;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -11,17 +11,16 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   });
 
   let data = await response.json();
-
   localStorage.setItem("user", JSON.stringify(data.user));
   let user = JSON.parse(localStorage.getItem("user"));
   console.log(user.role);
 
-  // console.log(data.user);
   if (!response.ok) {
     alert("wrong email or password");
+  } else if (user.isActive == false) {
+    alert("Account suspended");
   } else if (response.ok && user.role == "admin") {
     window.location.href = "../HTML/dashboard.html";
-
     alert("welcome admin");
   } else if (response.ok && user.role == "user") {
     window.location.href = "../HTML/index.html";

@@ -320,7 +320,7 @@ header #loginBtn:hover {
 }
 .campaigns .content #campaign-cards .card img {
   width: 100%;
-  height: auto;
+  height: 200px;
   border-radius: 8px 8px 0 0;
   margin-bottom: 0.5em;
 }
@@ -569,43 +569,13 @@ body {
   color: #2c3e50;
 }
 
-header {
-  background-color: #ffffff;
-  padding: 1em 2em;
-  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .logo {
-  font-weight: bold;
-  font-size: 1.5em;
-  color: #0d7377;
-}
-header .nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1em;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-header .nav ul li a {
-  text-decoration: none;
-  color: #0d7377;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-header .nav ul li a:hover {
-  color: #35a29f;
-}
-
 .container {
   display: flex;
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .sidebar {
+  height: 100vh;
   background-color: #ffffff;
   padding: 1em;
   width: 240px;
@@ -631,13 +601,20 @@ header .nav ul li a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
 }
 .sidebar .nav-menu ul li.active {
-  font-weight: 700;
+  font-weight: 900;
   color: #0d7377;
+}
+.sidebar .nav-menu ul li:hover {
+  color: #35a29f;
+  transform: translateX(5px);
+  font-weight: bolder;
 }
 
 .main-content {
+  height: 100vh;
   flex-grow: 1;
   padding: 1em 3em 3em 3em;
   overflow-y: auto;
@@ -677,7 +654,10 @@ header .nav ul li a:hover {
 .main-content .overview-cards .card .change.negative {
   color: #e74c3c;
 }
-.main-content .recent-campaigns {
+.main-content .recent-campaigns,
+.main-content .recent-users,
+.main-content .campaigns-only,
+.main-content .users-only {
   background: #ffffff;
   padding: 1em 1em 0.5em 1em;
   border-radius: 11px;
@@ -686,105 +666,277 @@ header .nav ul li a:hover {
      -moz-user-select: none;
           user-select: none;
 }
-.main-content .recent-campaigns h2 {
+.main-content .recent-campaigns.recent-users, .main-content .recent-campaigns.users-only,
+.main-content .recent-users.recent-users,
+.main-content .recent-users.users-only,
+.main-content .campaigns-only.recent-users,
+.main-content .campaigns-only.users-only,
+.main-content .users-only.recent-users,
+.main-content .users-only.users-only {
+  margin-top: 2em;
+}
+.main-content .recent-campaigns h2,
+.main-content .recent-users h2,
+.main-content .campaigns-only h2,
+.main-content .users-only h2 {
   font-weight: 700;
-  font-size: 1.25em;
+  font-size: 1.4em;
   color: #0d7377;
   padding-left: 1em;
   margin-bottom: 1em;
 }
-.main-content .recent-campaigns table {
+.main-content .recent-campaigns table,
+.main-content .recent-users table,
+.main-content .campaigns-only table,
+.main-content .users-only table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #2c3e50;
 }
-.main-content .recent-campaigns table thead tr {
+.main-content .recent-campaigns table thead tr,
+.main-content .recent-users table thead tr,
+.main-content .campaigns-only table thead tr,
+.main-content .users-only table thead tr {
   border-bottom: 2px solid #e1e8ed;
 }
-.main-content .recent-campaigns table thead th {
+.main-content .recent-campaigns table thead th,
+.main-content .recent-users table thead th,
+.main-content .campaigns-only table thead th,
+.main-content .users-only table thead th {
   text-align: left;
   padding: 0.5em 1em;
   font-weight: 600;
+  font-size: 1.1em;
 }
-.main-content .recent-campaigns table tbody tr {
+.main-content .recent-campaigns table tbody tr,
+.main-content .recent-users table tbody tr,
+.main-content .campaigns-only table tbody tr,
+.main-content .users-only table tbody tr {
   border-bottom: 1px solid #e1e8ed;
+  transition: background-color 0.2s ease;
 }
-.main-content .recent-campaigns table tbody tr:hover {
+.main-content .recent-campaigns table tbody tr:hover,
+.main-content .recent-users table tbody tr:hover,
+.main-content .campaigns-only table tbody tr:hover,
+.main-content .users-only table tbody tr:hover {
   background: #f8f9fa;
 }
-.main-content .recent-campaigns table tbody tr td {
+.main-content .recent-campaigns table tbody tr td,
+.main-content .recent-users table tbody tr td,
+.main-content .campaigns-only table tbody tr td,
+.main-content .users-only table tbody tr td {
   padding: 0.5em 1em;
-  vertical-align: top;
+  vertical-align: middle;
+  font-size: 1.05em;
 }
-.main-content .recent-campaigns .creator-info {
+.main-content .recent-campaigns .creator-info,
+.main-content .recent-campaigns .user-info,
+.main-content .recent-users .creator-info,
+.main-content .recent-users .user-info,
+.main-content .campaigns-only .creator-info,
+.main-content .campaigns-only .user-info,
+.main-content .users-only .creator-info,
+.main-content .users-only .user-info {
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
-.main-content .recent-campaigns .creator-info .user-avatar {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.main-content .recent-campaigns .creator-info .campaign-title {
+.main-content .recent-campaigns .creator-info .campaign-title,
+.main-content .recent-campaigns .user-info .campaign-title,
+.main-content .recent-users .creator-info .campaign-title,
+.main-content .recent-users .user-info .campaign-title,
+.main-content .campaigns-only .creator-info .campaign-title,
+.main-content .campaigns-only .user-info .campaign-title,
+.main-content .users-only .creator-info .campaign-title,
+.main-content .users-only .user-info .campaign-title {
   margin: 0;
   font-weight: 600;
   color: #0d7377;
+  font-size: 1.1em;
 }
-.main-content .recent-campaigns .creator-info .campaign-creator {
+.main-content .recent-campaigns .creator-info .campaign-creator,
+.main-content .recent-campaigns .user-info .campaign-creator,
+.main-content .recent-users .creator-info .campaign-creator,
+.main-content .recent-users .user-info .campaign-creator,
+.main-content .campaigns-only .creator-info .campaign-creator,
+.main-content .campaigns-only .user-info .campaign-creator,
+.main-content .users-only .creator-info .campaign-creator,
+.main-content .users-only .user-info .campaign-creator {
   margin: 0;
-  font-size: 0.5rem;
+  font-size: 1em;
   color: #7f8c8d;
   font-style: italic;
 }
-.main-content .recent-campaigns .progress {
-  font-size: 0.5rem;
-}
-.main-content .recent-campaigns .progress .amount {
-  display: block;
-  margin-bottom: 0.25em;
-  font-weight: 600;
-}
-.main-content .recent-campaigns .progress .progress-bar {
-  background: #e1e8ed;
-  border-radius: 11px;
-  height: 10px;
-  overflow: hidden;
-}
-.main-content .recent-campaigns .progress .progress-bar div {
-  height: 100%;
-  background-color: #0d7377;
-  border-radius: 11px 0 0 11px;
-}
-.main-content .recent-campaigns .progress .percent {
-  color: #7f8c8d;
-  margin-top: 0.25em;
-  display: block;
-}
-.main-content .recent-campaigns .status {
-  font-size: 0.5rem;
+.main-content .recent-campaigns .status,
+.main-content .recent-users .status,
+.main-content .campaigns-only .status,
+.main-content .users-only .status {
+  font-size: 1em;
   font-weight: 700;
-  padding: 0.3em 0.75em;
+  padding: 0.4em 0.8em;
   border-radius: 11px;
   display: inline-block;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  text-transform: capitalize;
 }
-.main-content .recent-campaigns .status.active {
+.main-content .recent-campaigns .status.active,
+.main-content .recent-users .status.active,
+.main-content .campaigns-only .status.active,
+.main-content .users-only .status.active {
   color: #27ae60;
   background-color: rgb(158.1971830986, 233.3028169014, 189.9084507042);
 }
-.main-content .recent-campaigns .status.pending {
+.main-content .recent-campaigns .status.pending,
+.main-content .recent-users .status.pending,
+.main-content .campaigns-only .status.pending,
+.main-content .users-only .status.pending {
   color: #f39c12;
   background-color: rgb(252.8313253012, 237.1084337349, 212.1686746988);
 }
-.main-content .recent-campaigns .status.completed {
+.main-content .recent-campaigns .status.completed,
+.main-content .recent-users .status.completed,
+.main-content .campaigns-only .status.completed,
+.main-content .users-only .status.completed {
   color: #0d7377;
   background-color: rgb(107.3318181818, 233.9045454545, 238.8681818182);
+}
+.main-content .recent-campaigns .status.admin,
+.main-content .recent-users .status.admin,
+.main-content .campaigns-only .status.admin,
+.main-content .users-only .status.admin {
+  color: #0d7377;
+  background-color: rgb(107.3318181818, 233.9045454545, 238.8681818182);
+}
+.main-content .recent-campaigns .status.user,
+.main-content .recent-users .status.user,
+.main-content .campaigns-only .status.user,
+.main-content .users-only .status.user {
+  color: #7f8c8d;
+  background-color: rgb(221.4132231405, 224.8243801653, 225.0867768595);
+}
+.main-content .recent-campaigns .status.inactive,
+.main-content .recent-users .status.inactive,
+.main-content .campaigns-only .status.inactive,
+.main-content .users-only .status.inactive {
+  color: #e74c3c;
+  background-color: rgb(250.5616438356, 221.897260274, 218.9383561644);
+}
+.main-content .recent-campaigns .action-buttons,
+.main-content .recent-users .action-buttons,
+.main-content .campaigns-only .action-buttons,
+.main-content .users-only .action-buttons {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.main-content .recent-campaigns .action-buttons .btn-action,
+.main-content .recent-users .action-buttons .btn-action,
+.main-content .campaigns-only .action-buttons .btn-action,
+.main-content .users-only .action-buttons .btn-action {
+  border: none;
+  padding: 0.4em 0.8em;
+  border-radius: 11px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  min-width: 70px;
+}
+.main-content .recent-campaigns .action-buttons .btn-action:hover,
+.main-content .recent-users .action-buttons .btn-action:hover,
+.main-content .campaigns-only .action-buttons .btn-action:hover,
+.main-content .users-only .action-buttons .btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.main-content .recent-campaigns .action-buttons .btn-action.approve,
+.main-content .recent-users .action-buttons .btn-action.approve,
+.main-content .campaigns-only .action-buttons .btn-action.approve,
+.main-content .users-only .action-buttons .btn-action.approve {
+  background-color: #27ae60;
+}
+.main-content .recent-campaigns .action-buttons .btn-action.approve:hover,
+.main-content .recent-users .action-buttons .btn-action.approve:hover,
+.main-content .campaigns-only .action-buttons .btn-action.approve:hover,
+.main-content .users-only .action-buttons .btn-action.approve:hover {
+  background-color: rgb(29.661971831, 132.338028169, 73.014084507);
+}
+.main-content .recent-campaigns .action-buttons .btn-action.reject,
+.main-content .recent-users .action-buttons .btn-action.reject,
+.main-content .campaigns-only .action-buttons .btn-action.reject,
+.main-content .users-only .action-buttons .btn-action.reject {
+  background-color: #e74c3c;
+}
+.main-content .recent-campaigns .action-buttons .btn-action.reject:hover,
+.main-content .recent-users .action-buttons .btn-action.reject:hover,
+.main-content .campaigns-only .action-buttons .btn-action.reject:hover,
+.main-content .users-only .action-buttons .btn-action.reject:hover {
+  background-color: rgb(213.698630137, 43.8356164384, 26.301369863);
+}
+.main-content .recent-campaigns .action-buttons .btn-action.ban,
+.main-content .recent-users .action-buttons .btn-action.ban,
+.main-content .campaigns-only .action-buttons .btn-action.ban,
+.main-content .users-only .action-buttons .btn-action.ban {
+  background-color: #f39c12;
+}
+.main-content .recent-campaigns .action-buttons .btn-action.ban:hover,
+.main-content .recent-users .action-buttons .btn-action.ban:hover,
+.main-content .campaigns-only .action-buttons .btn-action.ban:hover,
+.main-content .users-only .action-buttons .btn-action.ban:hover {
+  background-color: rgb(199.8795180723, 126.5060240964, 10.1204819277);
+}
+.main-content .recent-campaigns .action-buttons .btn-action.unban,
+.main-content .recent-users .action-buttons .btn-action.unban,
+.main-content .campaigns-only .action-buttons .btn-action.unban,
+.main-content .users-only .action-buttons .btn-action.unban {
+  background-color: #0d7377;
+}
+.main-content .recent-campaigns .action-buttons .btn-action.unban:hover,
+.main-content .recent-users .action-buttons .btn-action.unban:hover,
+.main-content .campaigns-only .action-buttons .btn-action.unban:hover,
+.main-content .users-only .action-buttons .btn-action.unban:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+}
+.main-content .section-content.hidden {
+  display: none;
+}
+.main-content.dashboard-view .recent-campaigns,
+.main-content.dashboard-view .recent-users {
+  display: block;
+}
+.main-content.dashboard-view .campaigns-only,
+.main-content.dashboard-view .users-only {
+  display: none;
+}
+.main-content.campaigns-view .recent-campaigns,
+.main-content.campaigns-view .recent-users {
+  display: none;
+}
+.main-content.campaigns-view .campaigns-only {
+  display: block;
+}
+.main-content.campaigns-view .users-only {
+  display: none;
+}
+.main-content.campaigns-view .overview-cards {
+  display: none;
+}
+.main-content.users-view .recent-campaigns,
+.main-content.users-view .recent-users {
+  display: none;
+}
+.main-content.users-view .campaigns-only {
+  display: none;
+}
+.main-content.users-view .users-only {
+  display: block;
+}
+.main-content.users-view .overview-cards {
+  display: none;
 }
 
 @media (max-width: 1024px) {
@@ -799,14 +951,51 @@ header .nav ul li a:hover {
   .container {
     height: auto;
   }
+  .main-content .action-buttons {
+    flex-direction: column;
+  }
+  .main-content .action-buttons .btn-action {
+    width: 100%;
+    margin-bottom: 0.25em;
+  }
 }
 @media (max-width: 768px) {
   .main-content {
     padding: 1em 1.5em 2em 1.5em;
   }
-  .overview-cards {
+  .main-content .overview-cards {
     flex-direction: column;
     gap: 1em;
+  }
+  .main-content .recent-campaigns table,
+  .main-content .recent-users table,
+  .main-content .campaigns-only table,
+  .main-content .users-only table {
+    font-size: 0.9em;
+  }
+  .main-content .recent-campaigns table th,
+  .main-content .recent-campaigns table td,
+  .main-content .recent-users table th,
+  .main-content .recent-users table td,
+  .main-content .campaigns-only table th,
+  .main-content .campaigns-only table td,
+  .main-content .users-only table th,
+  .main-content .users-only table td {
+    padding: 0.5em;
+  }
+  .main-content .recent-campaigns .action-buttons,
+  .main-content .recent-users .action-buttons,
+  .main-content .campaigns-only .action-buttons,
+  .main-content .users-only .action-buttons {
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  .main-content .recent-campaigns .action-buttons .btn-action,
+  .main-content .recent-users .action-buttons .btn-action,
+  .main-content .campaigns-only .action-buttons .btn-action,
+  .main-content .users-only .action-buttons .btn-action {
+    width: 100%;
+    font-size: 0.8em;
   }
   .sidebar {
     width: 200px;
@@ -823,7 +1012,98 @@ header .nav ul li a:hover {
   .main-content {
     padding: 1em;
   }
+  .main-content .recent-campaigns,
+  .main-content .recent-users,
+  .main-content .campaigns-only,
+  .main-content .users-only {
+    padding: 0.5em;
+  }
+  .main-content .recent-campaigns table,
+  .main-content .recent-users table,
+  .main-content .campaigns-only table,
+  .main-content .users-only table {
+    font-size: 0.8em;
+  }
+  .main-content .recent-campaigns table th,
+  .main-content .recent-campaigns table td,
+  .main-content .recent-users table th,
+  .main-content .recent-users table td,
+  .main-content .campaigns-only table th,
+  .main-content .campaigns-only table td,
+  .main-content .users-only table th,
+  .main-content .users-only table td {
+    padding: 0.4em;
+  }
+  .main-content .recent-campaigns .action-buttons .btn-action,
+  .main-content .recent-users .action-buttons .btn-action,
+  .main-content .campaigns-only .action-buttons .btn-action,
+  .main-content .users-only .action-buttons .btn-action {
+    padding: 0.3em 0.6em;
+    font-size: 0.75em;
+  }
 }
+.loading {
+  text-align: center;
+  padding: 2em;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.error {
+  text-align: center;
+  padding: 2em;
+  color: #e74c3c;
+  background-color: white;
+  border-radius: 11px;
+  margin: 1em 0;
+}
+
+.confirm-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.confirm-dialog .dialog-content {
+  background: #ffffff;
+  padding: 2em;
+  border-radius: 11px;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  max-width: 400px;
+  text-align: center;
+}
+.confirm-dialog .dialog-content h3 {
+  color: #0d7377;
+  margin-bottom: 1em;
+}
+.confirm-dialog .dialog-content .dialog-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
+.confirm-dialog .dialog-content .dialog-buttons button {
+  padding: 0.5em 1.5em;
+  border: none;
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.confirm-dialog .dialog-content .dialog-buttons button.confirm {
+  background-color: #e74c3c;
+  color: white;
+}
+.confirm-dialog .dialog-content .dialog-buttons button.cancel {
+  background-color: #7f8c8d;
+  color: white;
+}
+
 button {
   border: none;
   display: block;
@@ -919,4 +1199,167 @@ button {
 .btn-secondary-dark:hover {
   transform: scale(1.08);
   transition: 0.3s ease-in-out;
+}
+
+.main-container {
+  background-color: #f8f9fa;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+}
+.main-container h1 {
+  color: #0d7377;
+  text-align: center;
+}
+.main-container .camp {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  animation: fade-in 1s ease-in-out forwards;
+}
+.main-container .camp div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 500px;
+  height: auto;
+  min-height: 400px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  padding: 1em;
+  overflow: auto;
+}
+.main-container .camp div .campaign-cards {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+.main-container .camp div .campaign-title {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  color: #2c3e50;
+}
+.main-container .camp div .campaign-description {
+  font-size: 1rem;
+  margin-bottom: 1em;
+  color: #7f8c8d;
+}
+.main-container .camp div .campaign-goal,
+.main-container .camp div .campaign-raised {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  padding-bottom: 1em;
+}
+.main-container .camp #openDonate {
+  cursor: pointer;
+}
+.main-container .donate {
+  z-index: 1;
+  animation: slide-in 1s ease-in-out forwards;
+  display: none;
+  width: 40%;
+}
+.main-container .donate form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 1em;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  border-radius: 10px;
+  height: auto;
+  min-height: 500px;
+  width: 100%;
+  min-width: 400px;
+}
+.main-container .donate form h2 {
+  color: #0d7377;
+  margin: 1em;
+}
+.main-container .donate form #amount,
+.main-container .donate form #cardHolder,
+.main-container .donate form #cardNum {
+  width: 80%;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border: 1px solid #e1e8ed;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "Vend Sans", sans-serif;
+}
+.main-container .donate form #amount:focus,
+.main-container .donate form #cardHolder:focus,
+.main-container .donate form #cardNum:focus {
+  outline: none;
+  box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
+  border-color: #0d7377;
+}
+.main-container .donate form button {
+  padding: 0.5em 1em;
+  background-color: #0d7377;
+  color: #ffffff;
+  border: none;
+  border-radius: 11px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.main-container .donate form button:hover {
+  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+}
+.main-container .donate form #date,
+.main-container .donate form #cvv {
+  width: 25%;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  border: 1px solid #e1e8ed;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: "Vend Sans", sans-serif;
+}
+.main-container .donate form #date:focus,
+.main-container .donate form #cvv:focus {
+  outline: none;
+  box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
+  border-color: #0d7377;
+}
+.main-container .thanks-message {
+  margin: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #ffffff;
+  height: 30vh;
+  min-width: 600px;
+  text-align: center;
+  color: #27ae60;
+  font-size: 1.2rem;
+  animation: slide-in 1s ease-in-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }/*# sourceMappingURL=main.css.map */

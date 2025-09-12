@@ -16,12 +16,12 @@ async function fetchCampaigns() {
           const card = document.createElement("div");
           card.classList = "card";
           card.innerHTML = `
-          <img src="${campaign.image}" alt="Campaign Image" class="campaign-cards"/>
+          <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
           <h3 class="campaign-title">${campaign.title}</h3> 
           <p class="campaign-description">${campaign.description}</p>
           <p class="campaign-goal">Goal: $${campaign.goal}</p>
           <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
-          <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark">View Details</a>
+          <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark"  target="_blank">View Details</a>
         `;
           document.getElementById("campaign-cards").appendChild(card);
         }

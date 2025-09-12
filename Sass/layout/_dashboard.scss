@@ -4,51 +4,13 @@ body {
   color: $text-dark;
 }
 
-header {
-  background-color: $white;
-  padding: $all-space $all-space * 2;
-  box-shadow: $card-shadow;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .logo {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: $primary-color;
-  }
-
-  .nav {
-    ul {
-      list-style: none;
-      display: flex;
-      gap: $all-space;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-
-      li {
-        a {
-          text-decoration: none;
-          color: $primary-color;
-          font-weight: 500;
-          transition: color 0.2s;
-
-          &:hover {
-            color: $accent-color;
-          }
-        }
-      }
-    }
-  }
-}
-
 .container {
   display: flex;
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .sidebar {
+  height: 100vh;
   background-color: $white;
   padding: $all-space;
   width: 240px;
@@ -73,10 +35,17 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: all 0.3s ease;
 
         &.active {
-          font-weight: 700;
+          font-weight: 900;
           color: $primary-color;
+        }
+
+        &:hover {
+          color: $accent-color;
+          transform: translateX(5px);
+          font-weight: bolder;
         }
       }
     }
@@ -84,6 +53,7 @@ header {
 }
 
 .main-content {
+  height: 100vh;
   flex-grow: 1;
   padding: $all-space $all-space * 3 $all-space * 3 $all-space * 3;
   overflow-y: auto;
@@ -126,16 +96,24 @@ header {
     }
   }
 
-  .recent-campaigns {
+  .recent-campaigns,
+  .recent-users,
+  .campaigns-only,
+  .users-only {
     background: $white;
     padding: $all-space $all-space $all-space * 0.5 $all-space;
     border-radius: $btn-radius;
     box-shadow: $card-shadow;
     user-select: none;
 
+    &.recent-users,
+    &.users-only {
+      margin-top: $all-space * 2;
+    }
+
     h2 {
       font-weight: 700;
-      font-size: 1.25em;
+      font-size: 1.4em;
       color: $primary-color;
       padding-left: $all-space;
       margin-bottom: $all-space;
@@ -144,7 +122,7 @@ header {
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: $font-size * 0.9;
+      font-size: $font-size;
       color: $text-dark;
 
       thead {
@@ -155,81 +133,54 @@ header {
           text-align: left;
           padding: $header-space $all-space;
           font-weight: 600;
+          font-size: 1.1em;
         }
       }
       tbody {
         tr {
           border-bottom: 1px solid $border;
+          transition: background-color 0.2s ease;
+
           &:hover {
             background: $bg-light;
           }
           td {
             padding: $header-space $all-space;
-            vertical-align: top;
+            vertical-align: middle;
+            font-size: 1.05em;
           }
         }
       }
     }
 
-    .creator-info {
+    .creator-info,
+    .user-info {
       display: flex;
       align-items: center;
       gap: $header-space;
 
-      .user-avatar {
-        display: inline-block;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        flex-shrink: 0;
-      }
       .campaign-title {
         margin: 0;
         font-weight: 600;
         color: $primary-color;
+        font-size: 1.1em;
       }
       .campaign-creator {
         margin: 0;
-        font-size: $p-font-size;
+        font-size: 1em;
         color: $text-light;
         font-style: italic;
       }
     }
 
-    .progress {
-      font-size: $p-font-size;
-
-      .amount {
-        display: block;
-        margin-bottom: 0.25em;
-        font-weight: 600;
-      }
-      .progress-bar {
-        background: $border;
-        border-radius: $btn-radius;
-        height: 10px;
-        overflow: hidden;
-
-        div {
-          height: 100%;
-          background-color: $primary-color;
-          border-radius: $btn-radius 0 0 $btn-radius;
-        }
-      }
-      .percent {
-        color: $text-light;
-        margin-top: 0.25em;
-        display: block;
-      }
-    }
-
     .status {
-      font-size: $p-font-size;
+      font-size: 1em;
       font-weight: 700;
-      padding: 0.3em 0.75em;
+      padding: 0.4em 0.8em;
       border-radius: $btn-radius;
       display: inline-block;
       user-select: none;
+      text-transform: capitalize;
 
       &.active {
         color: $success;
@@ -243,6 +194,122 @@ header {
         color: $primary-color;
         background-color: lighten($primary-color, 42%);
       }
+      &.admin {
+        color: $primary-color;
+        background-color: lighten($primary-color, 42%);
+      }
+      &.user {
+        color: $text-light;
+        background-color: lighten($text-light, 35%);
+      }
+      &.inactive {
+        color: $danger;
+        background-color: lighten($danger, 35%);
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.5em;
+      flex-wrap: wrap;
+
+      .btn-action {
+        border: none;
+        padding: 0.4em 0.8em;
+        border-radius: $btn-radius;
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 0.9em;
+        transition: all 0.3s ease;
+        min-width: 70px;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        &.approve {
+          background-color: $success;
+          &:hover {
+            background-color: darken($success, 10%);
+          }
+        }
+
+        &.reject {
+          background-color: $danger;
+          &:hover {
+            background-color: darken($danger, 10%);
+          }
+        }
+
+        &.ban {
+          background-color: $warning;
+          &:hover {
+            background-color: darken($warning, 10%);
+          }
+        }
+
+        &.unban {
+          background-color: $primary-color;
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  // Hide sections by default (for navigation functionality)
+  .section-content {
+    &.hidden {
+      display: none;
+    }
+  }
+
+  // Dashboard view (shows both tables)
+  &.dashboard-view {
+    .recent-campaigns,
+    .recent-users {
+      display: block;
+    }
+    .campaigns-only,
+    .users-only {
+      display: none;
+    }
+  }
+
+  // Campaigns-only view
+  &.campaigns-view {
+    .recent-campaigns,
+    .recent-users {
+      display: none;
+    }
+    .campaigns-only {
+      display: block;
+    }
+    .users-only {
+      display: none;
+    }
+    .overview-cards {
+      display: none;
+    }
+  }
+
+  // Users-only view
+  &.users-view {
+    .recent-campaigns,
+    .recent-users {
+      display: none;
+    }
+    .campaigns-only {
+      display: none;
+    }
+    .users-only {
+      display: block;
+    }
+    .overview-cards {
+      display: none;
     }
   }
 }
@@ -261,16 +328,51 @@ header {
   .container {
     height: auto;
   }
+
+  .main-content {
+    .action-buttons {
+      flex-direction: column;
+
+      .btn-action {
+        width: 100%;
+        margin-bottom: 0.25em;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
   .main-content {
     padding: 1em 1.5em 2em 1.5em;
-  }
 
-  .overview-cards {
-    flex-direction: column;
-    gap: 1em;
+    .overview-cards {
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .recent-campaigns,
+    .recent-users,
+    .campaigns-only,
+    .users-only {
+      table {
+        font-size: 0.9em;
+
+        th,
+        td {
+          padding: 0.5em;
+        }
+      }
+
+      .action-buttons {
+        flex-direction: column;
+        gap: 0.25em;
+
+        .btn-action {
+          width: 100%;
+          font-size: 0.8em;
+        }
+      }
+    }
   }
 
   .sidebar {
@@ -290,5 +392,98 @@ header {
 
   .main-content {
     padding: 1em;
+
+    .recent-campaigns,
+    .recent-users,
+    .campaigns-only,
+    .users-only {
+      padding: $all-space * 0.5;
+
+      table {
+        font-size: 0.8em;
+
+        th,
+        td {
+          padding: 0.4em;
+        }
+      }
+
+      .action-buttons {
+        .btn-action {
+          padding: 0.3em 0.6em;
+          font-size: 0.75em;
+        }
+      }
+    }
+  }
+}
+
+// Loading and error states
+.loading {
+  text-align: center;
+  padding: $all-space * 2;
+  color: $text-light;
+  font-style: italic;
+}
+
+.error {
+  text-align: center;
+  padding: $all-space * 2;
+  color: $danger;
+  background-color: lighten($danger, 45%);
+  border-radius: $btn-radius;
+  margin: $all-space 0;
+}
+
+// Confirmation dialogs styling
+.confirm-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .dialog-content {
+    background: $white;
+    padding: $all-space * 2;
+    border-radius: $btn-radius;
+    box-shadow: $card-shadow;
+    max-width: 400px;
+    text-align: center;
+
+    h3 {
+      color: $primary-color;
+      margin-bottom: $all-space;
+    }
+
+    .dialog-buttons {
+      display: flex;
+      gap: $all-space;
+      justify-content: center;
+      margin-top: $all-space;
+
+      button {
+        padding: 0.5em 1.5em;
+        border: none;
+        border-radius: $btn-radius;
+        cursor: pointer;
+        font-weight: 500;
+
+        &.confirm {
+          background-color: $danger;
+          color: white;
+        }
+
+        &.cancel {
+          background-color: $text-light;
+          color: white;
+        }
+      }
+    }
   }
 }
