@@ -16,7 +16,7 @@ async function fetchCampaigns() {
           <p class="campaign-description">${campaign.description}</p>
           <p class="campaign-goal">Goal: $${campaign.goal}</p>
           <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
-          <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark">View Details</a>
+          <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark"  target="_blank" >View Details</a>
         `;
           document.getElementById("campaign-cards").appendChild(card);
         }
@@ -38,11 +38,11 @@ if (loggedUser) {
   document.getElementById("logoutBtn").style.display = "block";
   document.getElementById("start-your-own").href =
     "../HTML/start-campaign.html";
-
+  document.getElementById("myCamp").style.display = "block";
   let welcomeUser = document.createElement("span");
   welcomeUser.classList = "welcome-user";
   welcomeUser.innerText = `Welcome, ${JSON.parse(loggedUser).name}`;
-  document.querySelector("header").appendChild(welcomeUser);
+  document.querySelector("ul").appendChild(welcomeUser);
   document.getElementById("start-campaign").href =
     "../HTML/start-campaign.html";
 }

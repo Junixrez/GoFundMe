@@ -25,7 +25,6 @@ async function fetchCampaigns(id) {
           <button id="openDonate" class="btn-primary-dark">Donate Now</button>
         `;
     document.querySelector(".camp").appendChild(card);
-
     //open payment form
     document.getElementById("openDonate").addEventListener("click", () => {
       document.querySelector(".donate").style.display = "block";
@@ -45,20 +44,24 @@ async function fetchCampaigns(id) {
         amount: amount,
         userId: userId,
       };
-      (async () => {
-        const rawResponse = await fetch("http://localhost:3000/pledges", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payment),
-        });
-        const data = rawResponse.json();
-        window.location.href = "../HTML/campaigns.html";
-        alert(` you've successfully Donated $${amount}
+      if (amount >= 1) {
+        (async () => {
+          const rawResponse = await fetch("http://localhost:3000/pledges", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payment),
+          });
+          const data = rawResponse.json();
+          window.close();
+          alert(` you've successfully Donated $${amount}
         Thank you for the donation ${userName}`);
-      })();
+        })();
+      } else {
+        alert("wrong");
+      }
     });
   });
 }

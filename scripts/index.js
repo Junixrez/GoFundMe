@@ -33,13 +33,14 @@ fetchCampaigns();
 // loggedin
 if (loggedUser) {
   console.log("User is logged in");
+  document.getElementById("myCamp").style.display = "block";
   document.getElementById("loginBtn").style.display = "none";
   document.getElementById("logoutBtn").style.display = "block";
 
   let welcomeUser = document.createElement("span");
   welcomeUser.classList = "welcome-user";
   welcomeUser.innerText = `Welcome, ${JSON.parse(loggedUser).name}`;
-  document.querySelector("header").appendChild(welcomeUser);
+  document.querySelector("ul").appendChild(welcomeUser);
   document.getElementById("start-campaign").href =
     "../HTML/start-campaign.html";
 }

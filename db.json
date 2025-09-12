@@ -207,6 +207,24 @@
       "amount": 1212,
       "userId": 3,
       "id": 8
+    },
+    {
+      "campaignId": 1,
+      "amount": 1,
+      "userId": 3,
+      "id": 9
+    },
+    {
+      "campaignId": 2,
+      "amount": 12,
+      "userId": 3,
+      "id": 10
+    },
+    {
+      "campaignId": 5,
+      "amount": 12,
+      "userId": 3,
+      "id": 11
     }
   ]
 }
