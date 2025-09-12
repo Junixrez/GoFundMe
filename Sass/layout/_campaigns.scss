@@ -10,13 +10,45 @@
     grid-column: 2 / 3;
     text-align: center;
 
-    h2 {
-      font-size: 2rem;
+    .camps {
+      margin-right: 1em;
+      display: inline-block;
+      font-size: 1.5rem;
       font-weight: 700;
       color: $primary-color;
       margin-bottom: $all-space * 1.5;
+      cursor: pointer;
+    }
+    .camps.active {
+      margin-right: 1em;
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: $primary-color;
+      color: $white;
+      margin-bottom: $all-space * 1.5;
+      cursor: pointer;
     }
 
+    .myCamps {
+      margin-right: 1em;
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $all-space * 1.5;
+      cursor: pointer;
+    }
+    .myCamps.active {
+      margin-right: 1em;
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background-color: $primary-color;
+      color: $white;
+      margin-bottom: $all-space * 1.5;
+      cursor: pointer;
+    }
     #campaign-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);

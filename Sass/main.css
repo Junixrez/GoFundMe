@@ -294,11 +294,43 @@ header #loginBtn:hover {
   grid-column: 2/3;
   text-align: center;
 }
-.campaigns .content h2 {
-  font-size: 2rem;
+.campaigns .content .camps {
+  margin-right: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #0d7377;
   margin-bottom: 1.5em;
+  cursor: pointer;
+}
+.campaigns .content .camps.active {
+  margin-right: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #0d7377;
+  color: #ffffff;
+  margin-bottom: 1.5em;
+  cursor: pointer;
+}
+.campaigns .content .myCamps {
+  margin-right: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0d7377;
+  margin-bottom: 1.5em;
+  cursor: pointer;
+}
+.campaigns .content .myCamps.active {
+  margin-right: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: #0d7377;
+  color: #ffffff;
+  margin-bottom: 1.5em;
+  cursor: pointer;
 }
 .campaigns .content #campaign-cards {
   display: grid;
@@ -1332,7 +1364,7 @@ button {
 }
 .main-container .thanks-message {
   margin: 20px;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;

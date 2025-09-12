@@ -1,12 +1,10 @@
+const loggedUser = JSON.parse(localStorage.getItem("user"));
 function getCampId(id) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(id);
 }
 const campaignId = getCampId("id");
-const loggedUser = localStorage.getItem("user");
-const userId = JSON.parse(loggedUser).id;
-const userName = JSON.parse(loggedUser).name;
-console.log(cardHolder);
+const userId = loggedUser.id;
 
 //getting the campaign
 async function fetchCampaigns(id) {
@@ -55,9 +53,11 @@ async function fetchCampaigns(id) {
             body: JSON.stringify(payment),
           });
           const data = rawResponse.json();
+          confirm(
+            `Thanks mr.${loggedUser.name} for Donating $${amount} 
+            to "${campaign.title}" `
+          );
           window.close();
-          alert(` you've successfully Donated $${amount}
-        Thank you for the donation ${userName}`);
         })();
       } else {
         alert("wrong");
@@ -66,3 +66,19 @@ async function fetchCampaigns(id) {
   });
 }
 fetchCampaigns(campaignId);
+
+//logged auth
+if (loggedUser) {
+  console.log("User is logged in");
+  let welcomeUser = document.createElement("span");
+  welcomeUser.classList = "welcome-user";
+  welcomeUser.innerHTML = `Welcome, ${loggedUser.name}`;
+  document.querySelector("ul").appendChild(welcomeUser);
+  document.getElementById("loginBtn").style.display = "none";
+  document.getElementById("logoutBtn").style.display = "block";
+}
+//logout
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("user");
+  window.location.href = "../HTML/login.html";
+});

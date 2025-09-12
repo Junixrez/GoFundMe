@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="../Sass/main.css" />
   </head>
   <body>
+    <header>
+      <div class="logo">FundMeShokran</div>
+
+      <div class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="../HTML/campaigns.html">Campaigns</a></li>
+          <li><a href="#">About Us</a></li>
+          <li>
+            <a href="#" style="display: none" id="myCamp"> My Campaigns</a>
+          </li>
+        </ul>
+      </div>
+      <span>
+        <a href="./login.html" id="loginBtn">Login</a>
+      </span>
+      <span
+        ><a href="./login.html" id="logoutBtn" style="display: none"
+          >Logout</a
+        ></span
+      >
+    </header>
     <section class="main-container">
       <div class="camp"></div>
       <div class="donate">
@@ -49,17 +71,6 @@
           />
           <button id="donateBtn" class="btn-primary-dark">Procceed</button>
         </form>
-      </div>
-
-      <div class="thanks-message">
-        <div class="thanks-message">
-          <h2>Thank You for Your Donation!</h2>
-          <p>Your support helps us continue our mission.</p>
-          <button id="closeBtn" class="btn-primary-dark">Close</button>
-        </div>
-        <h2>Thank You for Your Donation!</h2>
-        <p>Your support helps us continue our mission.</p>
-        <button id="closeBtn" class="btn-primary-dark">Close</button>
       </div>
     </section>
     <script src="../scripts/campPage.js"></script>
