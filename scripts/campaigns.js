@@ -5,141 +5,127 @@ let allCampaigns = [];
 function createCampaignCard(campaign) {
   const card = document.createElement("div");
   card.classList = "card";
-
-  if (loggedUser) {
-    card.innerHTML = `
-      <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
-      <h3 class="campaign-title">${campaign.title}</h3> 
-      <p class="campaign-description">${campaign.description}</p>
-      <p class="campaign-goal">Goal: $${campaign.goal}</p>
-      <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
-      <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark" target="_blank">View Details</a>
-    `;
-  } else {
-    card.innerHTML = `
-      <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
-      <h3 class="campaign-title">${campaign.title}</h3> 
-      <p class="campaign-description">${campaign.description}</p>
-      <p class="campaign-goal">Goal: $${campaign.goal}</p>
-      <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
-      <a href="../HTML/login.html" class="btn-primary-dark" target="_blank">View Details</a>
-    `;
-  }
+  const viewHref = loggedUser
+    ? `../HTML/campaign.html?id=${campaign.id}`
+    : `../HTML/login.html`;
+  card.innerHTML = `
+    <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
+    <h3 class="campaign-title">${campaign.title}</h3> 
+    <p class="campaign-description">${campaign.description}</p>
+    <p class="campaign-goal">Goal: $${campaign.goal}</p>
+    <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
+    <a href="${viewHref}" class="btn-primary-dark" target="_blank">View Details</a>
+  `;
   return card;
 }
 
 function displayCampaigns(campaigns) {
   const container = document.getElementById("campaign-cards");
   container.innerHTML = "";
-
-  campaigns.forEach((campaign) => {
-    if (campaign.isApproved == true) {
-      const card = createCampaignCard(campaign);
-      container.appendChild(card);
-    }
-  });
-
-  if (campaigns.filter((c) => c.isApproved).length === 0) {
+  const approved = campaigns.filter((c) => c.isApproved === true);
+  if (approved.length === 0) {
     container.innerHTML = '<p style="color:red;">Not found</p>';
+    return;
   }
+  approved.forEach((campaign) => {
+    const card = createCampaignCard(campaign);
+    container.appendChild(card);
+  });
 }
 
 function searchCampaigns(searchTerm) {
-  const lowercaseSearchTerm = searchTerm.toLowerCase().trim();
-
-  if (lowercaseSearchTerm === "") {
+  const term = searchTerm.toLowerCase().trim();
+  if (term === "") {
     displayCampaigns(allCampaigns);
     return;
   }
-
-  const filteredCampaigns = allCampaigns.filter((campaign) => {
-    return campaign.title.toLowerCase().includes(lowercaseSearchTerm);
-  });
-
-  displayCampaigns(filteredCampaigns);
+  const filtered = allCampaigns.filter((campaign) =>
+    campaign.title.toLowerCase().includes(term)
+  );
+  displayCampaigns(filtered);
 }
 
-async function fetchCampaigns() {
-  await fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      allCampaigns = data;
-      displayCampaigns(allCampaigns);
-    });
+async function fetchAllCampaigns() {
+  const res = await fetch(url);
+  const data = await res.json();
+  allCampaigns = data;
+  displayCampaigns(allCampaigns);
+}
+
+async function fetchMyCampaigns() {
+  if (!loggedUser) return;
+  const res = await fetch(`${url}?creatorId=${loggedUser.id}`);
+  const data = await res.json();
+  allCampaigns = data;
+  displayCampaigns(allCampaigns);
 }
 
 function initializeSearch() {
   const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const searchTerm = e.target.value;
-      searchCampaigns(searchTerm);
-    });
-  }
+  if (!searchInput) return;
+  searchInput.addEventListener("input", (e) => {
+    searchCampaigns(e.target.value);
+  });
 }
 
-fetchCampaigns();
-initializeSearch();
+function setActive(tabEl) {
+  const camps = document.querySelector(".camps");
+  const myCamps = document.querySelector(".myCamps");
+  camps && camps.classList.remove("active");
+  myCamps && myCamps.classList.remove("active");
+  tabEl.classList.add("active");
+}
 
-document.querySelector(".camps").addEventListener("click", (e) => {
-  e.preventDefault();
-  document.getElementById("campaign-cards").innerHTML = "";
-  fetchCampaigns();
+function clearSearch() {
   const searchInput = document.getElementById("searchInput");
   if (searchInput) searchInput.value = "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeSearch();
+
+  const campsTab = document.querySelector(".camps");
+  const myCampsTab = document.querySelector(".myCamps");
+
+  if (campsTab) {
+    campsTab.addEventListener("click", async (e) => {
+      e.preventDefault();
+      setActive(campsTab);
+      clearSearch();
+      await fetchAllCampaigns();
+    });
+  }
+
+  if (loggedUser && myCampsTab) {
+    myCampsTab.style.display = "inline-block";
+    myCampsTab.addEventListener("click", async (e) => {
+      e.preventDefault();
+      setActive(myCampsTab);
+      clearSearch();
+      await fetchMyCampaigns();
+    });
+  } else if (myCampsTab) {
+    myCampsTab.style.display = "none";
+  }
+
+  fetchAllCampaigns();
 });
 
-// loggedin
+// logged in
 if (loggedUser) {
-  console.log("User is logged in");
   let welcomeUser = document.createElement("span");
   welcomeUser.classList = "welcome-user";
   welcomeUser.innerHTML = `Welcome, ${loggedUser.name}`;
-  document.querySelector("ul").appendChild(welcomeUser);
-  document.getElementById("loginBtn").style.display = "none";
-  document.getElementById("logoutBtn").style.display = "block";
-  document.getElementById("start-your-own").href =
-    "../HTML/start-campaign.html";
-
-  //show mycampaigns
-  document.querySelector(".myCamps").style.display = "inline-block";
-  document.querySelector(".myCamps").addEventListener("click", (e) => {
-    e.preventDefault();
-    document.getElementById("campaign-cards").innerHTML = "";
-
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput) searchInput.value = "";
-
-    (async () => {
-      const response = await fetch(`${url}?creatorId=${loggedUser.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          allCampaigns = data;
-          data.forEach((campaign) => {
-            if (campaign.isApproved == true) {
-              const card = document.createElement("div");
-              card.classList = "card";
-              card.innerHTML = `
-          <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
-          <h3 class="campaign-title">${campaign.title}</h3> 
-          <p class="campaign-description">${campaign.description}</p>
-          <p class="campaign-goal">Goal: $${campaign.goal}</p>
-          <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
-          <a href="../HTML/EditCamp.html?id=${campaign.id}" class="btn-primary-dark" target="_blank" id="editCamp">Edit Campaign</a>
-        `;
-              document.getElementById("campaign-cards").appendChild(card);
-            }
-          });
-        });
-    })();
-  });
-
-  document.getElementById("start-your-own").href =
-    "../HTML/start-campaign.html";
+  document.querySelector("ul")?.appendChild(welcomeUser);
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (loginBtn) loginBtn.style.display = "none";
+  if (logoutBtn) logoutBtn.style.display = "block";
+  const startOwn = document.getElementById("start-your-own");
+  if (startOwn) startOwn.href = "../HTML/start-campaign.html";
 }
 
-// logout
-document.getElementById("logoutBtn").addEventListener("click", () => {
+document.getElementById("logoutBtn")?.addEventListener("click", () => {
   localStorage.removeItem("user");
   window.location.href = "../HTML/index.html";
 });

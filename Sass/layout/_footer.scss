@@ -1,0 +1,35 @@
+.footer {
+  background-color: $primary-color;
+  color: $white;
+  padding: $all-space * 2 0;
+  text-align: center;
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $all-space;
+
+    p {
+      margin-bottom: $all-space;
+      font-size: 1rem;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: $all-space * 2;
+
+      a {
+        color: $white;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+}

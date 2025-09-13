@@ -11,7 +11,7 @@ header {
   padding: 1em;
   display: grid;
   grid-template-areas: "logo search navbar button";
-  grid-template-columns: 2fr 3fr auto auto;
+  grid-template-columns: 2fr 2.5fr auto auto;
   align-items: center;
   width: 100%;
 }
@@ -55,7 +55,8 @@ header ul li a {
   padding: 0.5em;
   text-decoration: none;
   color: #0d7377;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 header ul li a:hover {
@@ -191,6 +192,8 @@ header #loginBtn:hover {
 
 .about-us {
   display: grid;
+  height: 60vh;
+  align-items: center;
   grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
   padding: 2em 1em;
   background-color: #f8f9fa;
@@ -221,7 +224,7 @@ header #loginBtn:hover {
   transition: transform 0.3s ease;
 }
 .about-us .content .cards .card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.1);
 }
 .about-us .content .cards .card h3 {
   font-size: 1.5rem;
@@ -286,6 +289,7 @@ header #loginBtn:hover {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
   padding: 2em 1em;
+  margin-bottom: 5em;
   background-color: #f8f9fa;
   color: #2c3e50;
   font-family: "Vend Sans", sans-serif;
@@ -293,6 +297,12 @@ header #loginBtn:hover {
 .campaigns .content {
   grid-column: 2/3;
   text-align: center;
+}
+.campaigns .content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d7377;
+  margin-bottom: 1.5em;
 }
 .campaigns .content .camps {
   margin-right: 1em;
@@ -303,8 +313,15 @@ header #loginBtn:hover {
   margin-bottom: 1.5em;
   cursor: pointer;
 }
+.campaigns .content .camps:hover {
+  color: #35a29f;
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
 .campaigns .content .camps.active {
   margin-right: 1em;
+  padding: 0.4em;
+  border-radius: 13px;
   display: inline-block;
   font-size: 1.5rem;
   font-weight: 700;
@@ -322,8 +339,15 @@ header #loginBtn:hover {
   margin-bottom: 1.5em;
   cursor: pointer;
 }
+.campaigns .content .myCamps:hover {
+  color: #35a29f;
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
 .campaigns .content .myCamps.active {
   margin-right: 1em;
+  padding: 0.4em;
+  border-radius: 13px;
   display: inline-block;
   font-size: 1.5rem;
   font-weight: 700;
@@ -337,6 +361,7 @@ header #loginBtn:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   margin-bottom: 3em;
+  animation: drop-down 0.7s ease both;
 }
 .campaigns .content #campaign-cards .card {
   overflow: hidden;
@@ -430,6 +455,16 @@ header #loginBtn:hover {
   }
 }
 
+@keyframes drop-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .login {
   background: linear-gradient(90deg, rgb(5, 66, 51) 0%, rgb(31, 90, 78) 35%, rgb(38, 159, 115) 100%);
   font-family: "Vend Sans", sans-serif;
@@ -579,6 +614,37 @@ header #loginBtn:hover {
   resize: vertical;
 }
 
+.footer {
+  background-color: #0d7377;
+  color: #ffffff;
+  padding: 2em 0;
+  text-align: center;
+}
+.footer .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+.footer .content p {
+  margin-bottom: 1em;
+  font-size: 1rem;
+}
+.footer .content .links {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+.footer .content .links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.footer .content .links a:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
+}
+
 .wrapper {
   height: 91vh;
   background-color: black;
@@ -688,8 +754,10 @@ body {
 }
 .main-content .recent-campaigns,
 .main-content .recent-users,
+.main-content .recent-pledges,
 .main-content .campaigns-only,
-.main-content .users-only {
+.main-content .users-only,
+.main-content .pledges-only {
   background: #ffffff;
   padding: 1em 1em 0.5em 1em;
   border-radius: 11px;
@@ -698,19 +766,35 @@ body {
      -moz-user-select: none;
           user-select: none;
 }
-.main-content .recent-campaigns.recent-users, .main-content .recent-campaigns.users-only,
+.main-content .recent-campaigns.recent-users, .main-content .recent-campaigns.recent-pledges, .main-content .recent-campaigns.users-only, .main-content .recent-campaigns.pledges-only,
 .main-content .recent-users.recent-users,
+.main-content .recent-users.recent-pledges,
 .main-content .recent-users.users-only,
+.main-content .recent-users.pledges-only,
+.main-content .recent-pledges.recent-users,
+.main-content .recent-pledges.recent-pledges,
+.main-content .recent-pledges.users-only,
+.main-content .recent-pledges.pledges-only,
 .main-content .campaigns-only.recent-users,
+.main-content .campaigns-only.recent-pledges,
 .main-content .campaigns-only.users-only,
+.main-content .campaigns-only.pledges-only,
 .main-content .users-only.recent-users,
-.main-content .users-only.users-only {
+.main-content .users-only.recent-pledges,
+.main-content .users-only.users-only,
+.main-content .users-only.pledges-only,
+.main-content .pledges-only.recent-users,
+.main-content .pledges-only.recent-pledges,
+.main-content .pledges-only.users-only,
+.main-content .pledges-only.pledges-only {
   margin-top: 2em;
 }
 .main-content .recent-campaigns h2,
 .main-content .recent-users h2,
+.main-content .recent-pledges h2,
 .main-content .campaigns-only h2,
-.main-content .users-only h2 {
+.main-content .users-only h2,
+.main-content .pledges-only h2 {
   font-weight: 700;
   font-size: 1.4em;
   color: #0d7377;
@@ -719,8 +803,10 @@ body {
 }
 .main-content .recent-campaigns table,
 .main-content .recent-users table,
+.main-content .recent-pledges table,
 .main-content .campaigns-only table,
-.main-content .users-only table {
+.main-content .users-only table,
+.main-content .pledges-only table {
   width: 100%;
   border-collapse: collapse;
   font-size: 1rem;
@@ -728,14 +814,18 @@ body {
 }
 .main-content .recent-campaigns table thead tr,
 .main-content .recent-users table thead tr,
+.main-content .recent-pledges table thead tr,
 .main-content .campaigns-only table thead tr,
-.main-content .users-only table thead tr {
+.main-content .users-only table thead tr,
+.main-content .pledges-only table thead tr {
   border-bottom: 2px solid #e1e8ed;
 }
 .main-content .recent-campaigns table thead th,
 .main-content .recent-users table thead th,
+.main-content .recent-pledges table thead th,
 .main-content .campaigns-only table thead th,
-.main-content .users-only table thead th {
+.main-content .users-only table thead th,
+.main-content .pledges-only table thead th {
   text-align: left;
   padding: 0.5em 1em;
   font-weight: 600;
@@ -743,21 +833,27 @@ body {
 }
 .main-content .recent-campaigns table tbody tr,
 .main-content .recent-users table tbody tr,
+.main-content .recent-pledges table tbody tr,
 .main-content .campaigns-only table tbody tr,
-.main-content .users-only table tbody tr {
+.main-content .users-only table tbody tr,
+.main-content .pledges-only table tbody tr {
   border-bottom: 1px solid #e1e8ed;
   transition: background-color 0.2s ease;
 }
 .main-content .recent-campaigns table tbody tr:hover,
 .main-content .recent-users table tbody tr:hover,
+.main-content .recent-pledges table tbody tr:hover,
 .main-content .campaigns-only table tbody tr:hover,
-.main-content .users-only table tbody tr:hover {
+.main-content .users-only table tbody tr:hover,
+.main-content .pledges-only table tbody tr:hover {
   background: #f8f9fa;
 }
 .main-content .recent-campaigns table tbody tr td,
 .main-content .recent-users table tbody tr td,
+.main-content .recent-pledges table tbody tr td,
 .main-content .campaigns-only table tbody tr td,
-.main-content .users-only table tbody tr td {
+.main-content .users-only table tbody tr td,
+.main-content .pledges-only table tbody tr td {
   padding: 0.5em 1em;
   vertical-align: middle;
   font-size: 1.05em;
@@ -766,10 +862,14 @@ body {
 .main-content .recent-campaigns .user-info,
 .main-content .recent-users .creator-info,
 .main-content .recent-users .user-info,
+.main-content .recent-pledges .creator-info,
+.main-content .recent-pledges .user-info,
 .main-content .campaigns-only .creator-info,
 .main-content .campaigns-only .user-info,
 .main-content .users-only .creator-info,
-.main-content .users-only .user-info {
+.main-content .users-only .user-info,
+.main-content .pledges-only .creator-info,
+.main-content .pledges-only .user-info {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -778,10 +878,14 @@ body {
 .main-content .recent-campaigns .user-info .campaign-title,
 .main-content .recent-users .creator-info .campaign-title,
 .main-content .recent-users .user-info .campaign-title,
+.main-content .recent-pledges .creator-info .campaign-title,
+.main-content .recent-pledges .user-info .campaign-title,
 .main-content .campaigns-only .creator-info .campaign-title,
 .main-content .campaigns-only .user-info .campaign-title,
 .main-content .users-only .creator-info .campaign-title,
-.main-content .users-only .user-info .campaign-title {
+.main-content .users-only .user-info .campaign-title,
+.main-content .pledges-only .creator-info .campaign-title,
+.main-content .pledges-only .user-info .campaign-title {
   margin: 0;
   font-weight: 600;
   color: #0d7377;
@@ -791,10 +895,14 @@ body {
 .main-content .recent-campaigns .user-info .campaign-creator,
 .main-content .recent-users .creator-info .campaign-creator,
 .main-content .recent-users .user-info .campaign-creator,
+.main-content .recent-pledges .creator-info .campaign-creator,
+.main-content .recent-pledges .user-info .campaign-creator,
 .main-content .campaigns-only .creator-info .campaign-creator,
 .main-content .campaigns-only .user-info .campaign-creator,
 .main-content .users-only .creator-info .campaign-creator,
-.main-content .users-only .user-info .campaign-creator {
+.main-content .users-only .user-info .campaign-creator,
+.main-content .pledges-only .creator-info .campaign-creator,
+.main-content .pledges-only .user-info .campaign-creator {
   margin: 0;
   font-size: 1em;
   color: #7f8c8d;
@@ -802,8 +910,10 @@ body {
 }
 .main-content .recent-campaigns .status,
 .main-content .recent-users .status,
+.main-content .recent-pledges .status,
 .main-content .campaigns-only .status,
-.main-content .users-only .status {
+.main-content .users-only .status,
+.main-content .pledges-only .status {
   font-size: 1em;
   font-weight: 700;
   padding: 0.4em 0.8em;
@@ -816,58 +926,74 @@ body {
 }
 .main-content .recent-campaigns .status.active,
 .main-content .recent-users .status.active,
+.main-content .recent-pledges .status.active,
 .main-content .campaigns-only .status.active,
-.main-content .users-only .status.active {
+.main-content .users-only .status.active,
+.main-content .pledges-only .status.active {
   color: #27ae60;
   background-color: rgb(158.1971830986, 233.3028169014, 189.9084507042);
 }
 .main-content .recent-campaigns .status.pending,
 .main-content .recent-users .status.pending,
+.main-content .recent-pledges .status.pending,
 .main-content .campaigns-only .status.pending,
-.main-content .users-only .status.pending {
+.main-content .users-only .status.pending,
+.main-content .pledges-only .status.pending {
   color: #f39c12;
   background-color: rgb(252.8313253012, 237.1084337349, 212.1686746988);
 }
 .main-content .recent-campaigns .status.completed,
 .main-content .recent-users .status.completed,
+.main-content .recent-pledges .status.completed,
 .main-content .campaigns-only .status.completed,
-.main-content .users-only .status.completed {
+.main-content .users-only .status.completed,
+.main-content .pledges-only .status.completed {
   color: #0d7377;
   background-color: rgb(107.3318181818, 233.9045454545, 238.8681818182);
 }
 .main-content .recent-campaigns .status.admin,
 .main-content .recent-users .status.admin,
+.main-content .recent-pledges .status.admin,
 .main-content .campaigns-only .status.admin,
-.main-content .users-only .status.admin {
+.main-content .users-only .status.admin,
+.main-content .pledges-only .status.admin {
   color: #0d7377;
   background-color: rgb(107.3318181818, 233.9045454545, 238.8681818182);
 }
 .main-content .recent-campaigns .status.user,
 .main-content .recent-users .status.user,
+.main-content .recent-pledges .status.user,
 .main-content .campaigns-only .status.user,
-.main-content .users-only .status.user {
+.main-content .users-only .status.user,
+.main-content .pledges-only .status.user {
   color: #7f8c8d;
   background-color: rgb(221.4132231405, 224.8243801653, 225.0867768595);
 }
 .main-content .recent-campaigns .status.inactive,
 .main-content .recent-users .status.inactive,
+.main-content .recent-pledges .status.inactive,
 .main-content .campaigns-only .status.inactive,
-.main-content .users-only .status.inactive {
+.main-content .users-only .status.inactive,
+.main-content .pledges-only .status.inactive {
   color: #e74c3c;
   background-color: rgb(250.5616438356, 221.897260274, 218.9383561644);
 }
 .main-content .recent-campaigns .action-buttons,
 .main-content .recent-users .action-buttons,
+.main-content .recent-pledges .action-buttons,
 .main-content .campaigns-only .action-buttons,
-.main-content .users-only .action-buttons {
+.main-content .users-only .action-buttons,
+.main-content .pledges-only .action-buttons {
   display: flex;
   gap: 0.5em;
   flex-wrap: wrap;
 }
 .main-content .recent-campaigns .action-buttons .btn-action,
 .main-content .recent-users .action-buttons .btn-action,
+.main-content .recent-pledges .action-buttons .btn-action,
 .main-content .campaigns-only .action-buttons .btn-action,
-.main-content .users-only .action-buttons .btn-action {
+.main-content .users-only .action-buttons .btn-action,
+.main-content .pledges-only .action-buttons .btn-action {
   border: none;
   padding: 0.4em 0.8em;
   border-radius: 11px;
@@ -880,85 +1006,108 @@ body {
 }
 .main-content .recent-campaigns .action-buttons .btn-action:hover,
 .main-content .recent-users .action-buttons .btn-action:hover,
+.main-content .recent-pledges .action-buttons .btn-action:hover,
 .main-content .campaigns-only .action-buttons .btn-action:hover,
-.main-content .users-only .action-buttons .btn-action:hover {
+.main-content .users-only .action-buttons .btn-action:hover,
+.main-content .pledges-only .action-buttons .btn-action:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .main-content .recent-campaigns .action-buttons .btn-action.approve,
 .main-content .recent-users .action-buttons .btn-action.approve,
+.main-content .recent-pledges .action-buttons .btn-action.approve,
 .main-content .campaigns-only .action-buttons .btn-action.approve,
-.main-content .users-only .action-buttons .btn-action.approve {
+.main-content .users-only .action-buttons .btn-action.approve,
+.main-content .pledges-only .action-buttons .btn-action.approve {
   background-color: #27ae60;
 }
 .main-content .recent-campaigns .action-buttons .btn-action.approve:hover,
 .main-content .recent-users .action-buttons .btn-action.approve:hover,
+.main-content .recent-pledges .action-buttons .btn-action.approve:hover,
 .main-content .campaigns-only .action-buttons .btn-action.approve:hover,
-.main-content .users-only .action-buttons .btn-action.approve:hover {
+.main-content .users-only .action-buttons .btn-action.approve:hover,
+.main-content .pledges-only .action-buttons .btn-action.approve:hover {
   background-color: rgb(29.661971831, 132.338028169, 73.014084507);
 }
 .main-content .recent-campaigns .action-buttons .btn-action.reject,
 .main-content .recent-users .action-buttons .btn-action.reject,
+.main-content .recent-pledges .action-buttons .btn-action.reject,
 .main-content .campaigns-only .action-buttons .btn-action.reject,
-.main-content .users-only .action-buttons .btn-action.reject {
+.main-content .users-only .action-buttons .btn-action.reject,
+.main-content .pledges-only .action-buttons .btn-action.reject {
   background-color: #e74c3c;
 }
 .main-content .recent-campaigns .action-buttons .btn-action.reject:hover,
 .main-content .recent-users .action-buttons .btn-action.reject:hover,
+.main-content .recent-pledges .action-buttons .btn-action.reject:hover,
 .main-content .campaigns-only .action-buttons .btn-action.reject:hover,
-.main-content .users-only .action-buttons .btn-action.reject:hover {
+.main-content .users-only .action-buttons .btn-action.reject:hover,
+.main-content .pledges-only .action-buttons .btn-action.reject:hover {
   background-color: rgb(213.698630137, 43.8356164384, 26.301369863);
 }
 .main-content .recent-campaigns .action-buttons .btn-action.ban,
 .main-content .recent-users .action-buttons .btn-action.ban,
+.main-content .recent-pledges .action-buttons .btn-action.ban,
 .main-content .campaigns-only .action-buttons .btn-action.ban,
-.main-content .users-only .action-buttons .btn-action.ban {
+.main-content .users-only .action-buttons .btn-action.ban,
+.main-content .pledges-only .action-buttons .btn-action.ban {
   background-color: #f39c12;
 }
 .main-content .recent-campaigns .action-buttons .btn-action.ban:hover,
 .main-content .recent-users .action-buttons .btn-action.ban:hover,
+.main-content .recent-pledges .action-buttons .btn-action.ban:hover,
 .main-content .campaigns-only .action-buttons .btn-action.ban:hover,
-.main-content .users-only .action-buttons .btn-action.ban:hover {
+.main-content .users-only .action-buttons .btn-action.ban:hover,
+.main-content .pledges-only .action-buttons .btn-action.ban:hover {
   background-color: rgb(199.8795180723, 126.5060240964, 10.1204819277);
 }
 .main-content .recent-campaigns .action-buttons .btn-action.unban,
 .main-content .recent-users .action-buttons .btn-action.unban,
+.main-content .recent-pledges .action-buttons .btn-action.unban,
 .main-content .campaigns-only .action-buttons .btn-action.unban,
-.main-content .users-only .action-buttons .btn-action.unban {
+.main-content .users-only .action-buttons .btn-action.unban,
+.main-content .pledges-only .action-buttons .btn-action.unban {
   background-color: #0d7377;
 }
 .main-content .recent-campaigns .action-buttons .btn-action.unban:hover,
 .main-content .recent-users .action-buttons .btn-action.unban:hover,
+.main-content .recent-pledges .action-buttons .btn-action.unban:hover,
 .main-content .campaigns-only .action-buttons .btn-action.unban:hover,
-.main-content .users-only .action-buttons .btn-action.unban:hover {
+.main-content .users-only .action-buttons .btn-action.unban:hover,
+.main-content .pledges-only .action-buttons .btn-action.unban:hover {
   background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
 }
 .main-content .section-content.hidden {
   display: none;
 }
 .main-content.dashboard-view .recent-campaigns,
-.main-content.dashboard-view .recent-users {
+.main-content.dashboard-view .recent-users,
+.main-content.dashboard-view .recent-pledges {
   display: block;
 }
 .main-content.dashboard-view .campaigns-only,
-.main-content.dashboard-view .users-only {
+.main-content.dashboard-view .users-only,
+.main-content.dashboard-view .pledges-only {
   display: none;
 }
 .main-content.campaigns-view .recent-campaigns,
-.main-content.campaigns-view .recent-users {
+.main-content.campaigns-view .recent-users,
+.main-content.campaigns-view .recent-pledges {
   display: none;
 }
 .main-content.campaigns-view .campaigns-only {
   display: block;
 }
-.main-content.campaigns-view .users-only {
+.main-content.campaigns-view .users-only,
+.main-content.campaigns-view .pledges-only {
   display: none;
 }
 .main-content.campaigns-view .overview-cards {
   display: none;
 }
 .main-content.users-view .recent-campaigns,
-.main-content.users-view .recent-users {
+.main-content.users-view .recent-users,
+.main-content.users-view .recent-pledges {
   display: none;
 }
 .main-content.users-view .campaigns-only {
@@ -967,7 +1116,25 @@ body {
 .main-content.users-view .users-only {
   display: block;
 }
+.main-content.users-view .pledges-only {
+  display: none;
+}
 .main-content.users-view .overview-cards {
+  display: none;
+}
+.main-content.pledges-view .recent-campaigns,
+.main-content.pledges-view .recent-users,
+.main-content.pledges-view .recent-pledges {
+  display: none;
+}
+.main-content.pledges-view .campaigns-only,
+.main-content.pledges-view .users-only {
+  display: none;
+}
+.main-content.pledges-view .pledges-only {
+  display: block;
+}
+.main-content.pledges-view .overview-cards {
   display: none;
 }
 
@@ -1001,31 +1168,41 @@ body {
   }
   .main-content .recent-campaigns table,
   .main-content .recent-users table,
+  .main-content .recent-pledges table,
   .main-content .campaigns-only table,
-  .main-content .users-only table {
+  .main-content .users-only table,
+  .main-content .pledges-only table {
     font-size: 0.9em;
   }
   .main-content .recent-campaigns table th,
   .main-content .recent-campaigns table td,
   .main-content .recent-users table th,
   .main-content .recent-users table td,
+  .main-content .recent-pledges table th,
+  .main-content .recent-pledges table td,
   .main-content .campaigns-only table th,
   .main-content .campaigns-only table td,
   .main-content .users-only table th,
-  .main-content .users-only table td {
+  .main-content .users-only table td,
+  .main-content .pledges-only table th,
+  .main-content .pledges-only table td {
     padding: 0.5em;
   }
   .main-content .recent-campaigns .action-buttons,
   .main-content .recent-users .action-buttons,
+  .main-content .recent-pledges .action-buttons,
   .main-content .campaigns-only .action-buttons,
-  .main-content .users-only .action-buttons {
+  .main-content .users-only .action-buttons,
+  .main-content .pledges-only .action-buttons {
     flex-direction: column;
     gap: 0.25em;
   }
   .main-content .recent-campaigns .action-buttons .btn-action,
   .main-content .recent-users .action-buttons .btn-action,
+  .main-content .recent-pledges .action-buttons .btn-action,
   .main-content .campaigns-only .action-buttons .btn-action,
-  .main-content .users-only .action-buttons .btn-action {
+  .main-content .users-only .action-buttons .btn-action,
+  .main-content .pledges-only .action-buttons .btn-action {
     width: 100%;
     font-size: 0.8em;
   }
@@ -1046,30 +1223,40 @@ body {
   }
   .main-content .recent-campaigns,
   .main-content .recent-users,
+  .main-content .recent-pledges,
   .main-content .campaigns-only,
-  .main-content .users-only {
+  .main-content .users-only,
+  .main-content .pledges-only {
     padding: 0.5em;
   }
   .main-content .recent-campaigns table,
   .main-content .recent-users table,
+  .main-content .recent-pledges table,
   .main-content .campaigns-only table,
-  .main-content .users-only table {
+  .main-content .users-only table,
+  .main-content .pledges-only table {
     font-size: 0.8em;
   }
   .main-content .recent-campaigns table th,
   .main-content .recent-campaigns table td,
   .main-content .recent-users table th,
   .main-content .recent-users table td,
+  .main-content .recent-pledges table th,
+  .main-content .recent-pledges table td,
   .main-content .campaigns-only table th,
   .main-content .campaigns-only table td,
   .main-content .users-only table th,
-  .main-content .users-only table td {
+  .main-content .users-only table td,
+  .main-content .pledges-only table th,
+  .main-content .pledges-only table td {
     padding: 0.4em;
   }
   .main-content .recent-campaigns .action-buttons .btn-action,
   .main-content .recent-users .action-buttons .btn-action,
+  .main-content .recent-pledges .action-buttons .btn-action,
   .main-content .campaigns-only .action-buttons .btn-action,
-  .main-content .users-only .action-buttons .btn-action {
+  .main-content .users-only .action-buttons .btn-action,
+  .main-content .pledges-only .action-buttons .btn-action {
     padding: 0.3em 0.6em;
     font-size: 0.75em;
   }
@@ -1134,6 +1321,54 @@ body {
 .confirm-dialog .dialog-content .dialog-buttons button.cancel {
   background-color: #7f8c8d;
   color: white;
+}
+
+.why-choose-us {
+  background-color: #f8f9fa;
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 6em;
+}
+.why-choose-us .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+.why-choose-us .content h2 {
+  color: #0d7377;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+}
+.why-choose-us .content .reasons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2em;
+  margin-bottom: 3em;
+}
+.why-choose-us .content .reasons .reason {
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 11px;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  transition: transform 0.3s ease;
+}
+.why-choose-us .content .reasons .reason:hover {
+  transform: scale(1.1);
+}
+.why-choose-us .content .reasons .reason h3 {
+  color: #0d7377;
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+.why-choose-us .content .reasons .reason p {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.why-choose-us .content .btn-primary {
+  font-size: 1.1rem;
+  padding: 0.75em 2em;
 }
 
 button {

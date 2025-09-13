@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
   padding: $all-space * 2 $all-space;
+  margin-bottom: $all-space * 5;
   background-color: $bg-light;
   color: $text-dark;
   font-family: $main-font;
@@ -9,7 +10,12 @@
   .content {
     grid-column: 2 / 3;
     text-align: center;
-
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $primary-color;
+      margin-bottom: $all-space * 1.5;
+    }
     .camps {
       margin-right: 1em;
       display: inline-block;
@@ -18,9 +24,16 @@
       color: $primary-color;
       margin-bottom: $all-space * 1.5;
       cursor: pointer;
+      &:hover {
+        color: $accent-color;
+        transform: translateY(-3px);
+        transition: all 0.3s ease;
+      }
     }
     .camps.active {
       margin-right: 1em;
+      padding: 0.4em;
+      border-radius: 13px;
       display: inline-block;
       font-size: 1.5rem;
       font-weight: 700;
@@ -38,9 +51,16 @@
       color: $primary-color;
       margin-bottom: $all-space * 1.5;
       cursor: pointer;
+      &:hover {
+        color: $accent-color;
+        transform: translateY(-3px);
+        transition: all 0.3s ease;
+      }
     }
     .myCamps.active {
       margin-right: 1em;
+      padding: 0.4em;
+      border-radius: 13px;
       display: inline-block;
       font-size: 1.5rem;
       font-weight: 700;
@@ -54,6 +74,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: $all-space;
       margin-bottom: $all-space * 3;
+      animation: drop-down 0.7s ease both;
 
       .card {
         overflow: hidden;
@@ -168,5 +189,15 @@
         }
       }
     }
+  }
+}
+@keyframes drop-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

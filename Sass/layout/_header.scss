@@ -4,10 +4,9 @@ header {
   padding: $all-space;
   display: grid;
   grid-template-areas: "logo search navbar button";
-  grid-template-columns: 2fr 3fr auto auto;
+  grid-template-columns: 2fr 2.5fr auto auto;
   align-items: center;
   width: 100%;
-
   .welcome-user {
     color: $primary-color;
     font-size: $font-size;
@@ -52,7 +51,8 @@ header {
         padding: $header-space;
         text-decoration: none;
         color: $primary-color;
-        font-size: $font-size;
+        font-size: $font-size * 1.1;
+        font-weight: 500;
         transition: color 0.3s ease;
 
         &:hover {

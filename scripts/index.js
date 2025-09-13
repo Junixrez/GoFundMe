@@ -1,7 +1,7 @@
 const campaignsEP = "campaigns";
 const usersEP = "users";
 const plegesEP = "pleges";
-let loggedUser = localStorage.getItem("user");
+let loggedUser = JSON.parse(localStorage.getItem("user"));
 const getRequest = (ep) => {
   return fetch(`http://localhost:3000/${ep}`);
 };
@@ -33,13 +33,12 @@ fetchCampaigns();
 // loggedin
 if (loggedUser) {
   console.log("User is logged in");
-  document.getElementById("myCamp").style.display = "block";
   document.getElementById("loginBtn").style.display = "none";
   document.getElementById("logoutBtn").style.display = "block";
-
+  document.getElementById("start").href = "../HTML/start-campaign.html";
   let welcomeUser = document.createElement("span");
   welcomeUser.classList = "welcome-user";
-  welcomeUser.innerText = `Welcome, ${JSON.parse(loggedUser).name}`;
+  welcomeUser.innerText = `Welcome, ${loggedUser.name}`;
   document.querySelector("ul").appendChild(welcomeUser);
   document.getElementById("start-campaign").href =
     "../HTML/start-campaign.html";

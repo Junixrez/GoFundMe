@@ -98,8 +98,10 @@ body {
 
   .recent-campaigns,
   .recent-users,
+  .recent-pledges,
   .campaigns-only,
-  .users-only {
+  .users-only,
+  .pledges-only {
     background: $white;
     padding: $all-space $all-space $all-space * 0.5 $all-space;
     border-radius: $btn-radius;
@@ -107,7 +109,9 @@ body {
     user-select: none;
 
     &.recent-users,
-    &.users-only {
+    &.recent-pledges,
+    &.users-only,
+    &.pledges-only {
       margin-top: $all-space * 2;
     }
 
@@ -144,6 +148,7 @@ body {
           &:hover {
             background: $bg-light;
           }
+
           td {
             padding: $header-space $all-space;
             vertical-align: middle;
@@ -235,21 +240,18 @@ body {
             background-color: darken($success, 10%);
           }
         }
-
         &.reject {
           background-color: $danger;
           &:hover {
             background-color: darken($danger, 10%);
           }
         }
-
         &.ban {
           background-color: $warning;
           &:hover {
             background-color: darken($warning, 10%);
           }
         }
-
         &.unban {
           background-color: $primary-color;
           &:hover {
@@ -260,35 +262,36 @@ body {
     }
   }
 
-  // Hide sections by default (for navigation functionality)
   .section-content {
     &.hidden {
       display: none;
     }
   }
 
-  // Dashboard view (shows both tables)
   &.dashboard-view {
     .recent-campaigns,
-    .recent-users {
+    .recent-users,
+    .recent-pledges {
       display: block;
     }
     .campaigns-only,
-    .users-only {
+    .users-only,
+    .pledges-only {
       display: none;
     }
   }
 
-  // Campaigns-only view
   &.campaigns-view {
     .recent-campaigns,
-    .recent-users {
+    .recent-users,
+    .recent-pledges {
       display: none;
     }
     .campaigns-only {
       display: block;
     }
-    .users-only {
+    .users-only,
+    .pledges-only {
       display: none;
     }
     .overview-cards {
@@ -296,16 +299,37 @@ body {
     }
   }
 
-  // Users-only view
   &.users-view {
     .recent-campaigns,
-    .recent-users {
+    .recent-users,
+    .recent-pledges {
       display: none;
     }
     .campaigns-only {
       display: none;
     }
     .users-only {
+      display: block;
+    }
+    .pledges-only {
+      display: none;
+    }
+    .overview-cards {
+      display: none;
+    }
+  }
+
+  &.pledges-view {
+    .recent-campaigns,
+    .recent-users,
+    .recent-pledges {
+      display: none;
+    }
+    .campaigns-only,
+    .users-only {
+      display: none;
+    }
+    .pledges-only {
       display: block;
     }
     .overview-cards {
@@ -352,8 +376,10 @@ body {
 
     .recent-campaigns,
     .recent-users,
+    .recent-pledges,
     .campaigns-only,
-    .users-only {
+    .users-only,
+    .pledges-only {
       table {
         font-size: 0.9em;
 
@@ -395,8 +421,10 @@ body {
 
     .recent-campaigns,
     .recent-users,
+    .recent-pledges,
     .campaigns-only,
-    .users-only {
+    .users-only,
+    .pledges-only {
       padding: $all-space * 0.5;
 
       table {
@@ -418,7 +446,6 @@ body {
   }
 }
 
-// Loading and error states
 .loading {
   text-align: center;
   padding: $all-space * 2;
@@ -435,7 +462,6 @@ body {
   margin: $all-space 0;
 }
 
-// Confirmation dialogs styling
 .confirm-dialog {
   position: fixed;
   top: 0;
@@ -478,7 +504,6 @@ body {
           background-color: $danger;
           color: white;
         }
-
         &.cancel {
           background-color: $text-light;
           color: white;

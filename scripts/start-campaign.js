@@ -59,13 +59,12 @@ document
         },
         body: JSON.stringify(campaignData),
       });
-
       const result = await response.json();
       console.log(result);
 
       if (response.ok) {
-        alert("Campaign created successfully! Awaiting approval.");
         window.location.href = "../HTML/campaigns.html";
+        alert("Campaign created successfully! Awaiting approval.");
       } else {
         alert(
           `Failed to create campaign: ${result.message || "Please try again."}`

@@ -1,8 +1,8 @@
 const url = "http://localhost:3000";
-
 let currentPage = "dashboard";
 let allCampaigns = [];
 let allUsers = [];
+let allPledges = [];
 
 async function getCampaigns() {
   try {
@@ -24,9 +24,20 @@ async function getUsers() {
   }
 }
 
+async function getPledges() {
+  try {
+    const response = await fetch(`${url}/pledges`);
+    allPledges = await response.json();
+  } catch (error) {
+    console.log("Failed to get pledges:", error);
+    allPledges = [];
+  }
+}
+
 async function getAllData() {
   await getCampaigns();
   await getUsers();
+  await getPledges();
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -37,23 +48,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function setupMenu() {
   const menuItems = document.querySelectorAll("li");
-
   menuItems.forEach(function (menuItem) {
     menuItem.addEventListener("click", function () {
       menuItems.forEach(function (item) {
         item.classList.remove("active");
       });
-
       menuItem.classList.add("active");
-
       const clickedItem = menuItem.textContent.trim();
-
       if (clickedItem === "Dashboard") {
         showMainDashboard();
       } else if (clickedItem === "Campaigns") {
         showCampaignsPage();
       } else if (clickedItem === "Users") {
         showUsersPage();
+      } else if (clickedItem === "Pledges") {
+        showPledgesPage();
       }
     });
   });
@@ -61,11 +70,14 @@ function setupMenu() {
 
 function showMainDashboard() {
   currentPage = "dashboard";
-
   const mainArea = document.querySelector(".main-content");
-
   const totalCampaigns = allCampaigns.length;
   const totalUsers = allUsers.length;
+  const totalPledges = allPledges.length;
+  const totalAmount = allPledges.reduce(
+    (sum, pledge) => sum + parseFloat(pledge.amount || 0),
+    0
+  );
   const approvedCampaigns = allCampaigns.filter(
     (campaign) => campaign.isApproved
   ).length;
@@ -87,6 +99,11 @@ function showMainDashboard() {
         <p class="change positive">+${activeUsers} active</p>
       </div>
       <div class="card">
+        <h2>Total Pledges</h2>
+        <p class="amount">${totalPledges}</p>
+        <p class="change positive">$${totalAmount.toLocaleString()} raised</p>
+      </div>
+      <div class="card">
         <h2>Pending Approval</h2>
         <p class="amount">${pendingCampaigns}</p>
         <p class="change positive">Awaiting review</p>
@@ -102,14 +119,17 @@ function showMainDashboard() {
       <h2>Recent Users</h2>
       ${createUsersTable(true)}
     </section>
+
+    <section class="recent-pledges">
+      <h2>Recent Pledges</h2>
+      ${createPledgesTable(true)}
+    </section>
   `;
 }
 
 function showCampaignsPage() {
   currentPage = "campaigns";
-
   const mainArea = document.querySelector(".main-content");
-
   mainArea.innerHTML = `
     <section class="campaigns-only">
       <h2>Campaign Management</h2>
@@ -120,9 +140,7 @@ function showCampaignsPage() {
 
 function showUsersPage() {
   currentPage = "users";
-
   const mainArea = document.querySelector(".main-content");
-
   mainArea.innerHTML = `
     <section class="users-only">
       <h2>User Management</h2>
@@ -131,15 +149,90 @@ function showUsersPage() {
   `;
 }
 
+function showPledgesPage() {
+  currentPage = "pledges";
+  const mainArea = document.querySelector(".main-content");
+  mainArea.innerHTML = `
+    <section class="pledges-only">
+      <h2>Pledges Management</h2>
+      ${createPledgesTable(false)}
+    </section>
+  `;
+}
+
+function createPledgesTable(showRecentOnly) {
+  let pledgesToShow;
+  if (showRecentOnly) {
+    pledgesToShow = allPledges.slice(-5).reverse();
+  } else {
+    pledgesToShow = allPledges;
+  }
+
+  let tableHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Pledge ID</th>
+          <th>User</th>
+          <th>Campaign</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+  pledgesToShow.forEach(function (pledge) {
+    const user = allUsers.find((u) => u.id == pledge.userId);
+    const campaign = allCampaigns.find((c) => c.id == pledge.campaignId);
+    const pledgeDate = pledge.createdAt
+      ? new Date(pledge.createdAt).toLocaleDateString()
+      : "N/A";
+
+    tableHTML += `
+      <tr>
+        <td>#${pledge.id}</td>
+        <td>
+          <div class="creator-info">
+            <div>
+              <p class="campaign-title">${user ? user.name : "Unknown User"}</p>
+              <p style="font-size: 0.8em; color: #666;">${
+                user ? user.email : "N/A"
+              }</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="creator-info">
+            <div>
+              <p class="campaign-title">${
+                campaign ? campaign.title : "Campaign Not Found"
+              }</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <span style="font-weight: 600; color: #28a745;">$${parseFloat(
+            pledge.amount || 0
+          ).toLocaleString()}</span>
+        </td>
+        <td>${pledgeDate}</td>
+      </tr>`;
+  });
+
+  tableHTML += `
+      </tbody>
+    </table>`;
+
+  return tableHTML;
+}
+
 function createCampaignsTable(showRecentOnly) {
   let campaignsToShow;
-
   if (showRecentOnly) {
     campaignsToShow = allCampaigns.slice(-5).reverse();
   } else {
     campaignsToShow = allCampaigns;
   }
-
   let tableHTML = `
     <table>
       <thead>
@@ -148,20 +241,16 @@ function createCampaignsTable(showRecentOnly) {
           <th>Campaign Title</th>
           <th>Creator ID</th>
           <th>Status</th>`;
-
   if (!showRecentOnly) {
     tableHTML += `<th>Actions</th>`;
   }
-
   tableHTML += `
         </tr>
       </thead>
       <tbody>`;
-
   campaignsToShow.forEach(function (campaign) {
     const status = campaign.isApproved ? "Approved" : "Pending";
     const statusClass = campaign.isApproved ? "active" : "pending";
-
     tableHTML += `
       <tr>
         <td>#${campaign.id}</td>
@@ -176,7 +265,6 @@ function createCampaignsTable(showRecentOnly) {
         <td>
           <span class="status ${statusClass}">${status}</span>
         </td>`;
-
     if (!showRecentOnly) {
       tableHTML += `
         <td>
@@ -190,26 +278,21 @@ function createCampaignsTable(showRecentOnly) {
           </div>
         </td>`;
     }
-
     tableHTML += `</tr>`;
   });
-
   tableHTML += `
       </tbody>
     </table>`;
-
   return tableHTML;
 }
 
 function createUsersTable(showRecentOnly) {
   let usersToShow;
-
   if (showRecentOnly) {
     usersToShow = allUsers.slice(-5).reverse();
   } else {
     usersToShow = allUsers;
   }
-
   let tableHTML = `
     <table>
       <thead>
@@ -219,20 +302,16 @@ function createUsersTable(showRecentOnly) {
           <th>Email</th>
           <th>Role</th>
           <th>Status</th>`;
-
   if (!showRecentOnly) {
     tableHTML += `<th>Actions</th>`;
   }
-
   tableHTML += `
         </tr>
       </thead>
       <tbody>`;
-
   usersToShow.forEach(function (user) {
     const status = user.isActive ? "Active" : "Inactive";
     const statusClass = user.isActive ? "active" : "inactive";
-
     tableHTML += `
       <tr>
         <td>#${user.id}</td>
@@ -250,10 +329,8 @@ function createUsersTable(showRecentOnly) {
         <td>
           <span class="status ${statusClass}">${status}</span>
         </td>`;
-
     if (!showRecentOnly) {
       tableHTML += `<td><div class="action-buttons">`;
-
       if (user.role !== "admin") {
         if (user.isActive) {
           tableHTML += `<button class="btn-action ban" onclick="banUser(${user.id})">Ban</button>`;
@@ -263,17 +340,13 @@ function createUsersTable(showRecentOnly) {
       } else {
         tableHTML += `<span class="admin-protected">Protected</span>`;
       }
-
       tableHTML += `</div></td>`;
     }
-
     tableHTML += `</tr>`;
   });
-
   tableHTML += `
       </tbody>
     </table>`;
-
   return tableHTML;
 }
 
@@ -282,14 +355,12 @@ async function approveCampaign(campaignId) {
     "Are you sure you want to approve this campaign?"
   );
   if (!userConfirmed) return;
-
   try {
     const response = await fetch(url + "/campaigns/" + campaignId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isApproved: true }),
     });
-
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
@@ -308,14 +379,12 @@ async function rejectCampaign(campaignId) {
     "Are you sure you want to reject this campaign?"
   );
   if (!userConfirmed) return;
-
   try {
     const response = await fetch(url + "/campaigns/" + campaignId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isApproved: false }),
     });
-
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
@@ -332,14 +401,12 @@ async function rejectCampaign(campaignId) {
 async function banUser(userId) {
   const userConfirmed = confirm("Are you sure you want to ban this user?");
   if (!userConfirmed) return;
-
   try {
     const response = await fetch(url + "/users/" + userId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isActive: false }),
     });
-
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
@@ -356,14 +423,12 @@ async function banUser(userId) {
 async function unbanUser(userId) {
   const userConfirmed = confirm("Are you sure you want to unban this user?");
   if (!userConfirmed) return;
-
   try {
     const response = await fetch(url + "/users/" + userId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isActive: true }),
     });
-
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
@@ -384,6 +449,8 @@ function refreshCurrentPage() {
     showCampaignsPage();
   } else if (currentPage === "users") {
     showUsersPage();
+  } else if (currentPage === "pledges") {
+    showPledgesPage();
   }
 }
 

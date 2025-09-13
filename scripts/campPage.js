@@ -13,8 +13,8 @@ async function fetchCampaigns(id) {
   data.forEach((campaign) => {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `
-          <h1>${campaign.title}</h1>
+    card.innerHTML += `
+          <h2>${campaign.title}</h2>
           <img src="${campaign.imageUrl}" alt="Campaign Image" class="campaign-cards"/>
           <h3 class="campaign-title">${campaign.title}</h3>
           <p class="campaign-description">${campaign.description}</p>
@@ -37,10 +37,13 @@ async function fetchCampaigns(id) {
       const cardHolder = document.getElementById("cardHolder").value;
       const expireDate = document.getElementById("date").value;
       const cvv = document.getElementById("cvv").value;
+      const time = new Date().toISOString();
+      console.log(time);
       const payment = {
         campaignId: campaign.id,
         amount: amount,
         userId: userId,
+        createdAt: time,
       };
       if (amount >= 1) {
         (async () => {
