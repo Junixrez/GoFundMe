@@ -67,7 +67,12 @@ document.getElementById("editBtn").addEventListener("click", async (e) => {
     });
   }
   await editCamp(campaignId);
-  window.location.href = "../HTML/campaigns.html";
+
+  Swal.fire({
+    title: `Done`,
+    text: `You've edited the campaign`,
+    icon: "success",
+  });
 });
 
 //logged auth

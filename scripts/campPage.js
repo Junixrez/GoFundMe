@@ -15,84 +15,124 @@ function validatePaymentInputs(
   cvv
 ) {
   if (!amount || isNaN(amount) || amount < 1) {
-    alert("Enter at least $1.");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Amount",
+      text: "Enter at least $1.",
+    });
     return false;
   }
-
   if (amount > 10000) {
-    alert("Max-limit is $10K");
+    Swal.fire({
+      icon: "error",
+      title: "Amount Too High",
+      text: "Max-limit is $10K",
+    });
     return false;
   }
-
   if (!cardNumber || cardNumber.trim() === "") {
-    alert("Enter your card number");
+    Swal.fire({
+      icon: "error",
+      title: "Card Number Required",
+      text: "Enter your card number",
+    });
     return false;
   }
-
   const cleanCardNumber = cardNumber.replace(/\s+/g, "");
   if (cleanCardNumber.length < 13 || cleanCardNumber.length > 19) {
-    alert("Enter a valid card number");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Card Number",
+      text: "Enter a valid card number",
+    });
     return false;
   }
-
   if (!/^\d+$/.test(cleanCardNumber)) {
-    alert("Numberical input only");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Card Number",
+      text: "Numberical input only",
+    });
     return false;
   }
-
   if (!cardHolder || cardHolder.trim() === "") {
-    alert("Enter the cardholder name.");
+    Swal.fire({
+      icon: "error",
+      title: "Cardholder Name Required",
+      text: "Enter the cardholder name.",
+    });
     return false;
   }
-
   if (cardHolder.trim().length < 2) {
-    alert("Minimum name length is 3 letters");
+    Swal.fire({
+      icon: "error",
+      title: "Name Too Short",
+      text: "Minimum name length is 3 letters",
+    });
     return false;
   }
-
   if (!/^[a-zA-Z\s]+$/.test(cardHolder.trim())) {
-    alert("Name should contain letters only");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Name",
+      text: "Name should contain letters only",
+    });
     return false;
   }
-
   if (!expireDate || expireDate.trim() === "") {
-    alert("Please enter the expiry date.");
+    Swal.fire({
+      icon: "error",
+      title: "Expiry Date Required",
+      text: "Please enter the expiry date.",
+    });
     return false;
   }
-
   if (!/^\d{2}\/\d{2}$/.test(expireDate)) {
-    alert("Please enter expiry date in MM/YY format.");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Date Format",
+      text: "Please enter expiry date in MM/YY format.",
+    });
     return false;
   }
-
   const [month, year] = expireDate.split("/").map((num) => parseInt(num));
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear() % 100;
   const currentMonth = currentDate.getMonth() + 1;
-
   if (month < 1 || month > 12) {
-    alert("Enter a valid month");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Month",
+      text: "Enter a valid month",
+    });
     return false;
   }
-
   if (year < currentYear || (year === currentYear && month < currentMonth)) {
-    alert("Expired Card");
+    Swal.fire({
+      icon: "error",
+      title: "Card Expired",
+      text: "Expired Card",
+    });
     return false;
   }
-
   if (!cvv || cvv.trim() === "") {
-    alert("Please enter the CVV code.");
+    Swal.fire({
+      icon: "error",
+      title: "CVV Required",
+      text: "Please enter the CVV code.",
+    });
     return false;
   }
-
   if (!/^\d{3,4}$/.test(cvv)) {
-    alert("Enter a vaild CVV");
+    Swal.fire({
+      icon: "error",
+      title: "Invalid CVV",
+      text: "Enter a vaild CVV",
+    });
     return false;
   }
-
   return true;
 }
-
 async function fetchCampaigns(id) {
   const response = await fetch(`http://localhost:3000/campaigns?id=${id}`);
   const data = await response.json();
@@ -109,28 +149,27 @@ async function fetchCampaigns(id) {
           <button id="openDonate" class="btn-primary-dark">Donate Now</button>
         `;
     document.querySelector(".camp").appendChild(card);
-
     document.getElementById("openDonate").addEventListener("click", () => {
       document.querySelector(".donate").style.display = "block";
       console.log("click");
     });
-
     document.getElementById("donateBtn").addEventListener("click", (e) => {
       e.preventDefault();
-      console.log("payed");
-
       const amount = parseFloat(document.getElementById("amount").value);
       const cardNumber = document.getElementById("cardNum").value;
       const cardHolder = document.getElementById("cardHolder").value;
       const expireDate = document.getElementById("date").value;
       const cvv = document.getElementById("cvv").value;
-
       if (
         !validatePaymentInputs(amount, cardNumber, cardHolder, expireDate, cvv)
       ) {
         return;
       }
-
+      Swal.fire({
+        position: `center-end`,
+        icon: "success",
+        text: `Thank you mr. ${loggedUser.name} for donating $${amount} to ${campaign.title}`,
+      });
       const time = new Date().toISOString();
       const payment = {
         campaignId: campaign.id,
@@ -138,7 +177,6 @@ async function fetchCampaigns(id) {
         userId: userId,
         createdAt: time,
       };
-
       (async () => {
         const rawResponse = await fetch("http://localhost:3000/pledges", {
           method: "POST",
@@ -148,7 +186,6 @@ async function fetchCampaigns(id) {
           },
           body: JSON.stringify(payment),
         });
-
         if (rawResponse.ok) {
           const campResponse = await fetch(
             `http://localhost:3000/campaigns/${campaign.id}`
@@ -164,22 +201,18 @@ async function fetchCampaigns(id) {
               raised: newRaised,
             }),
           });
-          window.location.href = "../HTML/campaigns.html";
-          // alert(`Thank you mr. ${loggedUser.name} for donating $${amount}
-          //   to ${campaign.title}
-          //   `);
-
-          // document.querySelector(".donate").style.display = "none";
         } else {
-          alert("Failed");
+          Swal.fire({
+            icon: "error",
+            title: "Payment Failed",
+            text: "Failed",
+          });
         }
       })();
     });
   });
 }
-
 fetchCampaigns(campaignId);
-
 if (loggedUser) {
   console.log("User is logged in");
   let welcomeUser = document.createElement("span");
@@ -189,10 +222,8 @@ if (loggedUser) {
   document.getElementById("loginBtn").style.display = "none";
   document.getElementById("logoutBtn").style.display = "block";
 }
-
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
   window.location.href = "../HTML/login.html";
 });
-
 isAdmin();

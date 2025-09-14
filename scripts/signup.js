@@ -22,8 +22,14 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
   });
   if (response) {
     // document.getElementById("join-us").style.display = "none";
-    window.location.href = "../HTML/login.html";
-    alert(`Account Created Successfully`);
+    setTimeout(() => {
+      window.location.href = "../HTML/login.html";
+    }, 1000);
+    Swal.fire({
+      title: `Account Created Successfully`,
+      icon: "success",
+    });
+
     // let sentence = "You are now one of US <3";
     // let letters = sentence.split("");
     // let successContainer = document.createElement("span");

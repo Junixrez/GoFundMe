@@ -18,12 +18,32 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   if (!response.ok) {
     alert("wrong email or password");
   } else if (user.isActive == false) {
-    alert("Account suspended");
+    Swal.fire({
+      icon: `error`,
+      title: `Account Suspended`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   } else if (response.ok && user.role == "admin") {
-    window.location.href = "../HTML/dashboard.html";
-    alert("welcome admin");
+    setTimeout(() => {
+      window.location.href = "../HTML/index.html";
+    }, 1500);
+    Swal.fire({
+      icon: "success",
+      title: `Welcome Admin`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   } else if (response.ok && user.role == "user") {
-    window.location.href = "../HTML/index.html";
-    alert("Login successful");
+    Swal.fire({
+      icon: "success",
+      title: `Welcome ${user.name}`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setTimeout(() => {
+      window.location.href = "../HTML/index.html";
+    }, 1500);
+    // alert("Login successful");
   }
 });

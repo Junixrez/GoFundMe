@@ -28,28 +28,32 @@
       .campaign-cards {
         width: 100%;
         height: auto;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: $all-space;
+        max-height: 500px;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: $header-space;
       }
       .campaign-title {
         font-size: 1.5rem;
         margin-bottom: $all-space;
-        color: $text-dark;
+        color: $primary-color;
       }
       .campaign-description {
         font-size: 1rem;
         margin-bottom: $all-space;
         color: $text-light;
       }
-      .campaign-goal,
+      .campaign-goal {
+        font-size: 1rem;
+        color: $secondary-color;
+        padding-bottom: $all-space;
+      }
       .campaign-raised {
-        font-size: 0.9rem;
-        color: $text-dark;
+        font-size: 1rem;
+        color: $success;
         padding-bottom: $all-space;
       }
       .campaign-deadline {
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: $text-dark;
         padding-bottom: $all-space;
       }

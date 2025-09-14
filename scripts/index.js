@@ -6,6 +6,7 @@ let loggedUser = JSON.parse(localStorage.getItem("user"));
 const getRequest = (ep) => {
   return fetch(`http://localhost:3000/${ep}`);
 };
+
 // campaigns
 async function fetchCampaigns() {
   await getRequest(campaignsEP)

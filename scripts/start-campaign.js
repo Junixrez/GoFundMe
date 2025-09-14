@@ -63,7 +63,7 @@ document
     console.log(result);
 
     if (response.ok) {
-      alert("Campaign created successfully! Awaiting approval.");
+      alert("Campaign created successfully, Awaiting approval");
       // window.location.href = "../HTML/campaigns.html";
       window.close();
     } else {
