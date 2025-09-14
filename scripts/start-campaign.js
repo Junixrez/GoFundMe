@@ -1,5 +1,11 @@
-const loggedUser = localStorage.getItem("user");
-const currentUser = JSON.parse(localStorage.getItem("user")).id;
+import { isAdmin } from "./adminAuth.js";
+isAdmin();
+const loggedUser = JSON.parse(localStorage.getItem("user"));
+console.log(loggedUser);
+if (!loggedUser) {
+  alert("Access denied.");
+  window.location.href = "../HTML/login.html";
+}
 
 async function convertImageToBase64(imageFile) {
   const reader = new FileReader();
@@ -19,14 +25,8 @@ let base64Image = "";
 if (imageInput) {
   imageInput.addEventListener("change", async function () {
     if (imageInput.files && imageInput.files[0]) {
-      try {
-        base64Image = await convertImageToBase64(imageInput.files[0]);
-        console.log("Image converted to Base64 successfully!");
-      } catch (error) {
-        console.log("Failed to convert image:", error);
-        alert("Failed to process image. Please try again.");
-        base64Image = "";
-      }
+      base64Image = await convertImageToBase64(imageInput.files[0]);
+      console.log("Image converted to Base64 successfully!");
     }
   });
 }
@@ -37,51 +37,42 @@ document
     e.preventDefault();
 
     if (!base64Image) {
-      alert("Please select an image for your campaign.");
+      alert("Select an image");
       return;
     }
 
     const campaignData = {
       title: document.getElementById("title").value,
-      goal: document.getElementById("goal").value,
+      goal: parseFloat(document.getElementById("goal").value),
+      raised: 0,
       imageUrl: base64Image,
       deadline: document.getElementById("deadline").value,
       description: document.getElementById("description").value,
-      creatorId: currentUser,
+      creatorId: loggedUser.id,
       isApproved: false,
     };
 
-    try {
-      const response = await fetch("http://localhost:3000/campaigns", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(campaignData),
-      });
-      const result = await response.json();
-      console.log(result);
+    const response = await fetch("http://localhost:3000/campaigns", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(campaignData),
+    });
+    const result = await response.json();
+    console.log(result);
 
-      if (response.ok) {
-        window.location.href = "../HTML/campaigns.html";
-        alert("Campaign created successfully! Awaiting approval.");
-      } else {
-        alert(
-          `Failed to create campaign: ${result.message || "Please try again."}`
-        );
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert(
-        "An error occurred while creating the campaign. Please try again later."
-      );
+    if (response.ok) {
+      alert("Campaign created successfully! Awaiting approval.");
+      // window.location.href = "../HTML/campaigns.html";
+      window.close();
+    } else {
+      alert("Failed to create campaign");
     }
   });
 
 if (loggedUser) {
   console.log(loggedUser);
-  console.log("user is logged in");
-  console.log(currentUser);
   document.getElementById("logoutBtn").style.display = "block";
 }
 

@@ -7,7 +7,7 @@
 
 header {
   font-family: "Vend Sans", sans-serif;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 1em;
   display: grid;
   grid-template-areas: "logo search navbar button";
@@ -196,7 +196,7 @@ header #loginBtn:hover {
   align-items: center;
   grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
   padding: 2em 1em;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   color: #2c3e50;
   font-family: "Vend Sans", sans-serif;
 }
@@ -381,15 +381,33 @@ header #loginBtn:hover {
   border-radius: 8px 8px 0 0;
   margin-bottom: 0.5em;
 }
-.campaigns .content #campaign-cards .card h3 {
+.campaigns .content #campaign-cards .card .campaign-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: #0d7377;
   margin-bottom: 0.5em;
 }
-.campaigns .content #campaign-cards .card p {
+.campaigns .content #campaign-cards .card .campaign-description {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+}
+.campaigns .content #campaign-cards .card .campaign-goal {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #35a29f;
+  margin-bottom: 0.5em;
+}
+.campaigns .content #campaign-cards .card .campaign-raised {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #27ae60;
+  margin-bottom: 0.5em;
+}
+.campaigns .content #campaign-cards .card .campaign-deadline {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c3e50;
   margin-bottom: 0.5em;
 }
 .campaigns .content #campaign-cards .card .progress {
@@ -1338,7 +1356,7 @@ body {
   color: #0d7377;
   font-weight: 700;
   font-size: 2.5rem;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 .why-choose-us .content .reasons {
   display: grid;
@@ -1347,11 +1365,12 @@ body {
   margin-bottom: 3em;
 }
 .why-choose-us .content .reasons .reason {
-  background-color: #ffffff;
+  background-color: #f8f9fa;
   padding: 1em;
   border-radius: 11px;
-  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.1);
   transition: transform 0.3s ease;
+  margin-bottom: 2em;
 }
 .why-choose-us .content .reasons .reason:hover {
   transform: scale(1.1);
@@ -1365,10 +1384,6 @@ body {
   color: #2c3e50;
   font-size: 1rem;
   line-height: 1.6;
-}
-.why-choose-us .content .btn-primary {
-  font-size: 1.1rem;
-  padding: 0.75em 2em;
 }
 
 button {
@@ -1518,6 +1533,11 @@ button {
 }
 .main-container .camp div .campaign-goal,
 .main-container .camp div .campaign-raised {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  padding-bottom: 1em;
+}
+.main-container .camp div .campaign-deadline {
   font-size: 0.9rem;
   color: #2c3e50;
   padding-bottom: 1em;

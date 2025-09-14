@@ -3,7 +3,11 @@ let currentPage = "dashboard";
 let allCampaigns = [];
 let allUsers = [];
 let allPledges = [];
-
+const loggedUser = JSON.parse(localStorage.getItem("user"));
+if (!loggedUser || loggedUser.role !== "admin") {
+  alert("Access denied!");
+  window.location.href = "../HTML/index.html";
+}
 async function getCampaigns() {
   try {
     const response = await fetch(`${url}/campaigns`);
@@ -457,6 +461,12 @@ function refreshCurrentPage() {
 document.getElementById("logoutBtn").addEventListener("click", function () {
   const userConfirmed = confirm("Are you sure you want to logout?");
   if (userConfirmed) {
+    localStorage.clear();
     window.location.href = "../HTML/login.html";
   }
+});
+
+document.getElementById("logo").addEventListener("click", () => {
+  document.getElementById("logo").style.cursor = "pointer";
+  window.location.href = "../HTML/index.html";
 });

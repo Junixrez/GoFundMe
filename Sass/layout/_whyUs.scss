@@ -13,7 +13,7 @@
       color: $primary-color;
       font-weight: 700;
       font-size: 2.5rem;
-      margin-bottom: $all-space;
+      margin-bottom: $all-space * 2;
     }
 
     .reasons {
@@ -23,11 +23,12 @@
       margin-bottom: $all-space * 3;
 
       .reason {
-        background-color: $white;
+        background-color: $bg-light;
         padding: $all-space;
         border-radius: $btn-radius;
-        box-shadow: $card-shadow;
+        box-shadow: 0 4px 10px rgba($text-dark, 0.1);
         transition: transform 0.3s ease;
+        margin-bottom: $all-space * 2;
 
         &:hover {
           transform: scale(1.1);
@@ -45,11 +46,6 @@
           line-height: 1.6;
         }
       }
-    }
-
-    .btn-primary {
-      font-size: 1.1rem;
-      padding: 0.75em 2em;
     }
   }
 }

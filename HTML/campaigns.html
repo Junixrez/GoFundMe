@@ -24,6 +24,14 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="../HTML/campaigns.html">Campaigns</a></li>
           <li><a href="#">About Us</a></li>
+          <li>
+            <a
+              href="../HTML/dashboard.html"
+              style="display: none"
+              id="dashboard"
+              >Dashboard</a
+            >
+          </li>
         </ul>
       </div>
       <span
@@ -45,12 +53,14 @@
         <!-- <button class="btn-primary-dark" id="load">Laod More</button> -->
         <a
           href="../HTML/login.html"
-          class="btn-secondary-dark"
+          class="btn-primary-dark"
           id="start-your-own"
+          target="_blank"
           >Start Your Own</a
         >
       </div>
     </section>
-    <script src="../scripts/campaigns.js"></script>
+    <script type="module" src="../scripts/adminAuth.js"></script>
+    <script type="module" src="../scripts/campaigns.js"></script>
   </body>
 </html>

@@ -1,9 +1,10 @@
+import { isAdmin } from "./adminAuth.js";
 function getCampId(id) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(id);
 }
 const campaignId = getCampId("id");
-
+isAdmin();
 async function convertImageToBase64(imageFile) {
   const reader = new FileReader();
   const base64Text = await new Promise((resolve, reject) => {
@@ -56,7 +57,7 @@ document.getElementById("editBtn").addEventListener("click", async (e) => {
       },
       body: JSON.stringify({
         title: document.getElementById("title").value,
-        goal: document.getElementById("goal").value,
+        goal: parseFloat(document.getElementById("goal").value),
         imageUrl: base64Image,
         deadline: document.getElementById("deadline").value,
         description: document.getElementById("description").value,

@@ -1,3 +1,4 @@
+import { isAdmin } from "./adminAuth.js";
 const campaignsEP = "campaigns";
 const usersEP = "users";
 const plegesEP = "pleges";
@@ -5,7 +6,6 @@ let loggedUser = JSON.parse(localStorage.getItem("user"));
 const getRequest = (ep) => {
   return fetch(`http://localhost:3000/${ep}`);
 };
-
 // campaigns
 async function fetchCampaigns() {
   await getRequest(campaignsEP)
@@ -20,7 +20,8 @@ async function fetchCampaigns() {
           <h3 class="campaign-title">${campaign.title}</h3> 
           <p class="campaign-description">${campaign.description}</p>
           <p class="campaign-goal">Goal: $${campaign.goal}</p>
-          <p class="campaign-raised">Dead line: ${campaign.deadline}</p>
+          <p class = "campaign-raised">Raised: $${campaign.raised}</p>
+          <p class="campaign-deadline">Dead line: ${campaign.deadline}</p>
           <a href="../HTML/campaign.html?id=${campaign.id}" class="btn-primary-dark"  target="_blank">View Details</a>
         `;
           document.getElementById("campaign-cards").appendChild(card);
@@ -49,3 +50,4 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
   window.location.href = "../HTML/index.html";
 });
+isAdmin();
