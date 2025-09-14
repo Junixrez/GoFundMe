@@ -4,7 +4,7 @@ const loggedUser = JSON.parse(localStorage.getItem("user"));
 console.log(loggedUser);
 if (!loggedUser) {
   alert("Access denied.");
-  window.location.href = "../HTML/login.html";
+  window.location.href = "/HTML/login.html";
 }
 
 async function convertImageToBase64(imageFile) {
@@ -52,7 +52,7 @@ document
       isApproved: false,
     };
 
-    const response = await fetch("http://localhost:3000/campaigns", {
+    const response = await fetch("/api/campaigns", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,11 +63,20 @@ document
     console.log(result);
 
     if (response.ok) {
-      alert("Campaign created successfully, Awaiting approval");
-      // window.location.href = "../HTML/campaigns.html";
-      window.close();
+      Swal.fire({
+        icon: "success",
+        text: `Campaign request has been made, Awaiting approval`,
+        timer: 2000,
+        showConfirmButton: false,
+      });
+      setTimeout(() => {
+        window.close();
+      }, 2500);
     } else {
-      alert("Failed to create campaign");
+      Swal.fire({
+        icon: "error",
+        text: `Failed, Try again later`,
+      });
     }
   });
 
@@ -78,5 +87,5 @@ if (loggedUser) {
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "../HTML/index.html";
+  window.location.href = "/";
 });

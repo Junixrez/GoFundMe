@@ -4,5 +4,8 @@ export function isAdmin() {
 
   if (currentUser && role === "admin") {
     document.getElementById("dashboard").style.display = "block";
+    // document.getElementById("start-campaign").style.display = "none";
+    // document.getElementById("start").style.display = "none";
+    // document.getElementById("openDonate").style.display = "none";
   }
 }

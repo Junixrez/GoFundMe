@@ -22,7 +22,7 @@ if (imageInput) {
     if (imageInput.files && imageInput.files[0]) {
       try {
         base64Image = await convertImageToBase64(imageInput.files[0]);
-        console.log("Image converted to Base64 successfully!");
+        console.log("Image converted");
       } catch (error) {
         console.log("Failed to convert image:", error);
         alert("Failed to process image. Please try again.");
@@ -35,7 +35,7 @@ const loggedUser = JSON.parse(localStorage.getItem("user"));
 
 // get the campaign in the inputs
 async function getCamp(id) {
-  const response = await fetch(`http://localhost:3000/campaigns?id=${id}`);
+  const response = await fetch(`/api/campaigns?id=${id}`);
   const data = await response.json();
   data.forEach((camp) => {
     document.getElementById("title").value = `${camp.title}`;
@@ -49,7 +49,7 @@ getCamp(campaignId);
 document.getElementById("editBtn").addEventListener("click", async (e) => {
   e.preventDefault();
   async function editCamp(id) {
-    const res = await fetch(`http://localhost:3000/campaigns/${id}`, {
+    const res = await fetch(`/api/campaigns/${id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
@@ -69,9 +69,25 @@ document.getElementById("editBtn").addEventListener("click", async (e) => {
   await editCamp(campaignId);
 
   Swal.fire({
-    title: `Done`,
-    text: `You've edited the campaign`,
-    icon: "success",
+    title: "Are you sure?",
+    text: "you about to edit the campaign",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#0d7377",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, Edit it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Done",
+        text: "Your campaign has been Edited",
+        icon: "success",
+        timer: 1500,
+      });
+      setTimeout(() => {
+        window.location.href = "/HTML/campaigns.html";
+      }, 2000);
+    }
   });
 });
 
@@ -88,5 +104,5 @@ if (loggedUser) {
 //logout
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "../HTML/login.html";
+  window.location.href = "/";
 });

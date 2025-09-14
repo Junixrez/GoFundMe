@@ -1,6 +1,6 @@
 import { isAdmin } from "./adminAuth.js";
 let loggedUser = JSON.parse(localStorage.getItem("user"));
-const url = "http://localhost:3000/campaigns";
+const url = "/api/campaigns";
 let allCampaigns = [];
 
 function createCampaignCard(campaign, isMyCampaign) {
@@ -11,13 +11,13 @@ function createCampaignCard(campaign, isMyCampaign) {
   let buttonText;
 
   if (isMyCampaign) {
-    linkURL = `../HTML/EditCamp.html?id=${campaign.id}`;
+    linkURL = `/HTML/EditCamp.html?id=${campaign.id}`;
     buttonText = "Edit Campaign";
   } else if (!loggedUser) {
-    linkURL = `../HTML/login.html`;
+    linkURL = `/HTML/login.html`;
     buttonText = "View More";
   } else {
-    linkURL = `../HTML/campaign.html?id=${campaign.id}`;
+    linkURL = `/HTML/campaign.html?id=${campaign.id}`;
     buttonText = "View Details";
   }
 
@@ -43,7 +43,7 @@ function displayCampaigns(campaigns, isMyCampaign) {
   });
 
   if (approved.length === 0) {
-    container.innerHTML = '<p style="color:red;">Not found</p>';
+    container.innerHTML = '<p style = "color: red;">Not found</p>';
     return;
   }
 
@@ -163,8 +163,7 @@ if (loggedUser) {
 
   document.getElementById("loginBtn").style.display = "none";
   document.getElementById("logoutBtn").style.display = "block";
-  document.getElementById("start-your-own").href =
-    "../HTML/start-campaign.html";
+  document.getElementById("start-your-own").href = "/HTML/start-campaign.html";
 
   document.querySelector(".myCamps").style.display = "inline-block";
 } else if (!loggedUser) {
@@ -172,6 +171,6 @@ if (loggedUser) {
 
 document.getElementById("logoutBtn").addEventListener("click", function () {
   localStorage.removeItem("user");
-  window.location.href = "../HTML/index.html";
+  window.location.href = "/";
 });
 isAdmin();

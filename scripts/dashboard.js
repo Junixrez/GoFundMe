@@ -1,41 +1,41 @@
-const url = "http://localhost:3000";
+const url = "/api";
 let currentPage = "dashboard";
 let allCampaigns = [];
 let allUsers = [];
 let allPledges = [];
 const loggedUser = JSON.parse(localStorage.getItem("user"));
+
 if (!loggedUser || loggedUser.role !== "admin") {
-  alert("Access denied!");
-  window.location.href = "../HTML/index.html";
+  Swal.fire({
+    icon: "error",
+    title: "Access Denied",
+    text: "You don't have permission to access this page",
+    showConfirmButton: false,
+    timer: 1500,
+  }).then(() => {
+    window.location.href = "/";
+  });
+  const cover = document.createElement("div");
+  cover.classList = "cover";
+  document.querySelector(".container").appendChild(cover);
 }
+
 async function getCampaigns() {
-  try {
-    const response = await fetch(`${url}/campaigns`);
-    allCampaigns = await response.json();
-  } catch (error) {
-    console.log("Failed to get campaigns:", error);
-    allCampaigns = [];
-  }
+  const response = await fetch(`${url}/campaigns`);
+  const data = await response.json();
+  allCampaigns = data;
 }
 
 async function getUsers() {
-  try {
-    const response = await fetch(`${url}/users`);
-    allUsers = await response.json();
-  } catch (error) {
-    console.log("Failed to get users:", error);
-    allUsers = [];
-  }
+  const response = await fetch(`${url}/users`);
+  const data = await response.json();
+  allUsers = data;
 }
 
 async function getPledges() {
-  try {
-    const response = await fetch(`${url}/pledges`);
-    allPledges = await response.json();
-  } catch (error) {
-    console.log("Failed to get pledges:", error);
-    allPledges = [];
-  }
+  const response = await fetch(`${url}/pledges`);
+  const data = await response.json();
+  allPledges = data;
 }
 
 async function getAllData() {
@@ -78,17 +78,32 @@ function showMainDashboard() {
   const totalCampaigns = allCampaigns.length;
   const totalUsers = allUsers.length;
   const totalPledges = allPledges.length;
-  const totalAmount = allPledges.reduce(
-    (sum, pledge) => sum + parseFloat(pledge.amount || 0),
-    0
-  );
-  const approvedCampaigns = allCampaigns.filter(
-    (campaign) => campaign.isApproved
-  ).length;
-  const activeUsers = allUsers.filter((user) => user.isActive).length;
-  const pendingCampaigns = allCampaigns.filter(
-    (campaign) => !campaign.isApproved
-  ).length;
+
+  let totalAmount = 0;
+  allPledges.forEach((pledge) => {
+    totalAmount = totalAmount + parseFloat(pledge.amount || 0);
+  });
+
+  let approvedCampaigns = 0;
+  allCampaigns.forEach((campaign) => {
+    if (campaign.isApproved) {
+      approvedCampaigns++;
+    }
+  });
+
+  let activeUsers = 0;
+  allUsers.forEach((user) => {
+    if (user.isActive) {
+      activeUsers++;
+    }
+  });
+
+  let pendingCampaigns = 0;
+  allCampaigns.forEach((campaign) => {
+    if (!campaign.isApproved) {
+      pendingCampaigns++;
+    }
+  });
 
   mainArea.innerHTML = `
     <section class="overview-cards">
@@ -165,7 +180,7 @@ function showPledgesPage() {
 }
 
 function createPledgesTable(showRecentOnly) {
-  let pledgesToShow;
+  let pledgesToShow = [];
   if (showRecentOnly) {
     pledgesToShow = allPledges.slice(-5).reverse();
   } else {
@@ -186,11 +201,24 @@ function createPledgesTable(showRecentOnly) {
       <tbody>`;
 
   pledgesToShow.forEach(function (pledge) {
-    const user = allUsers.find((u) => u.id == pledge.userId);
-    const campaign = allCampaigns.find((c) => c.id == pledge.campaignId);
-    const pledgeDate = pledge.createdAt
-      ? new Date(pledge.createdAt).toLocaleDateString()
-      : "N/A";
+    let user = null;
+    allUsers.forEach((u) => {
+      if (u.id == pledge.userId) {
+        user = u;
+      }
+    });
+
+    let campaign = null;
+    allCampaigns.forEach((c) => {
+      if (c.id == pledge.campaignId) {
+        campaign = c;
+      }
+    });
+
+    let pledgeDate = "N/A";
+    if (pledge.createdAt) {
+      pledgeDate = new Date(pledge.createdAt).toLocaleDateString();
+    }
 
     tableHTML += `
       <tr>
@@ -223,20 +251,18 @@ function createPledgesTable(showRecentOnly) {
       </tr>`;
   });
 
-  tableHTML += `
-      </tbody>
-    </table>`;
-
+  tableHTML += `</tbody></table>`;
   return tableHTML;
 }
 
 function createCampaignsTable(showRecentOnly) {
-  let campaignsToShow;
+  let campaignsToShow = [];
   if (showRecentOnly) {
     campaignsToShow = allCampaigns.slice(-5).reverse();
   } else {
     campaignsToShow = allCampaigns;
   }
+
   let tableHTML = `
     <table>
       <thead>
@@ -248,10 +274,8 @@ function createCampaignsTable(showRecentOnly) {
   if (!showRecentOnly) {
     tableHTML += `<th>Actions</th>`;
   }
-  tableHTML += `
-        </tr>
-      </thead>
-      <tbody>`;
+  tableHTML += `</tr></thead><tbody>`;
+
   campaignsToShow.forEach(function (campaign) {
     const status = campaign.isApproved ? "Approved" : "Pending";
     const statusClass = campaign.isApproved ? "active" : "pending";
@@ -270,33 +294,28 @@ function createCampaignsTable(showRecentOnly) {
           <span class="status ${statusClass}">${status}</span>
         </td>`;
     if (!showRecentOnly) {
-      tableHTML += `
-        <td>
-          <div class="action-buttons">
-            <button class="btn-action approve" onclick="approveCampaign(${campaign.id})">
-              Approve
-            </button>
-            <button class="btn-action reject" onclick="rejectCampaign(${campaign.id})">
-              Reject
-            </button>
-          </div>
-        </td>`;
+      tableHTML += `<td><div class="action-buttons">`;
+      if (campaign.isApproved) {
+        tableHTML += `<button class="btn-action reject" onclick="rejectCampaign(${campaign.id})">Reject</button>`;
+      } else {
+        tableHTML += `<button class="btn-action approve" onclick="approveCampaign(${campaign.id})">Approve</button>`;
+      }
+      tableHTML += `</div></td>`;
     }
     tableHTML += `</tr>`;
   });
-  tableHTML += `
-      </tbody>
-    </table>`;
+  tableHTML += `</tbody></table>`;
   return tableHTML;
 }
 
 function createUsersTable(showRecentOnly) {
-  let usersToShow;
+  let usersToShow = [];
   if (showRecentOnly) {
     usersToShow = allUsers.slice(-5).reverse();
   } else {
     usersToShow = allUsers;
   }
+
   let tableHTML = `
     <table>
       <thead>
@@ -309,10 +328,8 @@ function createUsersTable(showRecentOnly) {
   if (!showRecentOnly) {
     tableHTML += `<th>Actions</th>`;
   }
-  tableHTML += `
-        </tr>
-      </thead>
-      <tbody>`;
+  tableHTML += `</tr></thead><tbody>`;
+
   usersToShow.forEach(function (user) {
     const status = user.isActive ? "Active" : "Inactive";
     const statusClass = user.isActive ? "active" : "inactive";
@@ -348,18 +365,22 @@ function createUsersTable(showRecentOnly) {
     }
     tableHTML += `</tr>`;
   });
-  tableHTML += `
-      </tbody>
-    </table>`;
+  tableHTML += `</tbody></table>`;
   return tableHTML;
 }
 
 async function approveCampaign(campaignId) {
-  const userConfirmed = confirm(
-    "Are you sure you want to approve this campaign?"
-  );
-  if (!userConfirmed) return;
-  try {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to approve this campaign?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#0d7377",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, approve it!",
+  });
+
+  if (result.isConfirmed) {
     const response = await fetch(url + "/campaigns/" + campaignId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -368,22 +389,35 @@ async function approveCampaign(campaignId) {
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
-      alert("Campaign approved successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Approved!",
+        text: "Campaign has been approved successfully!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } else {
-      alert("Failed to approve campaign");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to approve campaign",
+      });
     }
-  } catch (error) {
-    console.log("Error approving campaign:", error);
-    alert("Failed to approve campaign");
   }
 }
 
 async function rejectCampaign(campaignId) {
-  const userConfirmed = confirm(
-    "Are you sure you want to reject this campaign?"
-  );
-  if (!userConfirmed) return;
-  try {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to reject this campaign?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#0d7377",
+    cancelButtonColor: "#6c757d",
+    confirmButtonText: "Yes, reject it!",
+  });
+
+  if (result.isConfirmed) {
     const response = await fetch(url + "/campaigns/" + campaignId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -392,20 +426,35 @@ async function rejectCampaign(campaignId) {
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
-      alert("Campaign rejected successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Rejected!",
+        text: "Campaign has been rejected successfully!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } else {
-      alert("Failed to reject campaign");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to reject campaign",
+      });
     }
-  } catch (error) {
-    console.log("Error rejecting campaign:", error);
-    alert("Failed to reject campaign");
   }
 }
 
 async function banUser(userId) {
-  const userConfirmed = confirm("Are you sure you want to ban this user?");
-  if (!userConfirmed) return;
-  try {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to ban this user?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#0d7377",
+    cancelButtonColor: "#6c757d",
+    confirmButtonText: "Yes, ban user!",
+  });
+
+  if (result.isConfirmed) {
     const response = await fetch(url + "/users/" + userId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -414,20 +463,35 @@ async function banUser(userId) {
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
-      alert("User banned successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Banned!",
+        text: "User banned successfully!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } else {
-      alert("Failed to ban user");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to ban user",
+      });
     }
-  } catch (error) {
-    console.log("Error banning user:", error);
-    alert("Failed to ban user");
   }
 }
 
 async function unbanUser(userId) {
-  const userConfirmed = confirm("Are you sure you want to unban this user?");
-  if (!userConfirmed) return;
-  try {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to unban this user?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#0d7377",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, unban user!",
+  });
+
+  if (result.isConfirmed) {
     const response = await fetch(url + "/users/" + userId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -436,13 +500,20 @@ async function unbanUser(userId) {
     if (response.ok) {
       await getAllData();
       refreshCurrentPage();
-      alert("User unbanned successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Unbanned!",
+        text: "User unbanned successfully!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
     } else {
-      alert("Failed to unban user");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to unban user",
+      });
     }
-  } catch (error) {
-    console.log("Error unbanning user:", error);
-    alert("Failed to unban user");
   }
 }
 
@@ -458,15 +529,26 @@ function refreshCurrentPage() {
   }
 }
 
-document.getElementById("logoutBtn").addEventListener("click", function () {
-  const userConfirmed = confirm("Are you sure you want to logout?");
-  if (userConfirmed) {
-    localStorage.clear();
-    window.location.href = "../HTML/login.html";
-  }
-});
+document
+  .getElementById("logoutBtn")
+  .addEventListener("click", async function () {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#6c757d",
+      confirmButtonText: "Yes, logout!",
+    });
+
+    if (result.isConfirmed) {
+      localStorage.clear();
+      window.location.href = "/HTML/login.html";
+    }
+  });
 
 document.getElementById("logo").addEventListener("click", () => {
   document.getElementById("logo").style.cursor = "pointer";
-  window.location.href = "../HTML/index.html";
+  window.location.href = "/";
 });

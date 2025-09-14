@@ -134,7 +134,7 @@ function validatePaymentInputs(
   return true;
 }
 async function fetchCampaigns(id) {
-  const response = await fetch(`http://localhost:3000/campaigns?id=${id}`);
+  const response = await fetch(`/api/campaigns?id=${id}`);
   const data = await response.json();
   data.forEach((campaign) => {
     const card = document.createElement("div");
@@ -149,70 +149,100 @@ async function fetchCampaigns(id) {
           <button id="openDonate" class="btn-primary-dark">Donate Now</button>
         `;
     document.querySelector(".camp").appendChild(card);
+
+    if (loggedUser.id === campaign.creatorId) {
+      document.getElementById("openDonate").style.display = "none";
+      console.log(campaign.creatorId);
+    }
+
     document.getElementById("openDonate").addEventListener("click", () => {
       document.querySelector(".donate").style.display = "block";
-      console.log("click");
     });
+
     document.getElementById("donateBtn").addEventListener("click", (e) => {
       e.preventDefault();
-      const amount = parseFloat(document.getElementById("amount").value);
-      const cardNumber = document.getElementById("cardNum").value;
-      const cardHolder = document.getElementById("cardHolder").value;
-      const expireDate = document.getElementById("date").value;
-      const cvv = document.getElementById("cvv").value;
-      if (
-        !validatePaymentInputs(amount, cardNumber, cardHolder, expireDate, cvv)
-      ) {
-        return;
-      }
       Swal.fire({
-        position: `center-end`,
-        icon: "success",
-        text: `Thank you mr. ${loggedUser.name} for donating $${amount} to ${campaign.title}`,
-      });
-      const time = new Date().toISOString();
-      const payment = {
-        campaignId: campaign.id,
-        amount: amount,
-        userId: userId,
-        createdAt: time,
-      };
-      (async () => {
-        const rawResponse = await fetch("http://localhost:3000/pledges", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payment),
-        });
-        if (rawResponse.ok) {
-          const campResponse = await fetch(
-            `http://localhost:3000/campaigns/${campaign.id}`
-          );
-          const campData = await campResponse.json();
-          const newGoal = Math.max(0, campData.goal - amount);
-          const newRaised = (campData.raised || 0) + amount;
-          await fetch(`http://localhost:3000/campaigns/${campaign.id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              goal: newGoal,
-              raised: newRaised,
-            }),
-          });
-        } else {
+        title: "Confirm Payment",
+        text: `Are you sure you want to donate $${amount} to ${campaign.title}?`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#0d7377",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, proceed with payment",
+        cancelButtonText: "Cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const amount = parseFloat(document.getElementById("amount").value);
+          const cardNumber = document.getElementById("cardNum").value;
+          const cardHolder = document.getElementById("cardHolder").value;
+          const expireDate = document.getElementById("date").value;
+          const cvv = document.getElementById("cvv").value;
+          if (
+            !validatePaymentInputs(
+              amount,
+              cardNumber,
+              cardHolder,
+              expireDate,
+              cvv
+            )
+          ) {
+            return;
+          }
+
+          const time = new Date().toISOString();
+          const payment = {
+            campaignId: campaign.id,
+            amount: amount,
+            userId: userId,
+            createdAt: time,
+          };
+          (async () => {
+            const rawResponse = await fetch("/api/pledges", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payment),
+            });
+            if (rawResponse.ok) {
+              const campResponse = await fetch(`/api/campaigns/${campaign.id}`);
+              const campData = await campResponse.json();
+              const newGoal = Math.max(0, campData.goal - amount);
+              const newRaised = (campData.raised || 0) + amount;
+              await fetch(`/api/campaigns/${campaign.id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  goal: newGoal,
+                  raised: newRaised,
+                }),
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: "Failed",
+              });
+            }
+          })();
           Swal.fire({
-            icon: "error",
-            title: "Payment Failed",
-            text: "Failed",
+            icon: "success",
+            title: "Done",
+            text: `Thank you Mr. ${loggedUser.name} for donating $${amount} to ${campaign.title}`,
+            showConfirmButton: false,
+            timer: 2000,
           });
+          setTimeout(() => {
+            window.location.href = "../HTML/campaigns.html";
+          }, 2500);
         }
-      })();
+      });
     });
   });
 }
 fetchCampaigns(campaignId);
+
 if (loggedUser) {
   console.log("User is logged in");
   let welcomeUser = document.createElement("span");
@@ -223,7 +253,7 @@ if (loggedUser) {
   document.getElementById("logoutBtn").style.display = "block";
 }
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("user");
-  window.location.href = "../HTML/login.html";
+  localStorage.removeUser("user");
+  window.location.href = "/";
 });
 isAdmin();

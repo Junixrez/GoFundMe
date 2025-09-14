@@ -1,10 +1,18 @@
 {
   "scripts": {
+    "dev": "concurrently \"json-server-auth db.json --port 3001\" \"vite\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "json-server-auth db.json --port 3001",
+    "frontend": "vite",
     "start": "json-server --watch db.json --port 3000 -m ./node_modules/json-server-auth"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "json-server": "^0.17.4",
-    "json-server-auth": "^2.1.0"
+    "json-server-auth": "^2.1.0",
+    "sass-embedded": "^1.92.1",
+    "vite": "^7.1.5"
   },
   "dependencies": {
     "sweetalert2": "^11.23.0"
