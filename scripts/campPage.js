@@ -161,6 +161,11 @@ async function fetchCampaigns(id) {
 
     document.getElementById("donateBtn").addEventListener("click", (e) => {
       e.preventDefault();
+      const amount = parseFloat(document.getElementById("amount").value);
+      const cardNumber = document.getElementById("cardNum").value;
+      const cardHolder = document.getElementById("cardHolder").value;
+      const expireDate = document.getElementById("date").value;
+      const cvv = document.getElementById("cvv").value;
       Swal.fire({
         title: "Confirm Payment",
         text: `Are you sure you want to donate $${amount} to ${campaign.title}?`,
@@ -172,11 +177,6 @@ async function fetchCampaigns(id) {
         cancelButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          const amount = parseFloat(document.getElementById("amount").value);
-          const cardNumber = document.getElementById("cardNum").value;
-          const cardHolder = document.getElementById("cardHolder").value;
-          const expireDate = document.getElementById("date").value;
-          const cvv = document.getElementById("cvv").value;
           if (
             !validatePaymentInputs(
               amount,
@@ -226,16 +226,31 @@ async function fetchCampaigns(id) {
               });
             }
           })();
-          Swal.fire({
-            icon: "success",
-            title: "Done",
-            text: `Thank you Mr. ${loggedUser.name} for donating $${amount} to ${campaign.title}`,
-            showConfirmButton: false,
-            timer: 2000,
+          // Swal.fire({
+          //   position: "center-end",
+          //   icon: "success",
+          //   title: "Done",
+          //   text: `Thank you Mr. ${loggedUser.name} for donating $${amount} to ${campaign.title}`,
+          //   showConfirmButton: false,
+          //   timer: 2000,
+          // });
+          const thanksCard = document.createElement("div");
+          thanksCard.classList.add("thanks-message");
+          thanksCard.innerHTML = `
+           
+        <h2>Thank You So Much!</h2>
+        <p class="success">
+          Thank you Mr. ${loggedUser.name} for donating $${amount} to
+          ${campaign.title}
+        </p>
+        <button id = "close"> Close </button>
+      `;
+          document.querySelector(".main-container").appendChild(thanksCard);
+          document.getElementById("close").addEventListener("click", () => {
+            setTimeout(() => {
+              window.location.href = "../HTML/campaigns.html";
+            }, 500);
           });
-          setTimeout(() => {
-            window.location.href = "../HTML/campaigns.html";
-          }, 2500);
         }
       });
     });

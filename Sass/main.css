@@ -304,32 +304,7 @@ header #loginBtn:hover {
   color: #0d7377;
   margin-bottom: 1.5em;
 }
-.campaigns .content .camps {
-  margin-right: 1em;
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0d7377;
-  margin-bottom: 1.5em;
-  cursor: pointer;
-}
-.campaigns .content .camps:hover {
-  color: #35a29f;
-  transform: translateY(-3px);
-  transition: all 0.3s ease;
-}
-.campaigns .content .camps.active {
-  margin-right: 1em;
-  padding: 0.4em;
-  border-radius: 13px;
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  background-color: #0d7377;
-  color: #ffffff;
-  margin-bottom: 1.5em;
-  cursor: pointer;
-}
+.campaigns .content .camps,
 .campaigns .content .myCamps {
   margin-right: 1em;
   display: inline-block;
@@ -339,26 +314,22 @@ header #loginBtn:hover {
   margin-bottom: 1.5em;
   cursor: pointer;
 }
+.campaigns .content .camps:hover,
 .campaigns .content .myCamps:hover {
   color: #35a29f;
   transform: translateY(-3px);
   transition: all 0.3s ease;
 }
+.campaigns .content .camps.active,
 .campaigns .content .myCamps.active {
-  margin-right: 1em;
   padding: 0.4em;
   border-radius: 13px;
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 700;
   background-color: #0d7377;
   color: #ffffff;
-  margin-bottom: 1.5em;
-  cursor: pointer;
 }
 .campaigns .content #campaign-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1em;
   margin-bottom: 3em;
   animation: drop-down 0.7s ease both;
@@ -435,19 +406,26 @@ header #loginBtn:hover {
   .campaigns .content h2 {
     font-size: 1.8rem;
   }
-  .campaigns .content .cards {
-    grid-template-columns: 1fr;
-    gap: 1em;
+  .campaigns .content .camps,
+  .campaigns .content .myCamps {
+    font-size: 1.3rem;
+    margin-right: 0.5em;
   }
-  .campaigns .content .cards .card {
-    overflow: hidden;
-    padding: 0.6666666667em;
+  .campaigns .content #campaign-cards {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 0.8em;
   }
-  .campaigns .content .cards .card h3 {
+  .campaigns .content #campaign-cards .card {
+    padding: 0.8em;
+  }
+  .campaigns .content #campaign-cards .card .campaign-title {
     font-size: 1.3rem;
   }
-  .campaigns .content .cards .card p {
+  .campaigns .content #campaign-cards .card .campaign-description {
     font-size: 0.95rem;
+  }
+  .campaigns .content #campaign-cards .card img {
+    height: 150px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -458,18 +436,34 @@ header #loginBtn:hover {
   .campaigns .content h2 {
     font-size: 1.5rem;
   }
-  .campaigns .content .cards {
-    gap: 0.6666666667em;
+  .campaigns .content .camps,
+  .campaigns .content .myCamps {
+    font-size: 1.2rem;
+    margin: 0 0.25em 1em 0.25em;
+    display: block;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .campaigns .content .cards .card {
-    overflow: hidden;
-    padding: 0.5em;
+  .campaigns .content #campaign-cards {
+    grid-template-columns: 1fr;
+    gap: 0.6em;
   }
-  .campaigns .content .cards .card h3 {
+  .campaigns .content #campaign-cards .card {
+    padding: 0.6em;
+  }
+  .campaigns .content #campaign-cards .card .campaign-title {
     font-size: 1.2rem;
   }
-  .campaigns .content .cards .card p {
+  .campaigns .content #campaign-cards .card .campaign-description {
     font-size: 0.9rem;
+  }
+  .campaigns .content #campaign-cards .card img {
+    height: 120px;
+  }
+  .campaigns .content #campaign-cards .card .stats {
+    font-size: 0.8rem;
   }
 }
 
@@ -1494,6 +1488,21 @@ button {
   z-index: 1;
 }
 
+#close {
+  color: #ffffff;
+  background-color: #2c3e50;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  transition: 0.3s ease;
+  font-family: "Vend Sans", sans-serif;
+}
+#close:hover {
+  transform: translateY(-2px);
+}
+
 .main-container {
   background-color: #f8f9fa;
   height: 92vh;
@@ -1514,10 +1523,12 @@ button {
 .main-container .camp div {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  gap: 12px;
+  justify-items: flex-start;
+  background-color: #ffffff;
   width: 500px;
   height: auto;
-  min-height: 400px;
+  min-height: 650px;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
@@ -1567,10 +1578,10 @@ button {
 }
 .main-container .donate form {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
+  align-items: stretch;
+  gap: 4px;
   padding: 1em;
   background-color: #ffffff;
   box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
@@ -1583,13 +1594,39 @@ button {
 .main-container .donate form h2 {
   color: #0d7377;
   margin: 1em;
+  text-align: center;
+}
+.main-container .donate form label {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  margin-top: 0.5em;
+  display: block;
+  font-family: "Vend Sans", sans-serif;
+}
+.main-container .donate form label::after {
+  content: "";
+}
+.main-container .donate form .form-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+.main-container .donate form .form-row .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main-container .donate form .form-row .form-group label {
+  margin-top: 0;
 }
 .main-container .donate form #amount,
 .main-container .donate form #cardHolder,
 .main-container .donate form #cardNum {
-  width: 80%;
+  width: 100%;
   padding: 1em;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
   border: 1px solid #e1e8ed;
   border-radius: 5px;
   font-size: 1rem;
@@ -1602,24 +1639,21 @@ button {
   box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
   border-color: #0d7377;
 }
-.main-container .donate form button {
-  padding: 0.5em 1em;
-  background-color: #0d7377;
-  color: #ffffff;
-  border: none;
-  border-radius: 11px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.main-container .donate form #amount::-moz-placeholder, .main-container .donate form #cardHolder::-moz-placeholder, .main-container .donate form #cardNum::-moz-placeholder {
+  color: rgb(180.9504132231, 188.4710743802, 189.0495867769);
+  font-style: italic;
 }
-.main-container .donate form button:hover {
-  background-color: rgb(7.9772727273, 70.5681818182, 73.0227272727);
+.main-container .donate form #amount::placeholder,
+.main-container .donate form #cardHolder::placeholder,
+.main-container .donate form #cardNum::placeholder {
+  color: rgb(180.9504132231, 188.4710743802, 189.0495867769);
+  font-style: italic;
 }
 .main-container .donate form #date,
 .main-container .donate form #cvv {
-  width: 25%;
+  width: 100%;
   padding: 1em;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
   border: 1px solid #e1e8ed;
   border-radius: 5px;
   font-size: 1rem;
@@ -1631,19 +1665,36 @@ button {
   box-shadow: 0 0 8px 1px rgba(102, 175, 233, 0.6);
   border-color: #0d7377;
 }
+.main-container .donate form #date::-moz-placeholder, .main-container .donate form #cvv::-moz-placeholder {
+  color: rgb(180.9504132231, 188.4710743802, 189.0495867769);
+  font-style: italic;
+}
+.main-container .donate form #date::placeholder,
+.main-container .donate form #cvv::placeholder {
+  color: rgb(180.9504132231, 188.4710743802, 189.0495867769);
+  font-style: italic;
+}
 .main-container .thanks-message {
   margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 10px;
   align-items: center;
   background-color: #ffffff;
-  height: 30vh;
+  height: 40vh;
   min-width: 600px;
   text-align: center;
+  box-shadow: 1px 1px 20px 5px rgba(0, 0, 0, 0.075);
+  border-radius: 10px;
+  padding: 1em;
   color: #27ae60;
   font-size: 1.2rem;
   animation: slide-in 1s ease-in-out forwards;
+}
+.main-container .thanks-message h2 {
+  color: #0d7377;
+  font-size: 1.5rem;
 }
 
 @keyframes slide-in {

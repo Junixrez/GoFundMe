@@ -3,28 +3,34 @@
   height: 92vh;
   display: flex;
   align-items: center;
+
   h1 {
     color: $primary-color;
     text-align: center;
   }
+
   .camp {
     z-index: 2;
     display: flex;
     align-items: center;
     height: 50vh;
     animation: fade-in 1s ease-in-out forwards;
+
     div {
       display: flex;
       flex-direction: column;
-      background-color: white;
+      gap: 12px;
+      justify-items: flex-start;
+      background-color: $white;
       width: 500px;
       height: auto;
-      min-height: 400px;
+      min-height: 650px;
       margin: 20px;
       border-radius: 10px;
       box-shadow: $card-shadow;
       padding: $all-space;
       overflow: auto;
+
       .campaign-cards {
         width: 100%;
         height: auto;
@@ -32,36 +38,43 @@
         border-radius: 8px 8px 0 0;
         margin-bottom: $header-space;
       }
+
       .campaign-title {
         font-size: 1.5rem;
         margin-bottom: $all-space;
         color: $primary-color;
       }
+
       .campaign-description {
         font-size: 1rem;
         margin-bottom: $all-space;
         color: $text-light;
       }
+
       .campaign-goal {
         font-size: 1rem;
         color: $secondary-color;
         padding-bottom: $all-space;
       }
+
       .campaign-raised {
         font-size: 1rem;
         color: $success;
         padding-bottom: $all-space;
       }
+
       .campaign-deadline {
         font-size: 1rem;
         color: $text-dark;
         padding-bottom: $all-space;
       }
     }
+
     #openDonate {
       cursor: pointer;
     }
   }
+
   .donate {
     z-index: 1;
     animation: slide-in 1s ease-in-out forwards;
@@ -70,10 +83,10 @@
 
     form {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      gap: 10px;
+      align-items: stretch;
+      gap: 4px;
       padding: $all-space;
       background-color: $white;
       box-shadow: $card-shadow;
@@ -86,14 +99,45 @@
       h2 {
         color: $primary-color;
         margin: $all-space;
+        text-align: center;
+      }
+
+      label {
+        color: $text-dark;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        margin-top: $all-space * 0.5;
+        display: block;
+        font-family: $main-font;
+
+        &::after {
+          content: "";
+        }
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+
+        .form-group {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-top: 0;
+          }
+        }
       }
 
       #amount,
       #cardHolder,
       #cardNum {
-        width: 80%;
+        width: 100%;
         padding: $all-space;
-        margin-bottom: $all-space * 1.5;
+        margin-bottom: $all-space * 0.5;
         border: 1px solid $border;
         border-radius: 5px;
         font-size: $font-size;
@@ -104,27 +148,18 @@
           box-shadow: $focus-shadow;
           border-color: $primary-color;
         }
-      }
 
-      button {
-        padding: $btn-padding $btn-padding * 2;
-        background-color: $primary-color;
-        color: $white;
-        border: none;
-        border-radius: $btn-radius;
-        font-size: $btn-font-size;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: darken($primary-color, 10%);
+        &::placeholder {
+          color: lighten($text-light, 20%);
+          font-style: italic;
         }
       }
+
       #date,
       #cvv {
-        width: 25%;
+        width: 100%;
         padding: $all-space;
-        margin-bottom: $all-space * 1.5;
+        margin-bottom: $all-space * 0.5;
         border: 1px solid $border;
         border-radius: 5px;
         font-size: $font-size;
@@ -134,25 +169,41 @@
           outline: none;
           box-shadow: $focus-shadow;
           border-color: $primary-color;
+        }
+
+        &::placeholder {
+          color: lighten($text-light, 20%);
+          font-style: italic;
         }
       }
     }
   }
+
   .thanks-message {
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 10px;
     align-items: center;
     background-color: $white;
-    height: 30vh;
+    height: 40vh;
     min-width: 600px;
     text-align: center;
+    box-shadow: $card-shadow;
+    border-radius: 10px;
+    padding: $all-space;
     color: $success;
     font-size: 1.2rem;
     animation: slide-in 1s ease-in-out forwards;
+
+    h2 {
+      color: $primary-color;
+      font-size: 1.5rem;
+    }
   }
 }
+
 @keyframes slide-in {
   from {
     transform: translateX(-40%);

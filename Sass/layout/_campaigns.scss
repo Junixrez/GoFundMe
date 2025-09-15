@@ -10,39 +10,15 @@
   .content {
     grid-column: 2 / 3;
     text-align: center;
+
     h2 {
       font-size: 2rem;
       font-weight: 700;
       color: $primary-color;
       margin-bottom: $all-space * 1.5;
     }
-    .camps {
-      margin-right: 1em;
-      display: inline-block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: $primary-color;
-      margin-bottom: $all-space * 1.5;
-      cursor: pointer;
-      &:hover {
-        color: $accent-color;
-        transform: translateY(-3px);
-        transition: all 0.3s ease;
-      }
-    }
-    .camps.active {
-      margin-right: 1em;
-      padding: 0.4em;
-      border-radius: 13px;
-      display: inline-block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background-color: $primary-color;
-      color: $white;
-      margin-bottom: $all-space * 1.5;
-      cursor: pointer;
-    }
 
+    .camps,
     .myCamps {
       margin-right: 1em;
       display: inline-block;
@@ -51,27 +27,24 @@
       color: $primary-color;
       margin-bottom: $all-space * 1.5;
       cursor: pointer;
+
       &:hover {
         color: $accent-color;
         transform: translateY(-3px);
         transition: all 0.3s ease;
       }
+
+      &.active {
+        padding: 0.4em;
+        border-radius: 13px;
+        background-color: $primary-color;
+        color: $white;
+      }
     }
-    .myCamps.active {
-      margin-right: 1em;
-      padding: 0.4em;
-      border-radius: 13px;
-      display: inline-block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background-color: $primary-color;
-      color: $white;
-      margin-bottom: $all-space * 1.5;
-      cursor: pointer;
-    }
+
     #campaign-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
       gap: $all-space;
       margin-bottom: $all-space * 3;
       animation: drop-down 0.7s ease both;
@@ -108,24 +81,28 @@
           line-height: 1.3;
           margin-bottom: $header-space;
         }
+
         .campaign-goal {
           font-size: 1rem;
           font-weight: 600;
           color: $accent-color;
           margin-bottom: $header-space;
         }
+
         .campaign-raised {
           font-size: 1rem;
           font-weight: 600;
           color: $success;
           margin-bottom: $header-space;
         }
+
         .campaign-deadline {
           font-size: 1rem;
           font-weight: 500;
           color: $text-dark;
           margin-bottom: $header-space;
         }
+
         .progress {
           background-color: lighten($primary-color, 40%);
           border-radius: 5px;
@@ -158,21 +135,29 @@
         font-size: 1.8rem;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-        gap: $all-space;
+      .camps,
+      .myCamps {
+        font-size: 1.3rem;
+        margin-right: 0.5em;
+      }
+
+      #campaign-cards {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: $all-space * 0.8;
 
         .card {
-          overflow: hidden;
+          padding: $all-space * 0.8;
 
-          padding: $all-space / 1.5;
-
-          h3 {
+          .campaign-title {
             font-size: 1.3rem;
           }
 
-          p {
+          .campaign-description {
             font-size: 0.95rem;
+          }
+
+          img {
+            height: 150px;
           }
         }
       }
@@ -181,33 +166,51 @@
 
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
-    padding: $all-space $all-space / 2;
+    padding: $all-space $all-space * 0.5;
 
     .content {
       h2 {
         font-size: 1.5rem;
       }
 
-      .cards {
-        gap: $all-space / 1.5;
+      .camps,
+      .myCamps {
+        font-size: 1.2rem;
+        margin: 0 0.25em $all-space 0.25em;
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #campaign-cards {
+        grid-template-columns: 1fr;
+        gap: $all-space * 0.6;
 
         .card {
-          overflow: hidden;
+          padding: $all-space * 0.6;
 
-          padding: $all-space / 2;
-
-          h3 {
+          .campaign-title {
             font-size: 1.2rem;
           }
 
-          p {
+          .campaign-description {
             font-size: 0.9rem;
+          }
+
+          img {
+            height: 120px;
+          }
+
+          .stats {
+            font-size: 0.8rem;
           }
         }
       }
     }
   }
 }
+
 @keyframes drop-down {
   0% {
     opacity: 0;

@@ -40,6 +40,8 @@
       <div class="donate">
         <form>
           <h2>Payment</h2>
+
+          <label for="amount">Donation Amount *</label>
           <input
             value=""
             id="amount"
@@ -47,6 +49,8 @@
             placeholder="Enter donation amount"
             required
           />
+
+          <label for="cardNum">Card Number *</label>
           <input
             value=""
             id="cardNum"
@@ -54,6 +58,8 @@
             placeholder="Enter card number"
             required
           />
+
+          <label for="cardHolder">Card Holder Name *</label>
           <input
             value=""
             id="cardHolder"
@@ -61,21 +67,32 @@
             placeholder="Enter card holder name"
             required
           />
-          <input
-            value=""
-            id="date"
-            type="text"
-            placeholder="Enter expiration date"
-            required
-          />
-          <input
-            id="cvv"
-            value=""
-            type="number"
-            placeholder="Enter CVV"
-            required
-          />
-          <button id="donateBtn" class="btn-primary-dark">Procceed</button>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Expiration Date *</label>
+              <input
+                value=""
+                id="date"
+                type="text"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="cvv">CVV *</label>
+              <input
+                id="cvv"
+                value=""
+                type="number"
+                placeholder="Enter CVV"
+                required
+              />
+            </div>
+          </div>
+
+          <button id="donateBtn" class="btn-primary-dark">Proceed</button>
         </form>
       </div>
     </section>
