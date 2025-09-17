@@ -4,10 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  height: 89vh;
   width: 100%;
   .content {
-    max-width: 400px;
+    min-width: 400px;
     margin: 0 auto;
     padding: 20px;
     box-shadow: $form-shadow;
@@ -57,11 +57,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  height: 89vh;
   width: 100%;
 
   .content {
-    max-width: 400px;
+    min-width: 400px;
     margin: 0 auto;
     padding: 20px;
     box-shadow: $form-shadow;

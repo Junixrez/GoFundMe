@@ -14,6 +14,7 @@ header {
   grid-template-columns: 2fr 2.5fr auto auto;
   align-items: center;
   width: 100%;
+  min-height: 11vh;
 }
 header .welcome-user {
   color: #0d7377;
@@ -289,188 +290,152 @@ header #loginBtn:hover {
   display: grid;
   grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
   padding: 2em 1em;
-  margin-bottom: 5em;
+  margin: 2em 0 4em; /* Margin-top to prevent collision */
   background-color: #f8f9fa;
   color: #2c3e50;
   font-family: "Vend Sans", sans-serif;
+  position: relative;
+  isolation: isolate;
 }
 .campaigns .content {
   grid-column: 2/3;
   text-align: center;
 }
 .campaigns .content h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 1.8rem);
   font-weight: 700;
   color: #0d7377;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.2em;
 }
 .campaigns .content .camps,
 .campaigns .content .myCamps {
-  margin-right: 1em;
   display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
+  font-weight: 600;
   color: #0d7377;
-  margin-bottom: 1.5em;
+  margin: 0 0.5em 1.2em;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 .campaigns .content .camps:hover,
 .campaigns .content .myCamps:hover {
   color: #35a29f;
-  transform: translateY(-3px);
-  transition: all 0.3s ease;
+  transform: translateY(-2px);
 }
 .campaigns .content .camps.active,
 .campaigns .content .myCamps.active {
-  padding: 0.4em;
-  border-radius: 13px;
+  padding: 0.3em 0.6em;
+  border-radius: 10px;
   background-color: #0d7377;
   color: #ffffff;
 }
 .campaigns .content #campaign-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 1em;
-  margin-bottom: 3em;
-  animation: drop-down 0.7s ease both;
+  grid-template-columns: repeat(3, minmax(280px, 1fr)); /* Max 3 cards per row */
+  gap: 0.8em;
+  margin-bottom: 2em;
+  animation: drop-down 0.5s ease-out;
 }
 .campaigns .content #campaign-cards .card {
   overflow: hidden;
   background-color: #ffffff;
-  border-radius: 8px;
-  padding: 1em;
-  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.1);
-  transition: transform 0.3s ease;
+  border-radius: 6px;
+  padding: 0.8em;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  transition: transform 0.2s ease;
   text-align: left;
 }
 .campaigns .content #campaign-cards .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 .campaigns .content #campaign-cards .card img {
   width: 100%;
-  height: 200px;
-  border-radius: 8px 8px 0 0;
-  margin-bottom: 0.5em;
+  height: clamp(120px, 40vw, 180px);
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 0.4em;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .campaigns .content #campaign-cards .card .campaign-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 4vw, 1.3rem);
   font-weight: 600;
   color: #0d7377;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .campaign-description {
-  font-size: 1rem;
-  line-height: 1.3;
-  margin-bottom: 0.5em;
+  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  line-height: 1.4;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .campaign-goal {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
   font-weight: 600;
   color: #35a29f;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .campaign-raised {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
   font-weight: 600;
   color: #27ae60;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .campaign-deadline {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 3.5vw, 0.9rem);
   font-weight: 500;
   color: #2c3e50;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .progress {
-  background-color: rgb(98.1363636364, 232.5909090909, 237.8636363636);
-  border-radius: 5px;
-  height: 10px;
-  margin-bottom: 0.5em;
+  background-color: rgb(121.125, 235.875, 240.375);
+  border-radius: 4px;
+  height: 8px;
+  margin-bottom: 0.4em;
 }
 .campaigns .content #campaign-cards .card .progress .bar {
   background-color: #0d7377;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 .campaigns .content #campaign-cards .card .stats {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 3vw, 0.85rem);
   color: #2c3e50;
 }
 @media screen and (max-width: 768px) {
   .campaigns {
-    grid-template-columns: 1fr minmax(250px, 600px) 1fr;
-    padding: 1.5em 1em;
-  }
-  .campaigns .content h2 {
-    font-size: 1.8rem;
-  }
-  .campaigns .content .camps,
-  .campaigns .content .myCamps {
-    font-size: 1.3rem;
-    margin-right: 0.5em;
+    grid-template-columns: 1fr minmax(250px, 90%) 1fr;
+    padding: 1.2em 0.8em;
+    margin: 1.5em 0 3em;
   }
   .campaigns .content #campaign-cards {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-    gap: 0.8em;
-  }
-  .campaigns .content #campaign-cards .card {
-    padding: 0.8em;
-  }
-  .campaigns .content #campaign-cards .card .campaign-title {
-    font-size: 1.3rem;
-  }
-  .campaigns .content #campaign-cards .card .campaign-description {
-    font-size: 0.95rem;
-  }
-  .campaigns .content #campaign-cards .card img {
-    height: 150px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); /* Flexible for smaller screens */
+    gap: 0.6em;
   }
 }
 @media screen and (max-width: 480px) {
   .campaigns {
     grid-template-columns: 1fr;
-    padding: 1em 0.5em;
-  }
-  .campaigns .content h2 {
-    font-size: 1.5rem;
+    padding: 0.8em 0.5em;
+    margin: 1.2em 0 2em;
   }
   .campaigns .content .camps,
   .campaigns .content .myCamps {
-    font-size: 1.2rem;
-    margin: 0 0.25em 1em 0.25em;
     display: block;
+    margin: 0.8em auto;
     width: -moz-fit-content;
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
   }
   .campaigns .content #campaign-cards {
-    grid-template-columns: 1fr;
-    gap: 0.6em;
-  }
-  .campaigns .content #campaign-cards .card {
-    padding: 0.6em;
-  }
-  .campaigns .content #campaign-cards .card .campaign-title {
-    font-size: 1.2rem;
-  }
-  .campaigns .content #campaign-cards .card .campaign-description {
-    font-size: 0.9rem;
-  }
-  .campaigns .content #campaign-cards .card img {
-    height: 120px;
-  }
-  .campaigns .content #campaign-cards .card .stats {
-    font-size: 0.8rem;
+    grid-template-columns: 1fr; /* 1 card per row on very small screens */
+    gap: 0.5em;
   }
 }
 
 @keyframes drop-down {
   0% {
     opacity: 0;
-    transform: translateY(-80px);
+    transform: translateY(-50px);
   }
   100% {
     opacity: 1;
@@ -483,11 +448,11 @@ header #loginBtn:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  height: 89vh;
   width: 100%;
 }
 .login .content {
-  max-width: 400px;
+  min-width: 400px;
   margin: 0 auto;
   padding: 20px;
   box-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
@@ -533,11 +498,11 @@ header #loginBtn:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  height: 89vh;
   width: 100%;
 }
 .signup .content {
-  max-width: 400px;
+  min-width: 400px;
   margin: 0 auto;
   padding: 20px;
   box-shadow: 21px 22px 12px 12px rgba(0, 0, 0, 0.075);
@@ -1336,48 +1301,81 @@ body {
 }
 
 .why-choose-us {
-  background-color: #f8f9fa;
-  padding: 1em;
+  padding: 1.5em 1em;
   text-align: center;
-  margin-bottom: 6em;
+  margin-bottom: 4em;
 }
 .why-choose-us .content {
-  max-width: 1200px;
+  max-width: min(1200px, 95%);
   margin: 0 auto;
-  padding: 0 1em;
+  padding: 0 0.8em;
 }
 .why-choose-us .content h2 {
   color: #0d7377;
   font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 2em;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  margin-bottom: 1.5em;
 }
 .why-choose-us .content .reasons {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2em;
-  margin-bottom: 3em;
-}
-.why-choose-us .content .reasons .reason {
-  background-color: #f8f9fa;
-  padding: 1em;
-  border-radius: 11px;
-  box-shadow: 0 4px 10px rgba(44, 62, 80, 0.1);
-  transition: transform 0.3s ease;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 1.2em;
   margin-bottom: 2em;
 }
+.why-choose-us .content .reasons .reason {
+  background-color: #ffffff;
+  padding: 0.8em;
+  border-radius: 11px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  transition: transform 0.2s ease;
+  margin-bottom: 1em;
+}
 .why-choose-us .content .reasons .reason:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .why-choose-us .content .reasons .reason h3 {
   color: #0d7377;
-  font-size: 1.5rem;
-  margin-bottom: 1em;
+  font-size: clamp(1.2rem, 4vw, 1.4rem);
+  margin-bottom: 0.8em;
 }
 .why-choose-us .content .reasons .reason p {
   color: #2c3e50;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+  line-height: 1.5;
+}
+@media screen and (max-width: 768px) {
+  .why-choose-us {
+    padding: 1.2em 0.8em;
+    margin-bottom: 3em;
+  }
+  .why-choose-us .content {
+    padding: 0 0.6em;
+  }
+  .why-choose-us .content h2 {
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    margin-bottom: 1em;
+  }
+  .why-choose-us .content .reasons {
+    gap: 1em;
+    margin-bottom: 1.5em;
+  }
+}
+@media screen and (max-width: 480px) {
+  .why-choose-us {
+    padding: 0.8em 0.5em;
+    margin-bottom: 2em;
+  }
+  .why-choose-us .content {
+    padding: 0 0.4em;
+  }
+  .why-choose-us .content .reasons {
+    grid-template-columns: 1fr;
+    gap: 0.8em;
+  }
+  .why-choose-us .content .reasons .reason {
+    padding: 0.6em;
+    margin-bottom: 0.8em;
+  }
 }
 
 button {

@@ -7,6 +7,7 @@ header {
   grid-template-columns: 2fr 2.5fr auto auto;
   align-items: center;
   width: 100%;
+  min-height: 11vh;
   .welcome-user {
     color: $primary-color;
     font-size: $font-size;

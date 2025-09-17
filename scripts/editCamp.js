@@ -62,7 +62,7 @@ document.getElementById("editBtn").addEventListener("click", async (e) => {
         deadline: document.getElementById("deadline").value,
         description: document.getElementById("description").value,
         creatorId: loggedUser.id,
-        isApproved: true,
+        isApproved: false,
       }),
     });
   }

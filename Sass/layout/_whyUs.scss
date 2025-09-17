@@ -1,49 +1,84 @@
 .why-choose-us {
-  background-color: $bg-light;
-  padding: $all-space;
+  padding: $all-space * 1.5 $all-space;
   text-align: center;
-  margin-bottom: $all-space * 6;
+  margin-bottom: $all-space * 4;
 
   .content {
-    max-width: 1200px;
+    max-width: min(1200px, 95%);
     margin: 0 auto;
-    padding: 0 $all-space;
+    padding: 0 $all-space * 0.8;
 
     h2 {
       color: $primary-color;
       font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: $all-space * 2;
+      font-size: clamp(1.8rem, 5vw, 2.2rem);
+      margin-bottom: $all-space * 1.5;
     }
 
     .reasons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: $all-space * 2;
-      margin-bottom: $all-space * 3;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: $all-space * 1.2;
+      margin-bottom: $all-space * 2;
 
       .reason {
-        background-color: $bg-light;
-        padding: $all-space;
+        background-color: $white;
+        padding: $all-space * 0.8;
         border-radius: $btn-radius;
-        box-shadow: 0 4px 10px rgba($text-dark, 0.1);
-        transition: transform 0.3s ease;
-        margin-bottom: $all-space * 2;
+        box-shadow: 0 2px 8px rgba($text-dark, 0.08);
+        transition: transform 0.2s ease;
+        margin-bottom: $all-space;
 
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
 
         h3 {
           color: $primary-color;
-          font-size: 1.5rem;
-          margin-bottom: $all-space;
+          font-size: clamp(1.2rem, 4vw, 1.4rem);
+          margin-bottom: $all-space * 0.8;
         }
 
         p {
           color: $text-dark;
-          font-size: 1rem;
-          line-height: 1.6;
+          font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: $all-space * 1.2 $all-space * 0.8;
+    margin-bottom: $all-space * 3;
+
+    .content {
+      padding: 0 $all-space * 0.6;
+      h2 {
+        font-size: clamp(1.5rem, 5vw, 1.8rem);
+        margin-bottom: $all-space;
+      }
+      .reasons {
+        gap: $all-space;
+        margin-bottom: $all-space * 1.5;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: $all-space * 0.8 $all-space * 0.5;
+    margin-bottom: $all-space * 2;
+
+    .content {
+      padding: 0 $all-space * 0.4;
+
+      .reasons {
+        grid-template-columns: 1fr;
+        gap: $all-space * 0.8;
+
+        .reason {
+          padding: $all-space * 0.6;
+          margin-bottom: $all-space * 0.8;
         }
       }
     }

@@ -1,8 +1,6 @@
 import { isAdmin } from "./adminAuth.js";
 
 const campaignsEP = "campaigns";
-const usersEP = "users";
-const plegesEP = "pleges";
 let loggedUser = JSON.parse(localStorage.getItem("user"));
 
 const getRequest = (ep) => {
@@ -15,7 +13,7 @@ async function fetchCampaigns() {
     .then((res) => res.json())
     .then((data) => {
       data.forEach((campaign) => {
-        if (campaign.id <= 6) {
+        if (campaign.isFeatured == true) {
           const card = document.createElement("div");
           card.classList = "card";
           card.innerHTML = `
